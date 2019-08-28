@@ -43,8 +43,8 @@ class Comment extends Component {
 			<div className="col-xs-12 bob-comment">
 				<div className="media">
 					{/* User avatar */}
-					<a className="thumbnail pull-left hidden-xs">
-						<img src={avatar} alt="Avatar" />
+					<a>
+						<img className="avatar" src={avatar} alt="Avatar" />
 					</a>
 					<div className="media-body">
 						{/* User classification and offering city */}

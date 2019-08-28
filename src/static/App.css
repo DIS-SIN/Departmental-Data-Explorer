@@ -1,0 +1,11 @@
+/* Avatar */
+.avatar {
+	width: 7rem;
+	padding: 0;
+	margin-right: 0.5rem;
+	border: 1px solid transparent;
+}
+/* Avatar hover */
+.avatar:hover {
+	border-color: #066169 !important;
+}

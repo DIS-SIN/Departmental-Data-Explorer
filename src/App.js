@@ -1,20 +1,19 @@
 import React from 'react';
 import './static/App.css';
+import Container from '@material-ui/core/Container';
 import Nav from './components/Nav';
 import ApiKey from './components/ApiKey';
-import Banner from './components/Banner';
 import Comments from './components/Comments';
 import Counts from './components/Counts';
 
 function App() {
 	return (
-		<>
+		<Container>
 			<Nav />
-			<Banner />
 			<ApiKey />
 			<Counts />
 			<Comments />
-		</>
+		</Container>
 	);
 }
 
