@@ -8,18 +8,28 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import App from './App';
-import { mainReducer } from './reducers/main-reducer';
+import { commentReducer } from './reducers/comment-reducer';
 
 // Flow: React component -> action -> reducer -> store
 
 /* ### INITIAL STATE ### */
 const initialState = {
-	mainReducer: {}
+	commentReducer: {
+		apiKey: '',
+		comments: [],
+		commentsPending: false,
+		counts: {},
+		countsPending: false,
+		courseCode: '',
+		currentIndices: {
+			general: 0
+		}
+	}
 };
 
 /* ### REDUCERS ### */
 const allReducers = combineReducers({
-	mainReducer: mainReducer
+	commentReducer: commentReducer
 });
 
 /* ### ENHANCERS ###*/
