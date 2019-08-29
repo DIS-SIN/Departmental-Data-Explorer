@@ -1,3 +1,28 @@
+/***** Start global *****/
+html {
+	position: relative;
+	min-height: 100%;
+	/* Explicitly declare so can be referenced by rem units */
+	font-size: 16px;
+}
+body {
+	font-family: Helvetica, sans-serif;
+	color: #333;
+	font-size: 1rem;
+}
+a,
+a:link,
+a:visited {
+	color: #333;
+}
+a:hover,
+a:active {
+	color: #000;
+}
+/***** End global *****/
+
+
+
 /* Avatar */
 .avatar {
 	width: 7rem;

@@ -3,7 +3,6 @@ import 'es6-promise';
 import 'isomorphic-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './static/index.css';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
