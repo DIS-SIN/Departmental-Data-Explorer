@@ -5,6 +5,7 @@ import Header from './components/Nav-Components/Header';
 import ApiKey from './components/Comment-Components/ApiKey';
 import Comments from './components/Comment-Components/Comments';
 import Counts from './components/Comment-Components/Counts';
+import Footer from './components/Nav-Components/Footer';
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 			<ApiKey />
 			<Counts />
 			<Comments />
+			<Footer />
 		</Container>
 	);
 }
