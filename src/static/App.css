@@ -1,4 +1,4 @@
-/***** Start global *****/
+/***** Global styles *****/
 html {
 	position: relative;
 	min-height: 100%;
@@ -9,6 +9,8 @@ body {
 	font-family: Helvetica, sans-serif;
 	color: #333;
 	font-size: 1rem;
+	/* Same as height of footer */
+	margin-bottom: 3.75rem;
 }
 a,
 a:link,
@@ -18,19 +20,4 @@ a:visited {
 a:hover,
 a:active {
 	color: #000;
-}
-/***** End global *****/
-
-
-
-/* Avatar */
-.avatar {
-	width: 7rem;
-	padding: 0;
-	margin-right: 0.5rem;
-	border: 1px solid transparent;
-}
-/* Avatar hover */
-.avatar:hover {
-	border-color: #066169 !important;
 }
