@@ -1,6 +1,6 @@
 import { GET_COMMENTS_PENDING, GET_COMMENTS_SUCCESS, GET_COUNTS_PENDING, GET_COUNTS_SUCCESS, INCREMENT_INDEX, UPDATE_API_KEY, UPDATE_COURSE_CODE } from '../actions/comment-actions';
 import { initialState } from '../';
-import { STEP_SIZE } from '../components/LoadMore';
+import { STEP_SIZE } from '../components/Comment-Components/LoadMore';
 
 export function commentReducer(state = initialState.commentReducer, action) {
 	switch(action.type) {

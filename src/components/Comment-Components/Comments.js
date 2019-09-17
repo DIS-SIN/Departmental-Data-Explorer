@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import avatar from '../static/img/avatar.png';
+import avatar from '../../static/img/avatar.png';
 import LoadMore from './LoadMore';
 
 class Loader extends Component {

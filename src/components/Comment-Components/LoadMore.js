@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getComments, incrementIndex } from '../actions/comment-actions';
+import { getComments, incrementIndex } from '../../actions/comment-actions';
 
 export const STEP_SIZE = 20;
 

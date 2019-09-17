@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getComments, getCounts, incrementIndex, updateApiKey, updateCourseCode } from '../actions/comment-actions';
+import { getComments, getCounts, incrementIndex, updateApiKey, updateCourseCode } from '../../actions/comment-actions';
 
 class ApiKey extends Component {
 	onSubmit = (e) => {

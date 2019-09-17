@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import tooltip from '../static/img/tooltip.png';
+import tooltip from '../../static/img/tooltip.png';
 
 class Bar extends Component {
 	render() {

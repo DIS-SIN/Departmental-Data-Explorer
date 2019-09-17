@@ -1,4 +1,4 @@
-import { STEP_SIZE } from '../components/LoadMore';
+import { STEP_SIZE } from '../components/Comment-Components/LoadMore';
 
 export const GET_COMMENTS_PENDING = 'GET_COMMENTS_PENDING'
 export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
