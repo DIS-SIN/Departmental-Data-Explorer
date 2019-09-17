@@ -1,4 +1,5 @@
-import '@babel/polyfill'; // Must be imported before React
+// Polyfills for IE11; must be imported before React
+import '@babel/polyfill';
 import 'es6-promise';
 import 'isomorphic-fetch';
 import React from 'react';
@@ -9,9 +10,9 @@ import thunk from 'redux-thunk';
 import App from './App';
 import { commentReducer } from './reducers/comment-reducer';
 
-// Flow: React component -> action -> reducer -> store
+// Data flow in Redux: React component -> action -> reducer -> store
 
-/* ### INITIAL STATE ### */
+/***** INITIAL STATE *****/
 const initialState = {
 	commentReducer: {
 		apiKey: '',
@@ -26,19 +27,19 @@ const initialState = {
 	}
 };
 
-/* ### REDUCERS ### */
+/***** REDUCERS *****/
 const allReducers = combineReducers({
 	commentReducer: commentReducer
 });
 
-/* ### ENHANCERS ###*/
+/***** ENHANCERS *****/
 const allEnhancers = compose(
 	applyMiddleware(thunk)
 	// Use short circuiting i.e. if the devtools extension is present, call it
 	// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-/* ### STORE ### */
+/***** STORE *****/
 const store = createStore(allReducers, initialState, allEnhancers);
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
