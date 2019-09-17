@@ -29,10 +29,16 @@ const config = {
 			},
 			{
 				test: /\.css$/,
-				use: [
-					'style-loader',
-					'css-loader'
-				],
+				loader: 'style-loader'
+			},
+			{
+				test: /\.css$/,
+				loader: 'css-loader',
+				query: {
+					modules: {
+						localIdentName: '[name]__[local]___[hash:base64:5]'
+					}
+				}
 			}
 		]
 	},
