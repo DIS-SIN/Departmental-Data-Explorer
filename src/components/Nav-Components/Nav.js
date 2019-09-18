@@ -21,9 +21,11 @@ function Nav() {
 						</ul>
 					</div>
 					
-					<div className={styles.logos}>
-						<img src={CSPS} alt="CSPS Logo" />
-						<h1>CSPS Data Explorer</h1>
+					<div className={styles.outerLogos}>
+						<div className={styles.logos}>
+							<img src={CSPS} alt="CSPS Logo" />
+							<h1>CSPS Data Explorer</h1>
+						</div>
 					</div>
 				</div>
 			</Container>
