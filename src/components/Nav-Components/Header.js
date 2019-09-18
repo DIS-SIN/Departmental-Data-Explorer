@@ -10,7 +10,7 @@ function Nav() {
 				<a href="https://www.canada.ca/en.html">
 					<img src={GoC_EN} alt="Government of Canada Logo" />
 				</a>
-				<a className={styles.langButtonDesktop} href="https://www.google.ca">Français</a>
+				<a className={styles.langButtonDesktop} href="#">Français</a>
 			</header>
 		</Container>
 	);

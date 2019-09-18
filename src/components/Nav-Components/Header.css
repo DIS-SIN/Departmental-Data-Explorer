@@ -6,10 +6,12 @@
 	justify-content: space-between;
 	align-items: center;
 }
+.header a,
 .header img {
 	height: 1.5rem;
 }
 .langButtonDesktop {
+	height: 100% !important;
 	text-decoration: none;
 }
 /* Hide header's English / Français button on mobile */
