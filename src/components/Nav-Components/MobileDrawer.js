@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
 import Home from '@material-ui/icons/Home';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
@@ -11,6 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import Satellite from '@material-ui/icons/Satellite';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Sync from '@material-ui/icons/Sync';
 
 const useStyles = makeStyles({
@@ -30,10 +30,7 @@ function MobileDrawer() {
 	const classes = useStyles();
 	
 	const [state, setState] = React.useState({
-		top: false,
-		left: false,
-		bottom: false,
-		right: false
+		openDrawer: false
 	});
 	
 	const iconMap = {
@@ -42,19 +39,19 @@ function MobileDrawer() {
 		'Calendar': <CalendarToday />
 	};
 	
-	const toggleDrawer = (side, open) => event => {
-		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+	const toggleDrawer = (open) => event => {
+		if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
 			return;
 		}
-		setState({ ...state, [side]: open });
+		setState({ ...state, openDrawer: open });
 	};
 	
-	const sideList = side => (
+	const sideList = (
 		<div
 			className={classes.list}
 			role="presentation"
-			onClick={toggleDrawer(side, false)}
-			onKeyDown={toggleDrawer(side, false)}
+			onClick={toggleDrawer(false)}
+			onKeyDown={toggleDrawer(false)}
 		>
 			<List>
 				{['Home', 'About', 'Calendar'].map((text, index) => (
@@ -76,13 +73,13 @@ function MobileDrawer() {
 	
 	return (
 		<>
-			<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer('left', true)}>
+			<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
 				<MenuIcon />
 			</IconButton>
 			
-			<Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-				{sideList('left')}
-			</Drawer>
+			<SwipeableDrawer open={state.openDrawer} onClose={toggleDrawer(false)} onOpen={toggleDrawer(true)}>
+				{sideList}
+			</SwipeableDrawer>
 		</>
 	);
 }
