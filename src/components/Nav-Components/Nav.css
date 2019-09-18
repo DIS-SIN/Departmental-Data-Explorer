@@ -82,11 +82,11 @@
 		margin-top: 6px;
 		transition: width 450ms ease-in-out;
 	}
-	.navBar li a.active::after {
+	.navBar .active {
 		transition: none;
 	}
-	.navBar li a.active::after,
-	.navBar li a:hover::after {
+	.navBar li a:hover::after,
+	.navBar .active::after {
 		width: 100%;
 	}
 }
