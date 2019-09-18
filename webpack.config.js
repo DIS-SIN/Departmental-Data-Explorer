@@ -10,35 +10,37 @@ const config = {
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
+				test: /\.js$/i,
 				exclude: /node_modules/,
-				use: {
-					loader: 'babel-loader'
+				loader: 'babel-loader'
+			},
+			{
+				test: /\.(jpe?g|png|gif|svg|ico)$/i,
+				loader: 'file-loader',
+				options: {
+					outputPath: 'assets/'
 				}
 			},
 			{
-				test: /\.(jpe?g|png|gif|svg|ico)$/,
+				// For modules' CSS imports
+				test: /\.css$/i,
+				exclude: /components.+\.css$/i,
+				use: ['style-loader', 'css-loader']
+			},
+			{
+				// For CSS modules
+				test: /components.+\.css$/i,
 				use: [
+					'style-loader',
 					{
-						loader: "file-loader",
+						loader: 'css-loader',
 						options: {
-							outputPath: "assets/"
+							modules: {
+								localIdentName: '[path][name]__[local]--[hash:base64:5]'
+							}
 						}
 					}
 				]
-			},
-			{
-				test: /\.css$/,
-				loader: 'style-loader'
-			},
-			{
-				test: /\.css$/,
-				loader: 'css-loader',
-				query: {
-					modules: {
-						localIdentName: '[name]__[local]___[hash:base64:5]'
-					}
-				}
 			}
 		]
 	},
