@@ -78,3 +78,10 @@
 		width: 100%;
 	}
 }
+
+/* Navbar for mobile */
+@media (min-width: 768px) {
+	.mobileNavBar {
+		display: none;
+	}
+}

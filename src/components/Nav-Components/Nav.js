@@ -1,11 +1,16 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
+import MobileDrawer from './MobileDrawer';
 import CSPS from '../../static/FIPs/csps_logo.svg';
 import styles from './Nav.css';
 
 function Nav() {
 	return (
 		<div className={styles.outerBanner}>
+			<div className={styles.mobileNavBar}>
+				<MobileDrawer />
+			</div>
+			
 			<Container>
 				<div className={styles.banner}>
 					<div className={styles.navBar}>
