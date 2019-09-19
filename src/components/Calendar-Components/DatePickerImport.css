@@ -1,0 +1,17 @@
+:global(.DayPicker) {
+	font-size: 1.25rem;
+}
+:global(.DayPicker-wrapper, .DayPicker-Day) {
+	outline: none;
+}
+:global(.DayPicker-Day--selected) {
+	background-color: #3f2a56 !important;
+	color: #fff !important;
+}
+/* Disable hover effect, too visually busy */
+/* Use :not selector to leave other dates unaffected */
+:global(.DayPicker-Day:hover:not(.DayPicker-Day--outside):not(.DayPicker-Day--today):not(.DayPicker-Day--selected)) {
+	background-color: #fff !important;
+	color: #333;
+	font-weight: normal;
+}
