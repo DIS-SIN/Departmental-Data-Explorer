@@ -1,6 +1,9 @@
 :global(.DayPicker) {
 	font-size: 1.25rem;
 }
+:global(.DayPicker-wrapper) {
+	outline: none !important;
+}
 :global(.DayPicker-wrapper, .DayPicker-Day) {
 	outline: none;
 }
