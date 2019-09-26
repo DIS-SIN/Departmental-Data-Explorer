@@ -47,11 +47,11 @@
 }
 
 
-.clearSiblingInput {
+.clearInputBox {
 	color: #3f2a56;
 	user-select: none;
 	font-size: 1.5rem;
 }
-.clearSiblingInput:hover {
+.clearInputBox:hover {
 	cursor: pointer;
 }
