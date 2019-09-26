@@ -24,7 +24,7 @@
 	right: auto;
 	transform: translate(-50%, -20%);
 	border: 1px solid #333;
-	box-shadow: #00000080 0px 5px 15px 0px;
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px 0px;
 	outline: none;
 	background: #fff;
 	overflow: auto;
