@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CalendarModal from './CalendarModal';
 import DatePicker from './DatePicker';
 import styles from './CalendarInputs.css';
 
@@ -7,7 +8,7 @@ class CalendarInputs extends Component {
 		return (
 			<div className={styles.calendarInputs}>
 				<DatePicker label="From:"/>
-				<button className={styles.btn}>Optional Filters</button>
+				<CalendarModal />
 				<DatePicker label="To:"/>
 			</div>
 		);

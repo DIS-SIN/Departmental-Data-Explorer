@@ -5,25 +5,3 @@
 	align-items: center;
 	text-align: center;
 }
-
-.btn {
-	background-color: #3f2a56;
-	border: 1px solid #2e6da4;
-	border-radius: 0.3rem;
-	color: #fff;
-	cursor: pointer;
-	display: block;
-	font-size: 1.1rem;
-	line-height: 1.5rem;
-	margin: 2rem 0;
-	min-width: 8rem;
-	outline: none;
-	padding: 0.5rem 1rem;
-	text-align: center;
-	vertical-align: middle;
-}
-
-/* Button hover */
-.btn:hover {
-	background-color: #9468c4;
-}
