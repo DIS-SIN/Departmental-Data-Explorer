@@ -37,6 +37,7 @@ class CalendarModal extends Component {
 					isOpen={this.state.modalOpen}
 					onRequestClose={this.toggleModal}
 					className={styles.modal}
+					style={{ overlay: { backgroundColor: '#00000080' } }}
 				>
 					<div className="modal-header" onClick={this.toggleModal}>
 						<button className="close">&times;</button>
