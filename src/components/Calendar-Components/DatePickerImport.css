@@ -1,8 +1,12 @@
-:global(.DayPicker) {
-	font-size: 1.25rem;
+/* Increase size of datepickers; only on medium screens and larger */
+@media (min-width: 768px) {
+	:global(.DayPicker) {
+		font-size: 1.25rem;
+	}
 }
 :global(.DayPicker-wrapper) {
 	outline: none !important;
+	padding: 0;
 }
 :global(.DayPicker-wrapper, .DayPicker-Day) {
 	outline: none;
