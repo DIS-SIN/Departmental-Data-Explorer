@@ -64,8 +64,14 @@ class Map extends Component {
 		return new window.google.maps.Map(this.el.current, options);
 	}
 	
-	// Function to add marker
 	addMarker = (city_name, count, lat, lng) => {
+		// Close all open InfoWindows
+		let closeInfoWindows = () => {
+			for (let i = 0; i < this.markers.length; i++) {
+				this.markers[i].close();
+			}
+		}
+		
 		// Disregard cities lacking lat, lng values e.g. 'webcast'
 		if (lat === '' || lng === '') { return; }
 		
@@ -82,27 +88,33 @@ class Map extends Component {
 		} else {
 			color = 'red';
 		}
+		
 		// Add marker
 		let marker = new window.google.maps.Marker({
 			position: {lat: lat, lng: lng},
 			map: this.googleMap,
 			icon: 'https://maps.google.com/mapfiles/ms/icons/' + color + '-dot.png'
 		});
+		
 		// Add tooltip
 		let contentString = city_name + ': ' + String(count);
 		let infoWindow = new window.google.maps.InfoWindow({
 			content: contentString
 		});
-		// infoWindowArray.push(infoWindow);
+		
 		// Show InfoWindow upon click
 		marker.addListener('click', function() {
-			// closeInfoWindows();
+			closeInfoWindows();
 			infoWindow.open(this.googleMap, marker);
 		});
+		return infoWindow;
 	}
 	
 	createMarkers = () => {
-		this.addMarker('Ottawa', 13, 45, -80);
+		return [
+			this.addMarker('Ottawa', 13, 45, -80),
+			this.addMarker('Ottawa', 13, 47, -82)
+		];
 	}
 	
 	render() {
@@ -138,7 +150,7 @@ class Map extends Component {
 					</div>
 				</div>
 			</>
-		)
+		);
 	}
 }
 
