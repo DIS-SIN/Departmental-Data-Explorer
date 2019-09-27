@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import API_KEY from '../../utils/API_KEY';
 import styles from './Map.css';
 
 class Map extends Component {
@@ -10,7 +11,6 @@ class Map extends Component {
 	
 	// Once component has mounted, add Google Maps script tag
 	componentDidMount() {
-		const API_KEY = '';
 		// Append script tag to the DOM
 		const googleMapsScript = document.createElement('script');
 		googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`;
