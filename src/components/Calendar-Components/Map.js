@@ -8,7 +8,7 @@ class Map extends Component {
 		this.el = React.createRef();
 	}
 	
-	// Create map once component has mounted
+	// Once component has mounted, add Google Maps script tag
 	componentDidMount() {
 		const API_KEY = '';
 		// Append script tag to the DOM
@@ -19,6 +19,11 @@ class Map extends Component {
 			this.googleMap = this.createMap();
 			this.markers = this.createMarkers();
 		});
+	}
+	
+	// Rebuild markers upon updating props
+	componentDidUpdate() {
+		this.markers = this.createMarkers();
 	}
 	
 	createMap = () => {
@@ -111,10 +116,9 @@ class Map extends Component {
 	}
 	
 	createMarkers = () => {
-		return [
-			this.addMarker('Ottawa', 13, 45, -80),
-			this.addMarker('Ottawa', 13, 47, -82)
-		];
+		return this.props.cityCounts.map(city => {
+			return this.addMarker(...city)
+		});
 	}
 	
 	render() {
