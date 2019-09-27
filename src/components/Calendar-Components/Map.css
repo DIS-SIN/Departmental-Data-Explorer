@@ -1,11 +1,10 @@
 .map {
-	float: left;
+	display: block;
 	height: 80vh;
 	width: 100%;
 }
 .legend {
 	display: none;
-	float: left;
 	height: 80vh;
 	width: 8%;
 	vertical-align: top;
@@ -31,8 +30,9 @@
 @media (min-width: 992px) and (min-height: 600px) {
 	.map {
 		width: 92%;
+		display: inline-block;
 	}
 	.legend {
-		display: block;
+		display: inline-block;
 	}
 }
