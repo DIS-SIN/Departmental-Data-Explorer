@@ -20,11 +20,15 @@ class Calendar extends Component {
 	}
 	
 	changeInput = (e) => {
-		this.setState({ [e.target.name]: e.target.value });
+		this.setState({ [e.target.name]: e.target.value }, () => {
+			this.getCountsRegisthor();
+		});
 	}
 	
 	clearInput = (e) => {
-		this.setState({ [e.target.attributes.name.value]: '' });
+		this.setState({ [e.target.name]: '' }, () => {
+			this.getCountsRegisthor();
+		});
 	}
 	
 	getISO = (myDate) => {
@@ -38,10 +42,6 @@ class Calendar extends Component {
 	
 	componentDidMount() {
 		this.getCountsRegisthor();
-	}
-	
-	componentDidUpdate() {
-		//this.getCountsRegisthor();
 	}
 	
 	getCountsRegisthor = () => {
