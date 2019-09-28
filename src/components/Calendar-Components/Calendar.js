@@ -8,21 +8,45 @@ class Calendar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			cityCounts: []
+			cityCounts: [],
+			datePickerFrom: this.getTodayISO(),
+			datePickerTo: this.getTodayISO(),
+			modalBusinessLine: '',
+			modalClientsOnly: false,
+			modalCourseCode: '',
+			modalExcludeCancelled: false,
+			modalInstructor: ''
 		}
 	}
 	
-	// Make formatting date a func
+	changeInput = (e) => {
+		this.setState({ [e.target.name]: e.target.value });
+	}
 	
-	componentDidMount() {
+	clearInput = (e) => {
+		this.setState({ [e.target.attributes.name.value]: '' });
+	}
+	
+	getTodayISO = () => {
 		// Registhor accepts dates in standard YYYY-MM-DD ISO format.
 		let today = new Date(Date.now());
 		let todayYear = today.getFullYear();
 		// Months are 0-indexed in JS
 		let todayMonth = today.getMonth() + 1;
 		let todayDay = today.getDate();
-		let isoDate = `${todayYear}-${todayMonth}-${todayDay}`;
-		fetch(`https://registhor.da-an.ca/api/v1/offering-counts?key=${REGISTHOR_API_KEY}&date_1=${isoDate}&exclude_cancelled=false`)
+		return `${todayYear}-${todayMonth}-${todayDay}`;
+	}
+	
+	componentDidMount() {
+		this.getCountsRegisthor();
+	}
+	
+	getCountsRegisthor = () => {
+		let url = 'https://registhor.da-an.ca/api/v1/offering-counts?key=' + REGISTHOR_API_KEY + '&date_1=' +
+				  this.datePickerFrom + '&date_2=' + this.datePickerTo + '&course_code=' + this.modalCourseCode +
+				  '&instructor_name=' + this.modalInstructor + '&exclude_cancelled=' + this.modalExcludeCancelled +
+				  '&business_line=' + this.modalBusinessLine + '&clients_only=' + this.modalClientsOnly;
+		fetch(url)
 			.then(resp => resp.json())
 			.then((data) => {
 				this.setState({
@@ -35,7 +59,11 @@ class Calendar extends Component {
 		return (
 			<>
 				<h3 className={styles.h3}>Search for offerings by date, instructor, and more.</h3>
-				<CalendarInputs />
+				<CalendarInputs
+					changeInput={this.changeInput}
+					clearInput={this.clearInput}
+					currentCalendarOptions={this.state}
+				/>
 				<Map cityCounts={this.state.cityCounts} />
 			</>
 		);
