@@ -5,25 +5,29 @@ import styles from './Map.css';
 class Map extends Component {
 	constructor(props) {
 		super(props);
+		// Placeholder for Google Maps script tag
+		this.tag = null;
 		// Placeholder for Google Maps DOM element
 		this.el = React.createRef();
 	}
 	
-	// Once component has mounted, add Google Maps script tag
-	componentDidMount() {
-		// Append script tag to the DOM
-		const googleMapsScript = document.createElement('script');
-		googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
-		window.document.body.appendChild(googleMapsScript);
-		googleMapsScript.addEventListener('load', () => {
+	componentDidUpdate() {
+		if (!this.tag) {
+			// Append script tag to the DOM
+			this.tag = window.document.createElement('script');
+			this.tag.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
+			window.document.body.appendChild(this.tag);
+			
+			// Once loaded, build map and add markers
+			this.tag.addEventListener('load', () => {
+				this.googleMap = this.createMap();
+				this.markers = this.createMarkers();
+			});
+		} else {
+			// When props change due to new user input, re-draw map and its markers
 			this.googleMap = this.createMap();
 			this.markers = this.createMarkers();
-		});
-	}
-	
-	// Rebuild markers upon updating props
-	componentDidUpdate() {
-		this.markers = this.createMarkers();
+		}
 	}
 	
 	createMap = () => {
