@@ -6,25 +6,27 @@ import './DatePickerImport.css';
 import styles from './DatePicker.css';
 
 class DatePicker extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			selectedDate: new Date()
-		};
-	}
+	labelKey = this.props.label === 'To:' ? 'datePickerTo' : 'datePickerFrom';
 	
 	handleDayClick = (day) => {
-		this.setState({ selectedDate: day });
+		let e = {
+			target: {
+				name: this.labelKey,
+				value: day
+			}
+		};
+		this.props.changeInput(e);
 	}
 	
 	render() {
+		
 		return (
 			<div className={styles.outerPicker}>
 				<span>{this.props.label}</span>
 				<DayPicker
 					fromMonth={new Date(2018, 3, 1)}
 					onDayClick={this.handleDayClick}
-					selectedDays={this.state.selectedDate}
+					selectedDays={this.props.currentCalendarOptions[this.labelKey]}
 					toMonth={new Date(2020, 2, 31)}
 				/>
 			</div>

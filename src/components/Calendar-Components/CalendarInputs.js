@@ -7,7 +7,11 @@ class CalendarInputs extends Component {
 	render() {
 		return (
 			<div className={styles.calendarInputs}>
-				<DatePicker label="From:" />
+				<DatePicker
+					label="From:"
+					changeInput={this.props.changeInput}
+					currentCalendarOptions={this.props.currentCalendarOptions}
+				/>
 				<CalendarModal
 					changeInput={this.props.changeInput}
 					clearInput={this.props.clearInput}
@@ -15,6 +19,8 @@ class CalendarInputs extends Component {
 				/>
 				<DatePicker
 					label="To:"
+					changeInput={this.props.changeInput}
+					currentCalendarOptions={this.props.currentCalendarOptions}
 				/>
 			</div>
 		);

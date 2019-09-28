@@ -9,8 +9,8 @@ class Calendar extends Component {
 		super(props);
 		this.state = {
 			cityCounts: [],
-			datePickerFrom: this.getTodayISO(),
-			datePickerTo: this.getTodayISO(),
+			datePickerFrom: new Date(),
+			datePickerTo: new Date(),
 			modalBusinessLine: '',
 			modalClientsOnly: false,
 			modalCourseCode: '',
@@ -27,13 +27,12 @@ class Calendar extends Component {
 		this.setState({ [e.target.attributes.name.value]: '' });
 	}
 	
-	getTodayISO = () => {
+	getISO = (myDate) => {
 		// Registhor accepts dates in standard YYYY-MM-DD ISO format.
-		let today = new Date(Date.now());
-		let todayYear = today.getFullYear();
+		let todayYear = myDate.getFullYear();
 		// Months are 0-indexed in JS
-		let todayMonth = today.getMonth() + 1;
-		let todayDay = today.getDate();
+		let todayMonth = myDate.getMonth() + 1;
+		let todayDay = myDate.getDate();
 		return `${todayYear}-${todayMonth}-${todayDay}`;
 	}
 	
@@ -41,11 +40,16 @@ class Calendar extends Component {
 		this.getCountsRegisthor();
 	}
 	
+	componentDidUpdate() {
+		//this.getCountsRegisthor();
+	}
+	
 	getCountsRegisthor = () => {
 		let url = 'https://registhor.da-an.ca/api/v1/offering-counts?key=' + REGISTHOR_API_KEY + '&date_1=' +
-				  this.datePickerFrom + '&date_2=' + this.datePickerTo + '&course_code=' + this.modalCourseCode +
-				  '&instructor_name=' + this.modalInstructor + '&exclude_cancelled=' + this.modalExcludeCancelled +
-				  '&business_line=' + this.modalBusinessLine + '&clients_only=' + this.modalClientsOnly;
+				  this.getISO(this.state.datePickerFrom) + '&date_2=' + this.getISO(this.state.datePickerTo) +
+				  '&course_code=' + this.state.modalCourseCode + '&instructor_name=' + this.state.modalInstructor +
+				  '&exclude_cancelled=' + this.state.modalExcludeCancelled + '&business_line=' + this.state.modalBusinessLine +
+				  '&clients_only=' + this.state.modalClientsOnly;
 		fetch(url)
 			.then(resp => resp.json())
 			.then((data) => {
