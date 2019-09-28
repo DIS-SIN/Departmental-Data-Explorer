@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import API_KEY from '../../utils/API_KEY';
+import { GOOGLE_MAPS_API_KEY } from '../../utils/API_KEYS';
 import styles from './Map.css';
 
 class Map extends Component {
@@ -13,7 +13,7 @@ class Map extends Component {
 	componentDidMount() {
 		// Append script tag to the DOM
 		const googleMapsScript = document.createElement('script');
-		googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`;
+		googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
 		window.document.body.appendChild(googleMapsScript);
 		googleMapsScript.addEventListener('load', () => {
 			this.googleMap = this.createMap();
@@ -73,12 +73,14 @@ class Map extends Component {
 		// Close all open InfoWindows
 		let closeInfoWindows = () => {
 			for (let i = 0; i < this.markers.length; i++) {
-				this.markers[i].close();
+				if (this.markers[i]) {
+					this.markers[i].close();
+				}
 			}
 		}
 		
 		// Disregard cities lacking lat, lng values e.g. 'webcast'
-		if (lat === '' || lng === '') { return; }
+		if (lat === '' || lng === '') { return false; }
 		
 		// Determine marker color based of number of offerings
 		let color;
