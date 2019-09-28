@@ -24,9 +24,11 @@ class DatePicker extends Component {
 			<div className={styles.outerPicker}>
 				<span>{this.props.label}</span>
 				<DayPicker
+					enableOutsideDaysClick={true}
 					fromMonth={new Date(2018, 3, 1)}
 					onDayClick={this.handleDayClick}
 					selectedDays={this.props.currentCalendarOptions[this.labelKey]}
+					showOutsideDays={true}
 					toMonth={new Date(2020, 2, 31)}
 				/>
 			</div>
