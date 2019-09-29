@@ -50,7 +50,7 @@ class CalendarModal extends Component {
 									<tr>
 										<td>Business Line</td>
 										<td>
-											<select name="modalBusinessLine" onChange={this.props.changeInput}>
+											<select name="modalBusinessLine" onChange={this.props.changeInput} value={this.props.currentCalendarOptions.modalBusinessLine}>
 												<option value="">All</option>
 												<option value="Digital Academy">Digital Academy</option>
 												<option value="GC and Public Sector Skills">GC and Public Sector Skills</option>
@@ -82,7 +82,7 @@ class CalendarModal extends Component {
 									<tr>
 										<td>Exclude Cancelled Offerings</td>
 										<td>
-											<select name="modalExcludeCancelled" onChange={this.props.changeInput}>
+											<select name="modalExcludeCancelled" onChange={this.props.changeInput} value={this.props.currentCalendarOptions.modalExcludeCancelled}>
 												<option value="false">No</option>
 												<option value="true">Yes</option>
 											</select>
@@ -92,7 +92,7 @@ class CalendarModal extends Component {
 									<tr>
 										<td>Show Only Client Requests</td>
 										<td>
-											<select name="modalClientsOnly" onChange={this.props.changeInput}>
+											<select name="modalClientsOnly" onChange={this.props.changeInput} value={this.props.currentCalendarOptions.modalClientsOnly}>
 												<option value="false">No</option>
 												<option value="true">Yes</option>
 											</select>
