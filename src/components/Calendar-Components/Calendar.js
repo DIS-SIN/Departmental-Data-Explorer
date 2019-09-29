@@ -19,14 +19,8 @@ class Calendar extends Component {
 		}
 	}
 	
-	changeInput = (e) => {
-		this.setState({ [e.target.name]: e.target.value }, () => {
-			this.getCountsRegisthor();
-		});
-	}
-	
-	clearInput = (e) => {
-		this.setState({ [e.target.name]: '' }, () => {
+	changeInputs = (newInputs) => {
+		this.setState({ ...newInputs }, () => {
 			this.getCountsRegisthor();
 		});
 	}
@@ -64,9 +58,8 @@ class Calendar extends Component {
 			<>
 				<h3 className={styles.h3}>Search for offerings by date, instructor, and more.</h3>
 				<CalendarInputs
-					changeInput={this.changeInput}
-					clearInput={this.clearInput}
-					currentCalendarOptions={this.state}
+					changeInputs={this.changeInputs}
+					currentInputs={this.state}
 				/>
 				<Map cityCounts={this.state.cityCounts} />
 			</>

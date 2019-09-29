@@ -9,18 +9,17 @@ class CalendarInputs extends Component {
 			<div className={styles.calendarInputs}>
 				<DatePicker
 					label="From:"
-					changeInput={this.props.changeInput}
-					currentCalendarOptions={this.props.currentCalendarOptions}
+					changeInputs={this.props.changeInputs}
+					currentInputs={this.props.currentInputs}
 				/>
 				<CalendarModal
-					changeInput={this.props.changeInput}
-					clearInput={this.props.clearInput}
-					currentCalendarOptions={this.props.currentCalendarOptions}
+					changeInputs={this.props.changeInputs}
+					currentInputs={this.props.currentInputs}
 				/>
 				<DatePicker
 					label="To:"
-					changeInput={this.props.changeInput}
-					currentCalendarOptions={this.props.currentCalendarOptions}
+					changeInputs={this.props.changeInputs}
+					currentInputs={this.props.currentInputs}
 				/>
 			</div>
 		);

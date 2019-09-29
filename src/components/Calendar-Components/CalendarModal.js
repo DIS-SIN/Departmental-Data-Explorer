@@ -5,7 +5,7 @@ import styles from './CalendarModal.css';
 function InputBox(props) {
 	return (
 		<>
-			<td><input type="text" name={props.name} value={props.currentCalendarOptions[props.name]} onChange={props.changeInput} /></td>
+			<td><input type="text" name={props.name} value={props.currentInputs[props.name]} onChange={props.changeInput} /></td>
 			<td className={styles.clearInputBox} name={props.name} onClick={props.clearInput}>&times;</td>
 		</>
 	);
@@ -15,16 +15,31 @@ class CalendarModal extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			modalOpen: false
+			modalOpen: false,
+			modalBusinessLine: '',
+			modalClientsOnly: false,
+			modalCourseCode: '',
+			modalExcludeCancelled: false,
+			modalInstructor: ''
 		};
 	}
 	
 	toggleModal = () => {
 		this.setState({ modalOpen: !this.state.modalOpen });
+		this.props.changeInputs(this.state);
 	}
 	
 	componentDidMount() {
 		Modal.setAppElement('body');
+	}
+	
+	changeInput = (e) => {
+		this.setState({ [e.target.name]: e.target.value });
+	}
+	
+	clearInput = (e) => {
+		e.persist();
+		this.setState({ [e.target.attributes.name.value]: '' });
 	}
 	
 	render() {
@@ -39,8 +54,8 @@ class CalendarModal extends Component {
 					className={styles.modal}
 					style={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } }}
 				>
-					<div className="modal-header" onClick={this.toggleModal}>
-						<button className="close">&times;</button>
+					<div className="modal-header">
+						<button className="close" onClick={this.toggleModal}>&times;</button>
 						<h4 className="modal-title">Optional Filters</h4>
 					</div>
 					<div className="modal-body">
@@ -50,7 +65,7 @@ class CalendarModal extends Component {
 									<tr>
 										<td>Business Line</td>
 										<td>
-											<select name="modalBusinessLine" onChange={this.props.changeInput} value={this.props.currentCalendarOptions.modalBusinessLine}>
+											<select name="modalBusinessLine" onChange={this.changeInput} value={this.state.modalBusinessLine}>
 												<option value="">All</option>
 												<option value="Digital Academy">Digital Academy</option>
 												<option value="GC and Public Sector Skills">GC and Public Sector Skills</option>
@@ -65,24 +80,24 @@ class CalendarModal extends Component {
 										<td>Course Code</td>
 										<InputBox
 											name="modalCourseCode"
-											changeInput={this.props.changeInput}
-											clearInput={this.props.clearInput}
-											currentCalendarOptions={this.props.currentCalendarOptions}
+											changeInput={this.changeInput}
+											clearInput={this.clearInput}
+											currentInputs={this.state}
 										/>
 									</tr>
 									<tr>
 										<td>Instructor</td>
 										<InputBox
 											name="modalInstructor"
-											changeInput={this.props.changeInput}
-											clearInput={this.props.clearInput}
-											currentCalendarOptions={this.props.currentCalendarOptions}
+											changeInput={this.changeInput}
+											clearInput={this.clearInput}
+											currentInputs={this.state}
 										/>
 									</tr>
 									<tr>
 										<td>Exclude Cancelled Offerings</td>
 										<td>
-											<select name="modalExcludeCancelled" onChange={this.props.changeInput} value={this.props.currentCalendarOptions.modalExcludeCancelled}>
+											<select name="modalExcludeCancelled" onChange={this.changeInput} value={this.state.modalExcludeCancelled}>
 												<option value="false">No</option>
 												<option value="true">Yes</option>
 											</select>
@@ -92,7 +107,7 @@ class CalendarModal extends Component {
 									<tr>
 										<td>Show Only Client Requests</td>
 										<td>
-											<select name="modalClientsOnly" onChange={this.props.changeInput} value={this.props.currentCalendarOptions.modalClientsOnly}>
+											<select name="modalClientsOnly" onChange={this.changeInput} value={this.state.modalClientsOnly}>
 												<option value="false">No</option>
 												<option value="true">Yes</option>
 											</select>

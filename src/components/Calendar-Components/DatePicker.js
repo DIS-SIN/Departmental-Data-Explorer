@@ -9,17 +9,10 @@ class DatePicker extends Component {
 	labelKey = this.props.label === 'To:' ? 'datePickerTo' : 'datePickerFrom';
 	
 	handleDayClick = (day) => {
-		let e = {
-			target: {
-				name: this.labelKey,
-				value: day
-			}
-		};
-		this.props.changeInput(e);
+		this.props.changeInputs({ [this.labelKey]: day });
 	}
 	
 	render() {
-		
 		return (
 			<div className={styles.outerPicker}>
 				<span>{this.props.label}</span>
@@ -27,7 +20,7 @@ class DatePicker extends Component {
 					enableOutsideDaysClick={true}
 					fromMonth={new Date(2018, 3, 1)}
 					onDayClick={this.handleDayClick}
-					selectedDays={this.props.currentCalendarOptions[this.labelKey]}
+					selectedDays={this.props.currentInputs[this.labelKey]}
 					showOutsideDays={true}
 					toMonth={new Date(2020, 2, 31)}
 				/>
