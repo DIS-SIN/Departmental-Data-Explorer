@@ -3,22 +3,22 @@ import CalendarModal from './CalendarModal';
 import DatePicker from './DatePicker';
 import styles from './CalendarInputs.css';
 
-function Component() {
+function CalendarInputs(props) {
 	return (
 		<div className={styles.calendarInputs}>
 			<DatePicker
 				label="From:"
-				changeInputs={this.props.changeInputs}
-				currentInputs={this.props.currentInputs}
+				changeInputs={props.changeInputs}
+				currentInputs={props.currentInputs}
 			/>
 			<CalendarModal
-				changeInputs={this.props.changeInputs}
-				currentInputs={this.props.currentInputs}
+				changeInputs={props.changeInputs}
+				currentInputs={props.currentInputs}
 			/>
 			<DatePicker
 				label="To:"
-				changeInputs={this.props.changeInputs}
-				currentInputs={this.props.currentInputs}
+				changeInputs={props.changeInputs}
+				currentInputs={props.currentInputs}
 			/>
 		</div>
 	);
