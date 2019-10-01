@@ -12,6 +12,12 @@ class DatePicker extends Component {
 		this.props.changeInputs({ [this.labelKey]: day });
 	}
 	
+	shouldComponentUpdate(nextProps, nextState) {
+		// Must use .getTime method to compare dates in JS
+		return (nextProps.currentInputs.datePickerTo.getTime() !== this.props.currentInputs.datePickerTo.getTime()) ||
+			   (nextProps.currentInputs.datePickerFrom.getTime() !== this.props.currentInputs.datePickerFrom.getTime());
+	}
+	
 	render() {
 		return (
 			<div className={styles.outerPicker}>
