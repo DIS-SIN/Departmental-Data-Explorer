@@ -46,7 +46,7 @@ class Table extends Component {
 	render() {
 		return (
 			<>
-				<TableLegend />
+				<TableLegend count={this.props.offeringsArray.length} />
 				<table className={'table ' + styles.calendarTable}>
 					<thead>
 						<tr>

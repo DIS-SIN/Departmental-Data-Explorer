@@ -1,13 +1,26 @@
 import React from 'react';
 import styles from './TableLegend.css';
 
-function TableLegend() {
+function ResultsCount(props) {
+	let noun;
+	if (props.count === 1) {
+		noun = 'Offering';
+	} else {
+		noun = 'Offerings';
+	}
+	
+	return (
+		<h3>{`Results: ${props.count} ${noun}`}</h3>
+	);
+}
+
+function TableLegend(props) {
 	return (
 		<table className={styles.legend}>
 			<thead>
 				<tr>
 					<td colSpan="2">
-						<h3>Results:</h3>
+						<ResultsCount count={props.count}/>
 					</td>
 				</tr>
 			</thead>
