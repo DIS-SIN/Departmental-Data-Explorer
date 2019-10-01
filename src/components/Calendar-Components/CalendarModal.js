@@ -41,7 +41,7 @@ class CalendarModal extends Component {
 	shouldComponentUpdate(nextProps, nextState) {
 		// In JS, can't compare values of objects this way
 		// However, can check if they're the same object in memory
-		return !(nextState === this.state);
+		return nextState !== this.state;
 	}
 	
 	changeInput = (e) => {
