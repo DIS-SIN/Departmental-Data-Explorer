@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CalendarInputs from './CalendarInputs';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import Map from './Map';
+import Table from './Table';
 import styles from './Calendar.css';
 
 class Calendar extends Component {
@@ -17,7 +18,8 @@ class Calendar extends Component {
 				modalCourseCode: '',
 				modalExcludeCancelled: false,
 				modalInstructor: ''
-			}
+			},
+			offeringsArray: []
 		}
 	}
 	
@@ -25,7 +27,7 @@ class Calendar extends Component {
 		this.setState((state, props) => {
 			return { inputValues: {...state.inputValues, ...newInputs} };
 		}, () => {
-			this.getCountsRegisthor();
+			this.runRegisthorQueries();
 		});
 	}
 	
@@ -39,7 +41,12 @@ class Calendar extends Component {
 	}
 	
 	componentDidMount() {
+		this.runRegisthorQueries();
+	}
+	
+	runRegisthorQueries = () => {
 		this.getCountsRegisthor();
+		this.getOfferingsRegisthor();
 	}
 	
 	getCountsRegisthor = () => {
@@ -57,6 +64,21 @@ class Calendar extends Component {
 			});
 	}
 	
+	getOfferingsRegisthor = () => {
+		let url = 'https://registhor.da-an.ca/api/v1/offerings?key=' + REGISTHOR_API_KEY + '&date_1=' +
+				  this.getISO(this.state.inputValues.datePickerFrom) + '&date_2=' + this.getISO(this.state.inputValues.datePickerTo) +
+				  '&course_code=' + this.state.inputValues.modalCourseCode + '&instructor_name=' + this.state.inputValues.modalInstructor +
+				  '&exclude_cancelled=' + this.state.inputValues.modalExcludeCancelled + '&business_line=' + this.state.inputValues.modalBusinessLine +
+				  '&clients_only=' + this.state.inputValues.modalClientsOnly;
+		fetch(url)
+			.then(resp => resp.json())
+			.then((data) => {
+				this.setState({
+					offeringsArray: data.results
+				})
+			});
+	}
+	
 	render() {
 		return (
 			<>
@@ -66,6 +88,7 @@ class Calendar extends Component {
 					currentInputs={this.state.inputValues}
 				/>
 				<Map cityCounts={this.state.cityCounts} />
+				<Table offeringsArray={this.state.offeringsArray} />
 			</>
 		);
 	}
