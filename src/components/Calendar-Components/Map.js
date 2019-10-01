@@ -30,6 +30,12 @@ class Map extends Component {
 		}
 	}
 	
+	shouldComponentUpdate(nextProps, nextState) {
+		// In JS, can't compare values of arrays this way
+		// However, can check if they're the same object in memory
+		return !(nextProps.cityCounts === this.props.cityCounts);
+	}
+	
 	createMap = () => {
 		// Set zoom level based on viewport width
 		// Using standard Bootstrap breakpoints
