@@ -89,6 +89,7 @@ class Calendar extends Component {
 				/>
 				<Map cityCounts={this.state.cityCounts} />
 				<Table offeringsArray={this.state.offeringsArray} />
+				<div style={{ paddingTop: '1px' }}></div>
 			</>
 		);
 	}
