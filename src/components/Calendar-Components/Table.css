@@ -1,0 +1,64 @@
+.calendarTable thead {
+	font-weight: bold;
+}
+.calendarTable tr {
+	min-height: 4rem;
+}
+.calendarTable tr {
+	vertical-align: middle;
+}
+
+
+/* More info button */
+.calendarTable td[data-title="More"] {
+	background-image: url(../../static/img/additional_info_icon.svg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 1.25rem;
+}
+.calendarTable td[data-title="More"]:hover {
+	cursor: pointer;
+}
+@media (max-width: 991px) {
+	.calendarTable td[data-title="More"] {
+		background-position: right center;
+		margin-right: 0.5rem;
+	}
+}
+
+
+/* Collapse table into cards on mobile */
+@media (max-width: 991px) {
+	.calendarTable table,
+	.calendarTable thead,
+	.calendarTable tbody,
+	.calendarTable tr,
+	.calendarTable td {
+		display: block;
+	}
+	.calendarTable thead {
+		display: none;
+	}
+	.calendarTable tr {
+		border: 1px solid #3f2a56;
+		margin-bottom: 1.25rem;
+		position: relative;
+		padding-left: 8rem;
+	}
+	.calendarTable td {
+		text-align: right;
+	}
+	.calendarTable td::before {
+		content: attr(data-title);
+		position: absolute;
+		left: 0;
+		padding-left: 0.5rem;
+		font-weight: bold;
+	}
+	.calendarTable td:first-child {
+		border-top: none;
+	}
+	.calendarTable td:last-child {
+		border-bottom: none;
+	}
+}
