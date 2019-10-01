@@ -1,0 +1,41 @@
+.legend {
+	width: 100%;
+	margin: 2rem 0;
+}
+.legend h3 {
+	color: #066169;
+	margin: 0 0 1.25rem 0;
+}
+.legend tr {
+	line-height: 2rem;
+	vertical-align: middle;
+}
+
+/* On mobile, align legend items with their labels and add
+spacing between legend rows */
+@media (max-width: 991px) {
+	.legend {
+		margin: 1.25rem 0 1.25rem 0;
+		border-collapse: separate;
+		border-spacing: 0 1rem;
+	}
+	.legend tr {
+		vertical-align: baseline;
+	}
+}
+.colorSwatch {
+	height: 1.5rem;
+	width: 1.5rem;
+}
+.swatchDanger {
+	background-color: #f8d7da;
+}
+.swatchPast {
+	background-color: #ddd;
+}
+.swatchSuccess {
+	background-color: #d4edda;
+}
+.swatchWarning {
+	background-color: #fff3cd;
+}
