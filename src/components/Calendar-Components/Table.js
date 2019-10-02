@@ -8,6 +8,12 @@ class TableRow extends Component {
 		this.props.setModal(this.props.row);
 	}
 	
+	shouldComponentUpdate(nextProps, nextState) {
+		// In JS, can't compare values of objects this way
+		// However, can check if they're the same object in memory
+		return nextProps.row !== this.props.row;
+	}
+	
 	render() {
 		return (
 			<tr style={{ backgroundColor: this.props.row.background_color }}>
