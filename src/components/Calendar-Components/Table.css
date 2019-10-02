@@ -73,6 +73,16 @@
     background-repeat: no-repeat;
     background-position: center right;
 	cursor: pointer;
+	/* Prevent text from being highlighted */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.noPointer {
+	cursor: default !important;
 }
 .unsorted {
 	background-image: url(../../static/img/sort_both.png);
