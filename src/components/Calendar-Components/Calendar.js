@@ -79,6 +79,20 @@ class Calendar extends Component {
 			});
 	}
 	
+	sortOfferingsArray = (key, asc) => {
+		// Custom sorting function
+		let compare = (a, b) => {
+			if (asc) {
+				return (a[key] > b[key]) ? 1 : ((b[key] > a[key]) ? -1 : 0);
+			} else {
+				return (a[key] < b[key]) ? 1 : ((b[key] < a[key]) ? -1 : 0);
+			}
+		}
+		this.setState((state, props) => {
+			return { offeringsArray: state.offeringsArray.sort(compare) };
+		});
+	}
+	
 	render() {
 		return (
 			<>
@@ -88,7 +102,7 @@ class Calendar extends Component {
 					currentInputs={this.state.inputValues}
 				/>
 				<Map cityCounts={this.state.cityCounts} />
-				<Table offeringsArray={this.state.offeringsArray} />
+				<Table offeringsArray={this.state.offeringsArray} sortOfferingsArray={this.sortOfferingsArray} />
 				<div style={{ paddingTop: '1px' }}></div>
 			</>
 		);
