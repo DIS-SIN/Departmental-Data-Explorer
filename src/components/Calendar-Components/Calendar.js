@@ -89,7 +89,9 @@ class Calendar extends Component {
 			}
 		}
 		this.setState((state, props) => {
-			return { offeringsArray: state.offeringsArray.sort(compare) };
+			// Clone the array so that when sorted, the === operator recognizes
+			// it as a new array
+			return { offeringsArray: [...state.offeringsArray].sort(compare) };
 		});
 	}
 	
