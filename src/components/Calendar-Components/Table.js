@@ -23,6 +23,30 @@ class TableRow extends Component {
 	}
 }
 
+class SortableHeader extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			sortAsc: null
+		}
+	}
+	
+	toggleSort = () => {
+		this.setState((state, props) => {
+			return { sortAsc: !state.sortAsc };
+		}, () => {
+			this.props.sortOfferingsArray(this.props.name, this.state.sortAsc);
+		});
+	}
+	
+	render() {
+		let myClass = (this.state.sortAsc === null) ? styles.unsorted : ((this.state.sortAsc === true) ? styles.asc : styles.desc);
+		return (
+			<th className={myClass} onClick={this.toggleSort}>{this.props.label}</th>
+		);
+	}
+}
+
 class Table extends Component {
 	constructor(props) {
 		super(props);
@@ -43,10 +67,6 @@ class Table extends Component {
 		this.setState({ modalOpen: false });
 	}
 	
-	sortTableBy = (e) => {
-		this.props.sortOfferingsArray(e.target.attributes.name.value, true);
-	}
-	
 	render() {
 		return (
 			<>
@@ -54,13 +74,13 @@ class Table extends Component {
 				<table className={'table ' + styles.calendarTable}>
 					<thead>
 						<tr>
-							<th name="course_code" onClick={this.sortTableBy}>Course Code</th>
-							<th name="course_title" onClick={this.sortTableBy}>Course Title</th>
-							<th>City</th>
-							<th>Instructor(s)</th>
-							<th>Business Type</th>
-							<th>Confirmed</th>
-							<th>More</th>
+							<SortableHeader name="course_code" label="Course Code" sortOfferingsArray={this.props.sortOfferingsArray} />
+							<SortableHeader name="course_title" label="Course Title" sortOfferingsArray={this.props.sortOfferingsArray} />
+							<SortableHeader name="offering_city" label="City" sortOfferingsArray={this.props.sortOfferingsArray} />
+							<SortableHeader name="instructor_names" label="Instructor(s)" sortOfferingsArray={this.props.sortOfferingsArray} />
+							<SortableHeader name="business_type" label="Business Type" sortOfferingsArray={this.props.sortOfferingsArray} />
+							<SortableHeader name="confirmed_count" label="Confirmed" sortOfferingsArray={this.props.sortOfferingsArray} />
+							<th className={styles.noPointer}>More</th>
 						</tr>
 					</thead>
 					<tbody>
