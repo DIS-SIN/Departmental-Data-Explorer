@@ -34,6 +34,10 @@ class SortableHeader extends Component {
 		this.props.setSort(this.props.name);
 	}
 	
+	shouldComponentUpdate(nextProps, nextState) {
+		return (nextProps.sortKey !== this.props.sortKey) || (nextProps.sortAsc !== this.props.sortAsc);
+	}
+	
 	render() {
 		let myClass = (this.props.sortKey !== this.props.name) ? styles.unsorted : ((this.props.sortAsc === true) ? styles.asc : styles.desc);
 		return (
