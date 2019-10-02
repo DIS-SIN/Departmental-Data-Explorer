@@ -24,23 +24,12 @@ class TableRow extends Component {
 }
 
 class SortableHeader extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			sortAsc: null
-		}
-	}
-	
 	toggleSort = () => {
-		this.setState((state, props) => {
-			return { sortAsc: !state.sortAsc };
-		}, () => {
-			this.props.sortOfferingsArray(this.props.name, this.state.sortAsc);
-		});
+		this.props.setSort(this.props.name);
 	}
 	
 	render() {
-		let myClass = (this.state.sortAsc === null) ? styles.unsorted : ((this.state.sortAsc === true) ? styles.asc : styles.desc);
+		let myClass = (this.props.sortKey !== this.props.name) ? styles.unsorted : ((this.props.sortAsc === true) ? styles.asc : styles.desc);
 		return (
 			<th className={myClass} onClick={this.toggleSort}>{this.props.label}</th>
 		);
@@ -52,7 +41,9 @@ class Table extends Component {
 		super(props);
 		this.state = {
 			modalOpen: false,
-			currentRow: {}
+			currentRow: {},
+			sortKey: null,
+			sortAsc: null
 		};
 	}
 	
@@ -60,6 +51,23 @@ class Table extends Component {
 		this.setState({
 			modalOpen: true,
 			currentRow: row
+		});
+	}
+	
+	setSort = (newKey) => {
+		this.setState((state, props) => {
+			let asc;
+			if (newKey !== state.sortKey) {
+				asc = true;
+			} else {
+				asc = !state.sortAsc;
+			}
+			return {
+				sortKey: newKey,
+				sortAsc: asc
+			};
+		}, () => {
+			this.props.sortOfferingsArray(this.state.sortKey, this.state.sortAsc);
 		});
 	}
 	
@@ -74,12 +82,12 @@ class Table extends Component {
 				<table className={'table ' + styles.calendarTable}>
 					<thead>
 						<tr>
-							<SortableHeader name="course_code" label="Course Code" sortOfferingsArray={this.props.sortOfferingsArray} />
-							<SortableHeader name="course_title" label="Course Title" sortOfferingsArray={this.props.sortOfferingsArray} />
-							<SortableHeader name="offering_city" label="City" sortOfferingsArray={this.props.sortOfferingsArray} />
-							<SortableHeader name="instructor_names" label="Instructor(s)" sortOfferingsArray={this.props.sortOfferingsArray} />
-							<SortableHeader name="business_type" label="Business Type" sortOfferingsArray={this.props.sortOfferingsArray} />
-							<SortableHeader name="confirmed_count" label="Confirmed" sortOfferingsArray={this.props.sortOfferingsArray} />
+							<SortableHeader name="course_code" label="Course Code" sortKey={this.state.sortKey} sortAsc={this.state.sortAsc} setSort={this.setSort} />
+							<SortableHeader name="course_title" label="Course Title" sortKey={this.state.sortKey} sortAsc={this.state.sortAsc} setSort={this.setSort} />
+							<SortableHeader name="offering_city" label="City" sortKey={this.state.sortKey} sortAsc={this.state.sortAsc} setSort={this.setSort} />
+							<SortableHeader name="instructor_names" label="Instructor(s)" sortKey={this.state.sortKey} sortAsc={this.state.sortAsc} setSort={this.setSort} />
+							<SortableHeader name="business_type" label="Business Type" sortKey={this.state.sortKey} sortAsc={this.state.sortAsc} setSort={this.setSort} />
+							<SortableHeader name="confirmed_count" label="Confirmed" sortKey={this.state.sortKey} sortAsc={this.state.sortAsc} setSort={this.setSort} />
 							<th className={styles.noPointer}>More</th>
 						</tr>
 					</thead>
