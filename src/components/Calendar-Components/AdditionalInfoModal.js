@@ -8,8 +8,7 @@ class AdditionalInfoModal extends Component {
 	}
 	
 	shouldComponentUpdate(nextProps, nextState) {
-		// TODO
-		return true;
+		return nextProps.modalOpen !== this.props.modalOpen;
 	}
 	
 	render() {
