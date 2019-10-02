@@ -55,6 +55,12 @@ class CalendarModal extends Component {
 		this.setState({ [e.target.attributes.name.value]: '' });
 	}
 	
+	hitEnter = (e) => {
+		if (e.key === 'Enter') {
+			this.toggleModal();
+		}
+	}
+	
 	render() {
 		return (
 			<>
@@ -71,7 +77,7 @@ class CalendarModal extends Component {
 						<button className="close" onClick={this.toggleModal}>&times;</button>
 						<h4 className="modal-title">Optional Filters</h4>
 					</div>
-					<div className="modal-body">
+					<div className="modal-body" onKeyPress={this.hitEnter}>
 						<form className={styles.modalForm}>
 							<table className="table">
 								<tbody>
