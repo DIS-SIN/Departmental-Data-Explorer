@@ -43,6 +43,10 @@ class Table extends Component {
 		this.setState({ modalOpen: false });
 	}
 	
+	sortTableBy = (e) => {
+		this.props.sortOfferingsArray(e.target.attributes.name.value, true);
+	}
+	
 	render() {
 		return (
 			<>
@@ -50,8 +54,8 @@ class Table extends Component {
 				<table className={'table ' + styles.calendarTable}>
 					<thead>
 						<tr>
-							<th>Course Code</th>
-							<th>Course Title</th>
+							<th name="course_code" onClick={this.sortTableBy}>Course Code</th>
+							<th name="course_title" onClick={this.sortTableBy}>Course Title</th>
 							<th>City</th>
 							<th>Instructor(s)</th>
 							<th>Business Type</th>
