@@ -25,7 +25,9 @@ class CalendarModal extends Component {
 	}
 	
 	toggleModal = () => {
-		this.setState({ modalOpen: !this.state.modalOpen }, () => {
+		this.setState((state, props) => {
+			return { modalOpen: !state.modalOpen }
+		}, () => {
 			// If closing (but not opening) modal, pass state to parent
 			// This will trigger call to Registhor
 			if (!this.state.modalOpen) {
