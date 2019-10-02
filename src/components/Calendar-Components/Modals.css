@@ -58,8 +58,14 @@
 
 .clearInputBox {
 	color: #3f2a56;
-	user-select: none;
 	font-size: 1.5rem;
+	/* Prevent text from being highlighted */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 .clearInputBox:hover {
 	cursor: pointer;
