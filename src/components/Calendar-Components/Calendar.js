@@ -82,10 +82,12 @@ class Calendar extends Component {
 	sortOfferingsArray = (key, asc) => {
 		// Custom sorting function; handles FR
 		let compare = (a, b) => {
+			let val1 = String(a[key]);
+			let val2 = String(b[key]);
 			if (asc) {
-				return a[key].localeCompare(b[key], 'fr', {sensitivity: 'base', ignorePunctuation: true, numeric: true})
+				return val1.localeCompare(val2, 'fr', {sensitivity: 'base', ignorePunctuation: true, numeric: true})
 			} else {
-				return -1 * a[key].localeCompare(b[key], 'fr', {sensitivity: 'base', ignorePunctuation: true, numeric: true})
+				return -1 * val1.localeCompare(val2, 'fr', {sensitivity: 'base', ignorePunctuation: true, numeric: true})
 			}
 		}
 		this.setState((state, props) => {
