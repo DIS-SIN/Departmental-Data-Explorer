@@ -43,6 +43,7 @@
 }
 
 
+/* Optional Filters modal */
 .modalForm td {
 	border: none !important;
 }
@@ -54,8 +55,6 @@
 	width: 100%;
 	height: 2rem;
 }
-
-
 .clearInputBox {
 	color: #3f2a56;
 	font-size: 1.5rem;
@@ -69,4 +68,19 @@
 }
 .clearInputBox:hover {
 	cursor: pointer;
+}
+
+
+/* Additional Info modal */
+.additionalInfo tr td:first-child {
+	padding-left: 2rem;
+}
+.additionalInfo tr td:last-child {
+	padding-right: 2rem;
+}
+.additionalInfo tr:first-child td {
+	border-top: none;
+}
+.additionalInfo tr:last-child td  {
+	border-bottom: none;
 }

@@ -24,7 +24,7 @@ class AdditionalInfoModal extends Component {
 					<h4 className="modal-title">Additional Info</h4>
 				</div>
 				<div className="modal-body">
-					<form className={styles.modalForm}>
+					<form className={styles.additionalInfo}>
 						<table className="table table-hover">
 							<tbody>
 								{/* All fields not displayed in table */}
