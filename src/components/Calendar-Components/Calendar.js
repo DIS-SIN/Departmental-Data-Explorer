@@ -83,9 +83,9 @@ class Calendar extends Component {
 		// Custom sorting function
 		let compare = (a, b) => {
 			if (asc) {
-				return (a[key] > b[key]) ? 1 : ((b[key] > a[key]) ? -1 : 0);
+				return (a[key].toLowerCase() > b[key].toLowerCase()) ? 1 : ((b[key].toLowerCase() > a[key].toLowerCase()) ? -1 : 0);
 			} else {
-				return (a[key] < b[key]) ? 1 : ((b[key] < a[key]) ? -1 : 0);
+				return (a[key].toLowerCase() < b[key].toLowerCase()) ? 1 : ((b[key].toLowerCase() < a[key].toLowerCase()) ? -1 : 0);
 			}
 		}
 		this.setState((state, props) => {
