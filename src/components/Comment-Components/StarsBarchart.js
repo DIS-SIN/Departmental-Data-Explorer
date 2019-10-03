@@ -18,6 +18,17 @@ function StarsBarchart(props) {
 	let twoStarScaled = String(Math.round((twoStar / upperBound) * 100)) + '%';
 	let oneStarScaled = String(Math.round((oneStar / upperBound) * 100)) + '%';
 	
+	// Add labels showing percentages
+	let totalComments = fiveStar + fourStar + threeStar + twoStar + oneStar;
+	// Account for 0 comments
+	let totalCommentsDivisor = (totalComments) ? totalComments : 1;
+	// Multiply then divide by ten as JS built-in Math.round doesn't support rounding to 1 decimal
+	let percentFive = Math.round((fiveStar / totalCommentsDivisor) * 100 * 10) / 10;
+	let percentFour = Math.round((fourStar / totalCommentsDivisor) * 100 * 10) / 10;
+	let percentThree = Math.round((threeStar / totalCommentsDivisor) * 100 * 10) / 10;
+	let percentTwo = Math.round((twoStar / totalCommentsDivisor) * 100 * 10) / 10;
+	let percentOne = Math.round((oneStar / totalCommentsDivisor) * 100 * 10) / 10;
+	
 	return (
 		<table className={styles.starsBarchart}>
 			<thead>
@@ -36,7 +47,7 @@ function StarsBarchart(props) {
 					<td className="col-xs-10">
 						<a href="">
 							<span className={styles.barFill} style={{ width: fiveStarScaled }}></span>
-							<span></span>
+							<span>{percentFive}%</span>
 						</a>
 					</td>
 				</tr>
@@ -45,7 +56,7 @@ function StarsBarchart(props) {
 					<td className="col-xs-10">
 						<a href="">
 							<span className={styles.barFill} style={{ width: fourStarScaled }}></span>
-							<span></span>
+							<span>{percentFour}%</span>
 						</a>
 					</td>
 				</tr>
@@ -54,7 +65,7 @@ function StarsBarchart(props) {
 					<td className="col-xs-10">
 						<a href="">
 							<span className={styles.barFill} style={{ width: threeStarScaled }}></span>
-							<span></span>
+							<span>{percentThree}%</span>
 						</a>
 					</td>
 				</tr>
@@ -63,7 +74,7 @@ function StarsBarchart(props) {
 					<td className="col-xs-10">
 						<a href="">
 							<span className={styles.barFill} style={{ width: twoStarScaled }}></span>
-							<span></span>
+							<span>{percentTwo}%</span>
 						</a>
 					</td>
 				</tr>
@@ -72,7 +83,7 @@ function StarsBarchart(props) {
 					<td className="col-xs-10">
 						<a href="">
 							<span className={styles.barFill} style={{ width: oneStarScaled }}></span>
-							<span></span>
+							<span>{percentOne}%</span>
 						</a>
 					</td>
 				</tr>
