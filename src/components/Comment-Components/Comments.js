@@ -18,31 +18,29 @@ function CommentStars(props) {
 	return starsArray;
 }
 
-class Comment extends Component {
-	render() {
-		return (
-			<div className="col-xs-12 bob-comment">
-				<div className="media">
-					{/* User avatar */}
-					<a>
-						<img className="avatar" src={avatar} alt="Avatar" />
-					</a>
-					<div className="media-body">
-						{/* User classification and offering city */}
-						<h4>{this.props.learner_classification}, <em>{this.props.offering_city}</em></h4>
-						{/* Display sentiment score with stars */}
-						<h5>
-							Sentiment Score:
-							<CommentStars stars={this.props.stars} />
-							<span className="comment-date">{this.props.offering_quarter} {this.props.offering_fiscal_year}</span>
-						</h5>
-						{/* User comment */}
-						<p>{this.props.comment_text}</p>
-					</div>
+function Comment(props) {
+	return (
+		<div className="col-xs-12 bob-comment">
+			<div className="media">
+				{/* User avatar */}
+				<a className={"thumbnail pull-left hidden-xs " + styles.avatar}>
+					<img src={avatar} alt="Avatar" />
+				</a>
+				<div className="media-body">
+					{/* User classification and offering city */}
+					<h4>{props.learner_classification}, <em>{props.offering_city}</em></h4>
+					{/* Display sentiment score with stars */}
+					<h5>
+						Sentiment Score:
+						<CommentStars stars={props.stars} />
+						<span className="comment-date">{props.offering_quarter} {props.offering_fiscal_year}</span>
+					</h5>
+					{/* User comment */}
+					<p>{props.comment_text}</p>
 				</div>
 			</div>
-		);
-	}
+		</div>
+	);
 }
 
 class Comments extends Component {
