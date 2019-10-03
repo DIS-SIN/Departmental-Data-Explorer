@@ -8,6 +8,7 @@
 }
 .footerContainer {
 	height: 100%;
+	border-top: 0.25rem solid #3f2a56;
 }
 .footerContents {
 	display: flex;
@@ -15,9 +16,6 @@
 	justify-content: space-between;
 	align-items: center;
 	height: 100%;
-}
-.footer a {
-	text-decoration: none;
 }
 .footer img {
 	height: 2.5rem;
