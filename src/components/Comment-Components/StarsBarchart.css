@@ -10,7 +10,7 @@
 .barFill {
 	display: inline-block;
 	background-color: #ffcc33;
-	width: 100%;
+	width: 0%;
 	/* Slightly smaller than row height */
 	height: 1.5rem;
 	padding: 0.25rem 0;
