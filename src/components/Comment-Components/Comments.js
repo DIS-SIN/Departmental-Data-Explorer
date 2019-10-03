@@ -1,26 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import avatar from '../../static/img/avatar.png';
+import Loader from './Loader';
 import LoadMore from './LoadMore';
-
-class Loader extends Component {
-	render() {
-		return (
-			<div id="outer-loader">
-				<div id="loader">
-					<div className="obj"></div>
-					<div className="obj"></div>
-					<div className="obj"></div>
-					<div className="obj"></div>
-					<div className="obj"></div>
-					<div className="obj"></div>
-					<div className="obj"></div>
-					<div className="obj"></div>
-				</div>
-			</div>
-		);
-	}
-}
 
 class CommentStars extends Component {
 	render() {
