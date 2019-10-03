@@ -1,0 +1,26 @@
+.starsBarchart {
+	width: 100%;
+	margin: 2rem 0;
+	line-height: 2rem;
+}
+.starsBarchart h3 {
+	color: #066169;
+	margin: 0 0 1.25rem 0;
+}
+.barFill {
+	display: inline-block;
+	background-color: #ffcc33;
+	width: 100%;
+	/* Slightly smaller than row height */
+	height: 1.5rem;
+	padding: 0.25rem 0;
+	margin-right: 0.5rem;
+	vertical-align: middle;
+}
+/* On very small screens, shrink size of label to ensure
+bar and label on same line */
+@media (max-width: 400px) {
+	.starsBarchart a {
+		font-size: 0.7rem;
+	}
+}
