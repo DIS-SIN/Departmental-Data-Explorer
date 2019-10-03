@@ -5,6 +5,7 @@ import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import avatar from '../../static/img/avatar.png';
 import Loader from './Loader';
 import LoadMore from './LoadMore';
+import StarsBarchart from './StarsBarchart';
 import styles from './Comments.css';
 
 function CommentStars(props) {
@@ -60,8 +61,13 @@ class Comments extends Component {
 			let commentArray = this.props.comments.map((comment) => {
 				return <Comment {...comment} />;
 			});
-			commentArray.push(<LoadMore />);
-			return commentArray;
+			return (
+				<>
+					<StarsBarchart />
+					<div>{commentArray}</div>
+					<LoadMore />
+				</>
+			);
 		}
 	}
 }
