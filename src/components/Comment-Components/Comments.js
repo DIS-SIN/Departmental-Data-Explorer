@@ -3,20 +3,19 @@ import { connect } from 'react-redux';
 import avatar from '../../static/img/avatar.png';
 import Loader from './Loader';
 import LoadMore from './LoadMore';
+import styles from './Comments.css';
 
-class CommentStars extends Component {
-	render() {
-		let starsArray = [];
-		let solidStars = this.props.stars;
-		let outlinedStars = 5 - this.props.stars;
-		for (let i = 0; i < solidStars; i++) {
-			starsArray.push(<span className="glyphicon glyphicon-star"></span>);
-		}
-		for (let i = 0; i < outlinedStars; i++) {
-			starsArray.push(<span className="glyphicon glyphicon-star-empty"></span>);
-		}
-		return starsArray;
+function CommentStars(props) {
+	let starsArray = [];
+	let solidStars = props.stars;
+	let emptyStars = 5 - props.stars;
+	for (let i = 0; i < solidStars; i++) {
+		starsArray.push(<span className={"glyphicon glyphicon-star " + styles.glyphiconStar}></span>);
 	}
+	for (let i = 0; i < emptyStars; i++) {
+		starsArray.push(<span className={"glyphicon glyphicon-star-empty " + styles.glyphiconStarEmpty}></span>);
+	}
+	return starsArray;
 }
 
 class Comment extends Component {
