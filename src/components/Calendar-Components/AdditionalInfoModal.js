@@ -97,7 +97,7 @@ class AdditionalInfoModal extends Component {
 					</form>
 				</div>
 				<div className="modal-footer">
-					<button className={'btn btn-primary ' + styles.btn} onClick={this.props.closeModal}>Close</button>
+					<button className={'btn btn-primary ' + styles.myBtn} onClick={this.props.closeModal}>Close</button>
 				</div>
 			</Modal>
 		);

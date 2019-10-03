@@ -1,4 +1,4 @@
-.btn {
+.myBtn {
 	background-color: #3f2a56;
 	color: #fff;
 	padding: 0.5rem 1rem;
@@ -6,11 +6,11 @@
 	outline: none !important;
 	margin-bottom: 2rem;
 }
-.btn:active,
-.btn:focus {
+.myBtn:active,
+.myBtn:focus {
 	background-color: #3f2a56 !important;
 }
-.btn:hover {
+.myBtn:hover {
 	background-color: #9468c4;
 	color: #fff;
 }
@@ -30,7 +30,7 @@
 	background: #fff;
 	border-radius: 4px;
 }
-.modal .btn {
+.modal .myBtn {
 	margin: 0;
 }
 @media (max-width: 767px) {

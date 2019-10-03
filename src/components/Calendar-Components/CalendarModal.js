@@ -65,7 +65,7 @@ class CalendarModal extends Component {
 		return (
 			<>
 				{/* Button to open modal */}
-				<button className={'btn btn-primary btn-lg ' + styles.btn} onClick={this.toggleModal}>Optional Filters</button>
+				<button className={'btn btn-primary btn-lg ' + styles.myBtn} onClick={this.toggleModal}>Optional Filters</button>
 				
 				<Modal
 					isOpen={this.state.modalOpen}
@@ -138,7 +138,7 @@ class CalendarModal extends Component {
 						</form>
 					</div>
 					<div className="modal-footer">
-						<button className={'btn btn-primary ' + styles.btn} onClick={this.toggleModal}>Close</button>
+						<button className={'btn btn-primary ' + styles.myBtn} onClick={this.toggleModal}>Close</button>
 					</div>
 				</Modal>
 			</>
