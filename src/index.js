@@ -15,7 +15,6 @@ import { commentReducer } from './reducers/comment-reducer';
 /***** INITIAL STATE *****/
 const initialState = {
 	commentReducer: {
-		apiKey: '',
 		comments: [],
 		commentsPending: false,
 		counts: {},

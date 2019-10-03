@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import { connect } from 'react-redux';
 import { getComments, incrementIndex } from '../../actions/comment-actions';
 
@@ -8,7 +9,7 @@ class LoadMore extends Component {
 	onClick = (e) => {
 		e.preventDefault();
 		this.props.onIncrementIndex('general');
-		this.props.onGetComments(this.props.apiKey, this.props.courseCode, this.props.currentIndices.general);
+		this.props.onGetComments(REGISTHOR_API_KEY, this.props.courseCode, this.props.currentIndices.general);
 	}
 	
 	render() {
@@ -22,7 +23,6 @@ class LoadMore extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		apiKey: state.commentReducer.apiKey,
 		courseCode: state.commentReducer.courseCode,
 		currentIndices: state.commentReducer.currentIndices
 	};
