@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getComments, incrementIndex } from '../../actions/comment-actions';
+import { getComments, getCounts } from '../../actions/comment-actions';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import avatar from '../../static/img/avatar.png';
 import Loader from './Loader';
@@ -48,16 +48,16 @@ function Comment(props) {
 
 class Comments extends Component {
 	componentDidMount() {
+		this.props.onGetCounts(REGISTHOR_API_KEY, this.props.courseCode);
 		this.props.onGetComments(REGISTHOR_API_KEY, this.props.courseCode, this.props.currentIndices.general);
 	}
 	
 	render() {
-		if(this.props.commentsPending) {
+		if(this.props.countsPending || this.props.commentsPending) {
 			return (
 				<Loader />
 			);
-		}
-		if(!this.props.commentsPending) {
+		} else {
 			let commentArray = this.props.comments.map((comment) => {
 				return <Comment {...comment} />;
 			});
@@ -76,6 +76,8 @@ const mapStateToProps = (state) => {
 	return {
 		comments: state.commentReducer.comments,
 		commentsPending: state.commentReducer.commentsPending,
+		counts: {},
+		countsPending: false,
 		courseCode: state.commentReducer.courseCode,
 		currentIndices: state.commentReducer.currentIndices
 	};
@@ -83,7 +85,7 @@ const mapStateToProps = (state) => {
 
 const mapActionsToProps = {
 	onGetComments: getComments,
-	onIncrementIndex: incrementIndex
+	onGetCounts: getCounts
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Comments);
