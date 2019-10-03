@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getComments, incrementIndex } from '../../actions/comment-actions';
+import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import avatar from '../../static/img/avatar.png';
 import Loader from './Loader';
 import LoadMore from './LoadMore';
@@ -20,7 +22,7 @@ function CommentStars(props) {
 
 function Comment(props) {
 	return (
-		<div className="col-xs-12 bob-comment">
+		<div className={styles.bobComment}>
 			<div className="media">
 				{/* User avatar */}
 				<a className={"thumbnail pull-left hidden-xs " + styles.avatar}>
@@ -31,9 +33,9 @@ function Comment(props) {
 					<h4>{props.learner_classification}, <em>{props.offering_city}</em></h4>
 					{/* Display sentiment score with stars */}
 					<h5>
-						Sentiment Score:
+						<span>Sentiment Score: </span>
 						<CommentStars stars={props.stars} />
-						<span className="comment-date">{props.offering_quarter} {props.offering_fiscal_year}</span>
+						<span className={styles.commentDate}>{props.offering_quarter} {props.offering_fiscal_year}</span>
 					</h5>
 					{/* User comment */}
 					<p>{props.comment_text}</p>
@@ -44,6 +46,10 @@ function Comment(props) {
 }
 
 class Comments extends Component {
+	componentDidMount() {
+		this.props.onGetComments(REGISTHOR_API_KEY, this.props.courseCode, this.props.currentIndices.general);
+	}
+	
 	render() {
 		if(this.props.commentsPending) {
 			return (
@@ -63,10 +69,15 @@ class Comments extends Component {
 const mapStateToProps = (state) => {
 	return {
 		comments: state.commentReducer.comments,
-		commentsPending: state.commentReducer.commentsPending
+		commentsPending: state.commentReducer.commentsPending,
+		courseCode: state.commentReducer.courseCode,
+		currentIndices: state.commentReducer.currentIndices
 	};
 }
 
-const mapActionsToProps = {};
+const mapActionsToProps = {
+	onGetComments: getComments,
+	onIncrementIndex: incrementIndex
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(Comments);

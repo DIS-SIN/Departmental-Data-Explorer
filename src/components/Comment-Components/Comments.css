@@ -6,8 +6,6 @@
 .glyphiconStarEmpty {
 	opacity: 0.3;
 }
-
-
 .avatar {
 	width: 7rem;
 	padding: 0 !important;
@@ -16,4 +14,10 @@
 }
 .avatar:hover {
 	border-color: #3f2a56 !important;
+}
+.bobComment {
+	margin-bottom: 1.5rem;
+}
+.commentDate {
+	float: right;
 }
