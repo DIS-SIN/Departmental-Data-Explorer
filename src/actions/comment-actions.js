@@ -5,7 +5,6 @@ export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
 export const GET_COUNTS_PENDING = 'GET_COUNTS_PENDING';
 export const GET_COUNTS_SUCCESS = 'GET_COUNTS_SUCCESS';
 export const INCREMENT_INDEX = 'INCREMENT_INDEX';
-export const UPDATE_API_KEY = 'UPDATE_API_KEY';
 export const UPDATE_COURSE_CODE = 'UPDATE_COURSE_CODE';
 
 export function getCommentsPending() {
@@ -38,13 +37,6 @@ export function incrementIndex(index) {
 	return {
 		type: INCREMENT_INDEX,
 		payload: index
-	};
-}
-
-export function updateApiKey(newVal) {
-	return {
-		type: UPDATE_API_KEY,
-		payload: newVal
 	};
 }
 
