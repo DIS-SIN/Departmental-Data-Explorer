@@ -1,0 +1,8 @@
+.glyphiconStar,
+.glyphiconStarEmpty {
+	color: #ffcc33;
+	font-size: 1rem;
+}
+.glyphiconStarEmpty {
+	opacity: 0.3;
+}
