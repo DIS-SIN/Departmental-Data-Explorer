@@ -108,6 +108,9 @@ class Table extends Component {
 						</tr>
 					</thead>
 					<tbody>
+						{/* If no results or error, render message */}
+						{(!Array.isArray(this.props.offeringsArray.length) || !this.props.offeringsArray.length) ? <tr><td colSpan={7} style={{ textAlign: 'center' }}>No offerings match criteria.</td></tr> : ''}
+						{/* Render results */}
 						{this.props.offeringsArray.map((row, index) => {
 							return <TableRow row={row} key={'calendarRow-' + index} setModal={this.setModal} />
 						})}
