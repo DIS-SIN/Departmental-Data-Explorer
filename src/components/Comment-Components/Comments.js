@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getComments, getCounts } from '../../actions/comment-actions';
+import { getComments, getCounts, incrementIndex } from '../../actions/comment-actions';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import avatar from '../../static/img/avatar.png';
-import Loader from './Loader';
 import LoadMore from './LoadMore';
 import StarsBarchart from './StarsBarchart';
 import styles from './Comments.css';
@@ -21,54 +20,59 @@ function CommentStars(props) {
 	return starsArray;
 }
 
-function Comment(props) {
-	return (
-		<div className={styles.bobComment}>
-			<div className="media">
-				{/* User avatar */}
-				<a className={"thumbnail pull-left hidden-xs " + styles.avatar}>
-					<img src={avatar} alt="Avatar" />
-				</a>
-				<div className="media-body">
-					{/* User classification and offering city */}
-					<h4>{props.learner_classification}, <em>{props.offering_city}</em></h4>
-					{/* Display sentiment score with stars */}
-					<h5>
-						<span>Sentiment Score: </span>
-						<CommentStars stars={props.stars} />
-						<span className={styles.commentDate}>{props.offering_quarter} {props.offering_fiscal_year}</span>
-					</h5>
-					{/* User comment */}
-					<p>{props.comment_text}</p>
+class Comment extends Component {
+	shouldComponentUpdate(nextProps, nextState) {
+		return nextProps.comment_text !== this.props.comment_text;
+	}
+	
+	render() {
+		return (
+			<div className={styles.bobComment}>
+				<div className="media">
+					{/* User avatar */}
+					<a className={"thumbnail pull-left hidden-xs " + styles.avatar}>
+						<img src={avatar} alt="Avatar" />
+					</a>
+					<div className="media-body">
+						{/* User classification and offering city */}
+						<h4>{this.props.learner_classification}, <em>{this.props.offering_city}</em></h4>
+						{/* Display sentiment score with stars */}
+						<h5>
+							<span>Sentiment Score: </span>
+							<CommentStars stars={this.props.stars} />
+							<span className={styles.commentDate}>{this.props.offering_quarter} {this.props.offering_fiscal_year}</span>
+						</h5>
+						{/* User comment */}
+						<p>{this.props.comment_text}</p>
+					</div>
 				</div>
 			</div>
-		</div>
-	);
+		);
+	}
 }
 
 class Comments extends Component {
 	componentDidMount() {
 		this.props.onGetCounts(REGISTHOR_API_KEY, this.props.courseCode);
 		this.props.onGetComments(REGISTHOR_API_KEY, this.props.courseCode, this.props.currentIndices.general);
+		this.props.onIncrementIndex('general');
+	}
+	
+	shouldComponentUpdate(nextProps, nextState) {
+		return nextProps.comments.length !== this.props.comments.length;
 	}
 	
 	render() {
-		if(this.props.countsPending || this.props.commentsPending) {
-			return (
-				<Loader />
-			);
-		} else {
-			let commentArray = this.props.comments.map((comment) => {
-				return <Comment {...comment} />;
-			});
-			return (
-				<>
-					<StarsBarchart />
-					<div>{commentArray}</div>
-					<LoadMore />
-				</>
-			);
-		}
+		let commentArray = this.props.comments.map((comment) => {
+			return <Comment {...comment} />;
+		});
+		return (
+			<>
+				<StarsBarchart />
+				<div>{commentArray}</div>
+				<LoadMore />
+			</>
+		);
 	}
 }
 
@@ -85,7 +89,8 @@ const mapStateToProps = (state) => {
 
 const mapActionsToProps = {
 	onGetComments: getComments,
-	onGetCounts: getCounts
+	onGetCounts: getCounts,
+	onIncrementIndex: incrementIndex
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Comments);
