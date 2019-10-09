@@ -50,7 +50,7 @@ class Calendar extends Component {
 	}
 	
 	getCountsRegisthor = () => {
-		let url = 'https://registhor.da-an.ca/api/v1/offering-counts?key=' + REGISTHOR_API_KEY + '&date_1=' +
+		let url = 'https://registhor.da-an.ca/api/v1/offerings/counts-by-city?key=' + REGISTHOR_API_KEY + '&date_1=' +
 				  this.getISO(this.state.inputValues.datePickerFrom) + '&date_2=' + this.getISO(this.state.inputValues.datePickerTo) +
 				  '&course_code=' + this.state.inputValues.modalCourseCode + '&instructor_name=' + this.state.inputValues.modalInstructor +
 				  '&exclude_cancelled=' + this.state.inputValues.modalExcludeCancelled + '&business_line=' + this.state.inputValues.modalBusinessLine +
@@ -65,7 +65,7 @@ class Calendar extends Component {
 	}
 	
 	getOfferingsRegisthor = () => {
-		let url = 'https://registhor.da-an.ca/api/v1/offerings?key=' + REGISTHOR_API_KEY + '&date_1=' +
+		let url = 'https://registhor.da-an.ca/api/v1/offerings/offering-information?key=' + REGISTHOR_API_KEY + '&date_1=' +
 				  this.getISO(this.state.inputValues.datePickerFrom) + '&date_2=' + this.getISO(this.state.inputValues.datePickerTo) +
 				  '&course_code=' + this.state.inputValues.modalCourseCode + '&instructor_name=' + this.state.inputValues.modalInstructor +
 				  '&exclude_cancelled=' + this.state.inputValues.modalExcludeCancelled + '&business_line=' + this.state.inputValues.modalBusinessLine +

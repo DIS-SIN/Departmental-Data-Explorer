@@ -50,7 +50,7 @@ export function updateCourseCode(newVal) {
 export function getComments(apiKey, courseCode, offset) {
 	return (dispatch) => {
 		dispatch(getCommentsPending());
-		fetch(`https://registhor.da-an.ca/api/v1/comments/general/${courseCode}?key=${apiKey}&limit=${STEP_SIZE}&offset=${offset}`)
+		fetch(`https://registhor.da-an.ca/api/v1/comments/text/general/${courseCode}?key=${apiKey}&limit=${STEP_SIZE}&offset=${offset}`)
 			.then(resp => resp.json())
 			.then(data => {
 				dispatch(getCommentsSuccess(data.results));
@@ -61,7 +61,7 @@ export function getComments(apiKey, courseCode, offset) {
 export function getCounts(apiKey, courseCode) {
 	return (dispatch) => {
 		dispatch(getCountsPending());
-		fetch(`https://registhor.da-an.ca/api/v1/counts/general/${courseCode}?key=${apiKey}`)
+		fetch(`https://registhor.da-an.ca/api/v1/comments/counts/general/${courseCode}?key=${apiKey}`)
 			.then(resp => resp.json())
 			.then(data => {
 				dispatch(getCountsSuccess(data.results));
