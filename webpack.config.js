@@ -5,7 +5,8 @@ const config = {
 	entry: path.join(__dirname, '/src/index.js'),
 	output: {
 		path: path.join(__dirname, '/build'),
-		filename: 'bundle.js'
+		filename: 'bundle.js',
+		publicPath: '/'
 	},
 	devtool: 'inline-source-map',
 	module: {
@@ -44,6 +45,9 @@ const config = {
 				]
 			}
 		]
+	},
+	devServer: {
+		historyApiFallback: true
 	},
 	plugins: [
 		new HtmlWebpackPlugin({ template: path.join(__dirname, '/public/index.html') })

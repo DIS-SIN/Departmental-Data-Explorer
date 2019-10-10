@@ -1,21 +1,17 @@
 import React from 'react';
 import './static/App.css';
-import Container from '@material-ui/core/Container';
-import Comments from './components/Comment-Components/Comments';
-import Header from './components/Nav-Components/Header';
-import Nav from './components/Nav-Components/Nav';
-import Footer from './components/Nav-Components/Footer';
+import { BrowserRouter, Route } from 'react-router-dom';
+import CalendarParent from './components/Calendar-Components/CalendarParent';
+import CommentsParent from './components/Comment-Components/CommentsParent';
+import Splash from './components/Main-Components/Splash';
 
 function App() {
 	return (
-		<>
-			<Header />
-			<Nav />
-			<Container>
-				<Comments />
-			</Container>
-			<Footer />
-		</>
+		<BrowserRouter>
+			<Route exact path="/" component={Splash} />
+			<Route exact path="/calendar" component={CalendarParent} />
+			<Route exact path="/comments" component={CommentsParent} />
+		</BrowserRouter>
 	);
 }
 
