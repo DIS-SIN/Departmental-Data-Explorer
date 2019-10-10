@@ -71,7 +71,6 @@
 	}
 }
 /* Transition links on hover */
-/* Don't show transition on mobile as navbar will be collapsed */
 @media (min-width: 768px) {
 	.navBar li a::after {
 		content: '';
@@ -82,11 +81,7 @@
 		margin-top: 6px;
 		transition: width 450ms ease-in-out;
 	}
-	.navBar .active {
-		transition: none;
-	}
-	.navBar li a:hover::after,
-	.navBar .active::after {
+	.navBar li a:hover::after {
 		width: 100%;
 	}
 }

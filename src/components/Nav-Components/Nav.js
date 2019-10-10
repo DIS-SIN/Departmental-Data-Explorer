@@ -1,19 +1,9 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import MobileDrawer from './MobileDrawer';
 import CSPS from '../../static/FIPs/csps_logo.svg';
 import styles from './Nav.css';
-
-function NavLink(props) {
-	return (
-		<a
-			className={props.active ? styles.active : ''}
-			href={props.href}
-			>
-			{props.label}
-		</a>
-	);
-}
 
 function Nav() {
 	return (
@@ -26,9 +16,9 @@ function Nav() {
 				<div className={styles.banner}>
 					<div className={styles.navBar}>
 						<ul>
-							<li><NavLink active={true} href="#" label="Calendar" /></li>
-							<li><NavLink active={false} href="#" label="About" /></li>
-							<li><NavLink active={false} href="#" label="Home" /></li>
+							<li><NavLink exact to="/calendar">Calendar</NavLink></li>
+							<li><NavLink exact to="/about">About</NavLink></li>
+							<li><NavLink exact to="/en">Home</NavLink></li>
 						</ul>
 					</div>
 					

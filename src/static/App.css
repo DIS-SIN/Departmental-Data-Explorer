@@ -22,3 +22,12 @@ a:hover,
 a:active {
 	color: #000;
 }
+
+
+/* Style navbar links when active */
+a.active {
+	transition: none;
+}
+a.active::after {
+	width: 100% !important;
+}
