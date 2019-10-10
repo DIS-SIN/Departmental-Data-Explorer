@@ -109,7 +109,7 @@ class Table extends Component {
 					</thead>
 					<tbody>
 						{/* If no results or error, render message */}
-						{(!Array.isArray(this.props.offeringsArray) || !this.props.offeringsArray.length) ? <tr><td colSpan={7} style={{ textAlign: 'center' }}>No offerings match criteria.</td></tr> : ''}
+						{(!Array.isArray(this.props.offeringsArray) || !this.props.offeringsArray.length) ? <tr><td colSpan={7} style={{ textAlign: 'center' }}>No offerings match criteria.</td></tr> : null}
 						{/* Render results */}
 						{this.props.offeringsArray.map((row, index) => {
 							return <TableRow row={row} key={'calendarRow-' + index} setModal={this.setModal} />
