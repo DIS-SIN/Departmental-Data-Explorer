@@ -50,11 +50,15 @@ class Calendar extends Component {
 	}
 	
 	getCountsRegisthor = () => {
+		let { datePickerFrom, datePickerTo, modalCourseCode, modalInstructor, modalExcludeCancelled, modalBusinessLine, modalClientsOnly } = this.state.inputValues;
+		
+		// Ensure fields that could contain accented characters are forced as HTML encoded, else
+		// AJAX will fail on IE11
 		let url = 'https://registhor.da-an.ca/api/v1/offerings/counts-by-city?key=' + REGISTHOR_API_KEY + '&date_1=' +
-				  this.getISO(this.state.inputValues.datePickerFrom) + '&date_2=' + this.getISO(this.state.inputValues.datePickerTo) +
-				  '&course_code=' + this.state.inputValues.modalCourseCode + '&instructor_name=' + this.state.inputValues.modalInstructor +
-				  '&exclude_cancelled=' + this.state.inputValues.modalExcludeCancelled + '&business_line=' + this.state.inputValues.modalBusinessLine +
-				  '&clients_only=' + this.state.inputValues.modalClientsOnly;
+				  this.getISO(datePickerFrom) + '&date_2=' + this.getISO(datePickerTo) +
+				  '&course_code=' + modalCourseCode + '&instructor_name=' + encodeURIComponent(modalInstructor) +
+				  '&exclude_cancelled=' + modalExcludeCancelled + '&business_line=' + encodeURIComponent(modalBusinessLine) +
+				  '&clients_only=' + modalClientsOnly;
 		fetch(url)
 			.then(resp => resp.json())
 			.then((data) => {
@@ -65,11 +69,15 @@ class Calendar extends Component {
 	}
 	
 	getOfferingsRegisthor = () => {
+		let { datePickerFrom, datePickerTo, modalCourseCode, modalInstructor, modalExcludeCancelled, modalBusinessLine, modalClientsOnly } = this.state.inputValues;
+		
+		// Ensure fields that could contain accented characters are forced as HTML encoded, else
+		// AJAX will fail on IE11
 		let url = 'https://registhor.da-an.ca/api/v1/offerings/offering-information?key=' + REGISTHOR_API_KEY + '&date_1=' +
-				  this.getISO(this.state.inputValues.datePickerFrom) + '&date_2=' + this.getISO(this.state.inputValues.datePickerTo) +
-				  '&course_code=' + this.state.inputValues.modalCourseCode + '&instructor_name=' + this.state.inputValues.modalInstructor +
-				  '&exclude_cancelled=' + this.state.inputValues.modalExcludeCancelled + '&business_line=' + this.state.inputValues.modalBusinessLine +
-				  '&clients_only=' + this.state.inputValues.modalClientsOnly;
+				  this.getISO(datePickerFrom) + '&date_2=' + this.getISO(datePickerTo) +
+				  '&course_code=' + modalCourseCode + '&instructor_name=' + encodeURIComponent(modalInstructor) +
+				  '&exclude_cancelled=' + modalExcludeCancelled + '&business_line=' + encodeURIComponent(modalBusinessLine) +
+				  '&clients_only=' + modalClientsOnly;
 		fetch(url)
 			.then(resp => resp.json())
 			.then((data) => {
