@@ -1,0 +1,58 @@
+.selectionForm {
+	position: relative;
+	min-height: 11rem;
+}
+
+.selectionForm h3 {
+	margin-top: 1.5rem;
+	margin-bottom: 0;
+	line-height: 2rem;
+	color: #3f2a56;
+	text-align: left;
+}
+.selectionDropdown {
+	margin: 1rem 0;
+}
+.outerButtons {
+	margin-bottom: 1.5rem;
+}
+.outerButtons button:first-child {
+	margin-right: 2rem !important;
+}
+
+
+/* Center text, search bar, and buttons on mobile */
+@media (max-width: 767px) {
+	.selectionForm h3,
+	.selectionForm form {
+		text-align: center;
+	}
+	/* Continue to left-align dropdown for readability */
+	.chosen-results {
+		text-align: left;
+	}
+	.outerButtons {
+		text-align: center;
+	}
+	.outerButtons button:first-child  {
+		margin-right: 0.8rem !important;
+	}
+}
+
+
+.myBtn {
+	background-color: #3f2a56;
+	color: #fff;
+	padding: 0.5rem 1rem;
+	min-width: 8rem;
+	outline: none !important;
+	margin-bottom: 2rem;
+}
+.myBtn:active,
+.myBtn:focus {
+	background-color: #3f2a56 !important;
+}
+.myBtn:hover {
+	background-color: #9468c4;
+	color: #fff;
+}

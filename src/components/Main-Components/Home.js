@@ -41,6 +41,7 @@ class Home extends Component {
 				<h3>Choose any department to see all of its School data.</h3>
 				<Select
 					autoFocus={false}
+					className={styles.selectionDropdown}
 					isSearchable={true}
 					noOptionsMessage={() => 'No results'}
 					onChange={this.handleChange}
@@ -49,8 +50,8 @@ class Home extends Component {
 					value={this.state.selectedOption}
 				/>
 				<div className={styles.outerButtons}>
-					<input type="submit" value="Go" className="btn btn-primary" />
-					<input type="submit" value="Make My Day" className="btn btn-primary" />
+					<button className={'btn btn-primary ' + styles.myBtn}>Go</button>
+					<button className={'btn btn-primary ' + styles.myBtn}>Make My Day</button>
 				</div>
 			</div>
 		);
