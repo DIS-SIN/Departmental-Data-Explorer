@@ -1,0 +1,21 @@
+.about h3,
+.about h4 {
+	line-height: 2rem;
+	margin: 1.5rem 0;
+	color: #3f2a56;
+	text-align: left;
+}
+
+
+@media (max-width: 767px) {
+	.about h3 {
+		text-align: center;
+	}
+}
+.about p {
+	line-height: 2rem;
+	margin: 1.5rem 0;
+}
+.about li {
+	min-height: 2rem;
+}
