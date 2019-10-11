@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Canada from '../../static/FIPs/canada_colour.svg';
 import GoC_EN from '../../static/FIPs/goc_colour_en.svg';
 import styles from './Splash.css';
@@ -9,8 +10,8 @@ function Splash() {
 			<div className={styles.splashScreenWindow}>
 				<img className={styles.FIP} alt="Government of Canada / Gouvernement du Canada" src={GoC_EN} />
 				<div className={styles.languageButtonsBox}>
-					<a href="#"><button>English</button></a>
-					<a href="#"><button>Français</button></a>
+					<Link exact="true" to="/en"><button>English</button></Link>
+					<Link exact="true" to="/en"><button>Français</button></Link>
 				</div>
 				<div className={styles.footer}>
 					<div className={styles.termsBox}>
