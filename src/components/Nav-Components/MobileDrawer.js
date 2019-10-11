@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import Divider from '@material-ui/core/Divider';
@@ -33,12 +34,6 @@ function MobileDrawer() {
 		openDrawer: false
 	});
 	
-	const iconMap = {
-		'Home': <Home />,
-		'About': <Satellite />,
-		'Calendar': <CalendarToday />
-	};
-	
 	const toggleDrawer = (open) => event => {
 		if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
 			return;
@@ -54,16 +49,28 @@ function MobileDrawer() {
 			onKeyDown={toggleDrawer(false)}
 		>
 			<List>
-				{['Home', 'About', 'Calendar'].map((text, index) => (
-					<ListItem button key={"mobileNav-" + text}>
-						<ListItemIcon>{iconMap[text]}</ListItemIcon>
-						<ListItemText primary={text} />
+				<Link exact="true" to="/en">
+					<ListItem button>
+						<ListItemIcon><Home /></ListItemIcon>
+						<ListItemText primary="Home" />
 					</ListItem>
-				))}
+				</Link>
+				<Link exact="true" to="/about">
+					<ListItem button>
+						<ListItemIcon><Satellite /></ListItemIcon>
+						<ListItemText primary="About" />
+					</ListItem>
+				</Link>
+				<Link exact="true" to="/calendar">
+					<ListItem button>
+						<ListItemIcon><CalendarToday /></ListItemIcon>
+						<ListItemText primary="Calendar" />
+					</ListItem>
+				</Link>
 			</List>
 			<Divider />
 			<List>
-				<ListItem button key="mobileNav-FR">
+				<ListItem button>
 					<ListItemIcon><Sync /></ListItemIcon>
 					<ListItemText primary="Français" />
 				</ListItem>
