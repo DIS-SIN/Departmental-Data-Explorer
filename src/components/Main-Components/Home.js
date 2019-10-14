@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
+import { Redirect } from 'react-router-dom';
+import { updateDeptCode } from '../../actions/main-actions';
 import Select from 'react-select';
 import styles from './Home.css';
-
-
-
-// Ensure fields that could contain accented characters are forced as HTML encoded, else
-// AJAX will fail on IE11
 
 class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			possibleOptions: [],
 			selectedOption: '',
-			possibleOptions: []
+			redirect: false
 		};
 	}
 	
@@ -35,7 +34,18 @@ class Home extends Component {
 		this.setState({ selectedOption: e });
 	};
 	
+	onUpdateDeptCode = (e) => {
+		e.preventDefault();
+		if (this.state.selectedOption !== '') {
+			this.props.onUpdateDeptCode(this.state.selectedOption);
+			this.setState({ redirect: true });
+		}
+	}
+	
 	render() {
+		if (this.state.redirect) {
+			return <Redirect exact to="/comments"/>;
+		}
 		return (
 			<div className={styles.selectionForm}>
 				<h3>Choose any department to see all of its School data.</h3>
@@ -50,7 +60,7 @@ class Home extends Component {
 					value={this.state.selectedOption}
 				/>
 				<div className={styles.outerButtons}>
-					<button className={'btn btn-primary ' + styles.myBtn}>Go</button>
+					<button className={'btn btn-primary ' + styles.myBtn} onClick={this.onUpdateDeptCode}>Go</button>
 					<button className={'btn btn-primary ' + styles.myBtn}>Make My Day</button>
 				</div>
 			</div>
@@ -58,4 +68,12 @@ class Home extends Component {
 	}
 }
 
-export default Home;
+// Add Redux to component
+const mapStateToProps = (state) => {
+	return {};
+}
+const mapActionsToProps = {
+	onUpdateDeptCode: updateDeptCode
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(Home);
