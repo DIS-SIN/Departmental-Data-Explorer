@@ -12,10 +12,10 @@ function CommentStars(props) {
 	let solidStars = props.stars;
 	let emptyStars = 5 - props.stars;
 	for (let i = 0; i < solidStars; i++) {
-		starsArray.push(<span className={"glyphicon glyphicon-star " + styles.glyphiconStar}></span>);
+		starsArray.push(<span className={"glyphicon glyphicon-star " + styles.glyphiconStar} key={`solidStars-${i}`}></span>);
 	}
 	for (let i = 0; i < emptyStars; i++) {
-		starsArray.push(<span className={"glyphicon glyphicon-star-empty " + styles.glyphiconStarEmpty}></span>);
+		starsArray.push(<span className={"glyphicon glyphicon-star-empty " + styles.glyphiconStarEmpty} key={`emptyStars-${i}`}></span>);
 	}
 	return starsArray;
 }
