@@ -53,9 +53,11 @@ class Comment extends Component {
 
 class Comments extends Component {
 	componentDidMount() {
-		this.props.onGetCounts(REGISTHOR_API_KEY, this.props.commentType, this.props.courseCode, this.props.deptCode.value);
-		this.props.onGetComments(REGISTHOR_API_KEY, this.props.commentType, this.props.courseCode, this.props.deptCode.value, this.props.currentIndices.general);
-		this.props.onIncrementIndex('general');
+		let { commentType, optionalFilters, deptCode, currentIndex } = this.props;
+		
+		this.props.onGetCounts(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value);
+		this.props.onGetComments(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value, currentIndex);
+		this.props.onIncrementIndex(commentType);
 	}
 	
 	shouldComponentUpdate(nextProps, nextState) {
@@ -76,15 +78,12 @@ class Comments extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
 	return {
-		comments: state.commentReducer.comments,
-		commentsPending: state.commentReducer.commentsPending,
-		counts: {},
-		countsPending: false,
-		courseCode: state.commentReducer.courseCode,
-		currentIndices: state.commentReducer.currentIndices,
-		deptCode: state.mainReducer.deptCode
+		comments: state.commentReducer.comments[ownProps.commentType],
+		currentIndex: state.commentReducer.currentIndices[ownProps.commentType],
+		deptCode: state.mainReducer.deptCode,
+		optionalFilters: state.commentReducer.optionalFilters[ownProps.commentType]
 	};
 }
 
@@ -95,3 +94,29 @@ const mapActionsToProps = {
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Comments);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

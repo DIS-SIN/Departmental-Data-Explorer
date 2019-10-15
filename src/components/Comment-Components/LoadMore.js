@@ -9,8 +9,9 @@ export const STEP_SIZE = 20;
 class LoadMore extends Component {
 	onClick = (e) => {
 		e.preventDefault();
-		this.props.onIncrementIndex('general');
-		this.props.onGetComments(REGISTHOR_API_KEY, this.props.commentType, this.props.courseCode, this.props.deptCode.value, this.props.currentIndices.general);
+		let { commentType, currentIndices, deptCode, optionalFilters } = this.props;
+		this.props.onIncrementIndex(commentType);
+		this.props.onGetComments(REGISTHOR_API_KEY, commentType, optionalFilters, deptCode.value, currentIndices);
 	}
 	
 	render() {
@@ -24,9 +25,9 @@ class LoadMore extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		courseCode: state.commentReducer.courseCode,
 		currentIndices: state.commentReducer.currentIndices,
-		deptCode: state.mainReducer.deptCode
+		deptCode: state.mainReducer.deptCode,
+		optionalFilters: state.commentReducer.optionalFilters
 	};
 }
 
