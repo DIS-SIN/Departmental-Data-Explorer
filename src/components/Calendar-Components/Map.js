@@ -5,38 +5,51 @@ import styles from './Map.css';
 class Map extends Component {
 	constructor(props) {
 		super(props);
-		
-		// Placeholder for Google Maps script tag
-		this.tag = window.document.createElement('script');
-		this.tag.setAttribute('id', 'google-maps-script-tag');
-		
 		// Placeholder for Google Maps DOM element
 		this.el = React.createRef();
 	}
 	
-	componentDidUpdate() {
+	componentDidMount() {
+		// Create Google Maps script tag if doesn't already exist
 		let scriptTagExists = !!document.getElementById('google-maps-script-tag');
 		if (!scriptTagExists) {
-			// Append script tag to the DOM
-			this.tag.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
-			window.document.body.appendChild(this.tag);
-			
-			// Once loaded, build map and add markers
-			this.tag.addEventListener('load', () => {
-				this.googleMap = this.createMap();
-				this.markers = this.createMarkers();
-			});
-		} else {
-			// When props change due to new user input, re-draw map and its markers
-			this.googleMap = this.createMap();
-			this.markers = this.createMarkers();
+			let tag = window.document.createElement('script');
+			tag.setAttribute('id', 'google-maps-script-tag');
+			tag.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
+			tag.async = true;
+			window.document.body.appendChild(tag);
 		}
+		
+		// Create event listener if doesn't already exist
+		let tag = document.getElementById('google-maps-script-tag');
+		if (!tag.listenerExists) {
+			// Initial map rendering
+			tag.addEventListener('load', this.createAll);
+			tag.listenerExists = true;
+		}
+	}
+	
+	componentDidUpdate() {
+		// Subsequent map renderings
+		this.createAll();
+	}
+	
+	// Remove event listener so won't interfere with future instances of Map component
+	componentWillUnmount() {
+		let tag = document.getElementById('google-maps-script-tag');
+		tag.removeEventListener('load', this.createAll);
+		tag.listenerExists = false;
 	}
 	
 	shouldComponentUpdate(nextProps, nextState) {
 		// In JS, can't compare values of arrays this way
 		// However, can check if they're the same object in memory
 		return nextProps.cityCounts !== this.props.cityCounts;
+	}
+	
+	createAll = () => {
+		this.googleMap = this.createMap();
+		this.markers = this.createMarkers();
 	}
 	
 	createMap = () => {
