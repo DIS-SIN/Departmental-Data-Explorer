@@ -30,8 +30,18 @@ class Home extends Component {
 			});
 	}
 	
+	clearSelection = () => {
+		this.setState({ selectedOption: '' });
+	};
+	
 	handleChange = (e) => {
 		this.setState({ selectedOption: e });
+	};
+	
+	handleKeyDown = (e) => {
+		if (e.key === 'Enter' && this.state.selectedOption !== '') {
+			this.onUpdateDeptCode(e);
+		}
 	};
 	
 	onUpdateDeptCode = (e) => {
@@ -66,6 +76,8 @@ class Home extends Component {
 					isSearchable={true}
 					noOptionsMessage={() => 'No results'}
 					onChange={this.handleChange}
+					onKeyDown={this.handleKeyDown}
+					onMenuOpen={this.clearSelection}
 					options={this.state.possibleOptions}
 					placeholder="Select..."
 					value={this.state.selectedOption}
