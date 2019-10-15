@@ -7,27 +7,42 @@ export function commentReducer(state = initialState.commentReducer, action) {
 		case GET_COMMENTS_PENDING:
 			return {
 				...state,
-				commentsPending: true
+				commentsPending: {
+					...state.commentsPending,
+					[action.payload]: true
+				}
 			};
 		case GET_COMMENTS_SUCCESS:
 			return {
 				...state,
-				comments: [
+				comments: {
 					...state.comments,
-					...action.payload
-				],
-				commentsPending: false
+					[action.payload.commentType]: action.payload.data
+				},
+				commentsPending: {
+					...state.commentsPending,
+					[action.payload.commentType]: false
+				}
 			};
 		case GET_COUNTS_PENDING:
 			return {
 				...state,
-				countsPending: true
+				countsPending: {
+					...state.countsPending,
+					[action.payload]: true
+				}
 			};
 		case GET_COUNTS_SUCCESS:
 			return {
 				...state,
-				counts: action.payload,
-				countsPending: false
+				counts: {
+					...state.counts,
+					[action.payload.commentType]: action.payload.data
+				},
+				countsPending: {
+					...state.countsPending,
+					[action.payload.commentType]: false
+				}
 			};
 		case INCREMENT_INDEX:
 			return {
@@ -36,11 +51,6 @@ export function commentReducer(state = initialState.commentReducer, action) {
 					...state.currentIndices,
 					[action.payload]: (state.currentIndices[action.payload] + STEP_SIZE) || STEP_SIZE
 				}
-			};
-		case UPDATE_COURSE_CODE:
-			return {
-				...state,
-				courseCode: action.payload
 			};
 		default:
 			return state;

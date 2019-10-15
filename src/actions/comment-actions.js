@@ -7,64 +7,59 @@ export const GET_COUNTS_SUCCESS = 'GET_COUNTS_SUCCESS';
 export const INCREMENT_INDEX = 'INCREMENT_INDEX';
 export const UPDATE_COURSE_CODE = 'UPDATE_COURSE_CODE';
 
-export function getCommentsPending() {
+export function getCommentsPending(commentType) {
 	return {
-		type: GET_COMMENTS_PENDING
+		type: GET_COMMENTS_PENDING,
+		payload: commentType
 	};
 }
 
-export function getCommentsSuccess(data) {
+export function getCommentsSuccess(commentType, data) {
 	return {
 		type: GET_COMMENTS_SUCCESS,
-		payload: data
+		payload: { commentType: commentType, data: data }
 	};
 }
 
-export function getCountsPending() {
+export function getCountsPending(commentType) {
 	return {
-		type: GET_COUNTS_PENDING
+		type: GET_COUNTS_PENDING,
+		payload: commentType
 	};
 }
 
-export function getCountsSuccess(data) {
+export function getCountsSuccess(commentType, data) {
 	return {
 		type: GET_COUNTS_SUCCESS,
-		payload: data
+		payload: { commentType: commentType, data: data }
 	};
 }
 
-export function incrementIndex(index) {
+export function incrementIndex(commentType) {
 	return {
 		type: INCREMENT_INDEX,
-		payload: index
-	};
-}
-
-export function updateCourseCode(newVal) {
-	return {
-		type: UPDATE_COURSE_CODE,
-		payload: newVal
+		payload: commentType
 	};
 }
 
 export function getComments(apiKey, commentType, courseCode, deptCode, offset) {
 	return (dispatch) => {
-		dispatch(getCommentsPending());
+		dispatch(getCommentsPending(commentType));
 		fetch(`https://registhor.da-an.ca/api/v1/comments/text/${commentType}?key=${apiKey}&course_code=${courseCode}&department_code=${deptCode}&limit=${STEP_SIZE}&offset=${offset}`)
 			.then(resp => resp.json())
 			.then(data => {
-				dispatch(getCommentsSuccess(data.results));
+				dispatch(getCommentsSuccess(commentType, data.results));
 			});
 	}
 }
 
 export function getCounts(apiKey, commentType, courseCode, deptCode) {
 	return (dispatch) => {
-		dispatch(getCountsPending());
+		dispatch(getCountsPending(commentType));
 		fetch(`https://registhor.da-an.ca/api/v1/comments/counts/${commentType}?key=${apiKey}&course_code=${courseCode}&department_code=${deptCode}`)
 			.then(resp => resp.json())
 			.then(data => {
-				dispatch(getCountsSuccess(data.results));
+				dispatch(getCountsSuccess(commentType, data.results));
 			});
 	}
 }
