@@ -40,19 +40,19 @@
 }
 
 
-.myBtn {
-	background-color: #3f2a56;
+.myBtn,
+.myBtn:active,
+.myBtn:focus {
+	background-color: #3f2a56 !important;
 	color: #fff;
 	padding: 0.5rem 1rem;
 	min-width: 8rem;
 	outline: none !important;
 	margin-bottom: 2rem;
 }
-.myBtn:active,
-.myBtn:focus {
-	background-color: #3f2a56 !important;
-}
-.myBtn:hover {
-	background-color: #9468c4;
+.myBtn:hover,
+.myBtn:active:hover,
+.myBtn:focus:hover {
+	background-color: #9468c4 !important;
 	color: #fff;
 }
