@@ -69,7 +69,7 @@ class Comments extends Component {
 	
 	render() {
 		let commentArray = this.props.comments.map((comment) => {
-			return <Comment {...comment} />;
+			return <Comment {...comment} key={`comment-${this.props.commentType}-${index}`} />;
 		});
 		return (
 			<>
