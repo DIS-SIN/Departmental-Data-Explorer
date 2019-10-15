@@ -16,13 +16,33 @@ import { mainReducer } from './reducers/main-reducer';
 /***** INITIAL STATE *****/
 const initialState = {
 	commentReducer: {
-		comments: [],
-		commentsPending: false,
-		counts: {},
-		countsPending: false,
-		courseCode: '',
+		comments: {
+			improvement: [],
+			general: [],
+			technical: []
+		},
+		commentsPending: {
+			improvement: false,
+			general: false,
+			technical: false
+		},
+		counts: {
+			improvement: {},
+			general: {},
+			technical: {}
+		},
+		countsPending: {
+			improvement: false,
+			general: false,
+			technical: false
+		},
 		currentIndices: {
-			general: 0
+			improvement: 0,
+			general: 0,
+			technical: 0
+		},
+		optionalFilters: {
+			courseCode: ''
 		}
 	},
 	mainReducer: {
