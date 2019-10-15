@@ -57,6 +57,9 @@ export function getComments(apiKey, commentType, courseCode, deptCode, offset) {
 			.then(resp => resp.json())
 			.then(data => {
 				dispatch(getCommentsSuccess(commentType, data.results));
+			})
+			.then(() => {
+				dispatch(incrementIndex(commentType));
 			});
 	}
 }

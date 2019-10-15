@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import { connect } from 'react-redux';
-import { getComments, incrementIndex } from '../../actions/comment-actions';
+import { getComments } from '../../actions/comment-actions';
 import styles from './LoadMore.css';
 
 export const STEP_SIZE = 20;
@@ -11,7 +11,6 @@ class LoadMore extends Component {
 		e.preventDefault();
 		let { commentType, currentIndex, deptCode, optionalFilters } = this.props;
 		
-		this.props.onIncrementIndex(commentType);
 		this.props.onGetComments(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value, currentIndex);
 	}
 	
@@ -34,7 +33,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapActionsToProps = {
 	onGetComments: getComments,
-	onIncrementIndex: incrementIndex
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(LoadMore);

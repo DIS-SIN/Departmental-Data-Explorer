@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getComments, getCounts, incrementIndex, resetAll } from '../../actions/comment-actions';
+import { getComments, getCounts, resetAll } from '../../actions/comment-actions';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import avatar from '../../static/img/avatar.png';
 import LoadMore from './LoadMore';
@@ -60,7 +60,6 @@ class Comments extends Component {
 		this.props.onResetAll(commentType);
 		this.props.onGetCounts(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value);
 		this.props.onGetComments(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value, currentIndex);
-		this.props.onIncrementIndex(commentType);
 	}
 	
 	shouldComponentUpdate(nextProps, nextState) {
@@ -93,7 +92,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapActionsToProps = {
 	onGetComments: getComments,
 	onGetCounts: getCounts,
-	onIncrementIndex: incrementIndex,
 	onResetAll: resetAll
 };
 
