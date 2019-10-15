@@ -10,7 +10,7 @@ class LoadMore extends Component {
 	onClick = (e) => {
 		e.preventDefault();
 		this.props.onIncrementIndex('general');
-		this.props.onGetComments(REGISTHOR_API_KEY, this.props.courseCode, this.props.deptCode.value, this.props.currentIndices.general);
+		this.props.onGetComments(REGISTHOR_API_KEY, this.props.commentType, this.props.courseCode, this.props.deptCode.value, this.props.currentIndices.general);
 	}
 	
 	render() {
