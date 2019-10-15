@@ -42,6 +42,8 @@ class Comment extends Component {
 							<CommentStars stars={this.props.stars} />
 							<span className={styles.commentDate}>{this.props.offering_quarter} {this.props.offering_fiscal_year}</span>
 						</h5>
+						{/* Course title */}
+						<h5>{this.props.course_code}</h5>
 						{/* User comment */}
 						<p>{this.props.comment_text}</p>
 					</div>
