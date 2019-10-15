@@ -42,6 +42,17 @@ class Home extends Component {
 		}
 	}
 	
+	onSelectRandom = (e) => {
+		e.preventDefault();
+		let { possibleOptions } = this.state;
+		
+		let randomDepartment = possibleOptions[Math.floor(Math.random() * possibleOptions.length)];
+		if(typeof randomDepartment !== 'undefined') {
+			this.props.onUpdateDeptCode(randomDepartment);
+			this.setState({ redirect: true });
+		}
+	}
+	
 	render() {
 		if (this.state.redirect) {
 			return <Redirect exact to="/comments"/>;
@@ -61,7 +72,7 @@ class Home extends Component {
 				/>
 				<div className={styles.outerButtons}>
 					<button className={'btn btn-primary ' + styles.myBtn} onClick={this.onUpdateDeptCode}>Go</button>
-					<button className={'btn btn-primary ' + styles.myBtn}>Make My Day</button>
+					<button className={'btn btn-primary ' + styles.myBtn} onClick={this.onSelectRandom}>Make My Day</button>
 				</div>
 			</div>
 		);
