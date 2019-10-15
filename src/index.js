@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import App from './App';
 import { commentReducer } from './reducers/comment-reducer';
+import { mainReducer } from './reducers/main-reducer';
 
 // Data flow in Redux: React component -> action -> reducer -> store
 
@@ -23,19 +24,23 @@ const initialState = {
 		currentIndices: {
 			general: 0
 		}
+	},
+	mainReducer: {
+		deptCode: {}
 	}
 };
 
 /***** REDUCERS *****/
 const allReducers = combineReducers({
-	commentReducer: commentReducer
+	commentReducer: commentReducer,
+	mainReducer: mainReducer
 });
 
 /***** ENHANCERS *****/
 const allEnhancers = compose(
-	applyMiddleware(thunk)
+	applyMiddleware(thunk),
 	// Use short circuiting i.e. if the devtools extension is present, call it
-	// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 /***** STORE *****/

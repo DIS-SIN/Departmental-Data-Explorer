@@ -53,8 +53,8 @@ class Comment extends Component {
 
 class Comments extends Component {
 	componentDidMount() {
-		this.props.onGetCounts(REGISTHOR_API_KEY, this.props.courseCode);
-		this.props.onGetComments(REGISTHOR_API_KEY, this.props.courseCode, this.props.currentIndices.general);
+		this.props.onGetCounts(REGISTHOR_API_KEY, this.props.courseCode, this.props.deptCode.value);
+		this.props.onGetComments(REGISTHOR_API_KEY, this.props.courseCode, this.props.deptCode.value, this.props.currentIndices.general);
 		this.props.onIncrementIndex('general');
 	}
 	
@@ -83,7 +83,8 @@ const mapStateToProps = (state) => {
 		counts: {},
 		countsPending: false,
 		courseCode: state.commentReducer.courseCode,
-		currentIndices: state.commentReducer.currentIndices
+		currentIndices: state.commentReducer.currentIndices,
+		deptCode: state.mainReducer.deptCode
 	};
 }
 

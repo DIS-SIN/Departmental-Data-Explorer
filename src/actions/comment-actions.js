@@ -47,10 +47,10 @@ export function updateCourseCode(newVal) {
 	};
 }
 
-export function getComments(apiKey, courseCode, offset) {
+export function getComments(apiKey, courseCode, deptCode, offset) {
 	return (dispatch) => {
 		dispatch(getCommentsPending());
-		fetch(`https://registhor.da-an.ca/api/v1/comments/text/general/${courseCode}?key=${apiKey}&limit=${STEP_SIZE}&offset=${offset}`)
+		fetch(`https://registhor.da-an.ca/api/v1/comments/text/general?key=${apiKey}&course_code=${courseCode}&department_code=${deptCode}&limit=${STEP_SIZE}&offset=${offset}`)
 			.then(resp => resp.json())
 			.then(data => {
 				dispatch(getCommentsSuccess(data.results));
@@ -58,10 +58,10 @@ export function getComments(apiKey, courseCode, offset) {
 	}
 }
 
-export function getCounts(apiKey, courseCode) {
+export function getCounts(apiKey, courseCode, deptCode) {
 	return (dispatch) => {
 		dispatch(getCountsPending());
-		fetch(`https://registhor.da-an.ca/api/v1/comments/counts/general/${courseCode}?key=${apiKey}`)
+		fetch(`https://registhor.da-an.ca/api/v1/comments/counts/general?key=${apiKey}&course_code=${courseCode}&department_code=${deptCode}`)
 			.then(resp => resp.json())
 			.then(data => {
 				dispatch(getCountsSuccess(data.results));
