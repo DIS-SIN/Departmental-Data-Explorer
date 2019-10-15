@@ -72,9 +72,17 @@ class Comments extends Component {
 	}
 	
 	render() {
+		// Display message if no feedback
+		if (!this.props.comments.length) {
+			return (
+				<h4>Apologies, this course has yet to receive any feedback of this type.</h4>
+			);
+		}
+		
 		let commentArray = this.props.comments.map((comment, index) => {
 			return <Comment {...comment} key={`comment-${this.props.commentType}-${index}`} />;
 		});
+		
 		return (
 			<>
 				<StarsBarchart commentType={this.props.commentType} />
