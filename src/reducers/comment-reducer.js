@@ -1,4 +1,4 @@
-import { GET_COMMENTS_PENDING, GET_COMMENTS_SUCCESS, GET_COUNTS_PENDING, GET_COUNTS_SUCCESS, INCREMENT_INDEX, UPDATE_COURSE_CODE } from '../actions/comment-actions';
+import { GET_COMMENTS_PENDING, GET_COMMENTS_SUCCESS, GET_COUNTS_PENDING, GET_COUNTS_SUCCESS, INCREMENT_INDEX, RESET_ALL, UPDATE_COURSE_CODE } from '../actions/comment-actions';
 import { initialState } from '../';
 import { STEP_SIZE } from '../components/Comment-Components/LoadMore';
 
@@ -53,6 +53,34 @@ export function commentReducer(state = initialState.commentReducer, action) {
 				currentIndices: {
 					...state.currentIndices,
 					[action.payload]: (state.currentIndices[action.payload] + STEP_SIZE) || STEP_SIZE
+				}
+			};
+		case RESET_ALL:
+			return {
+				...state,
+				comments: {
+					...state.comments,
+					[action.payload]: []
+				},
+				commentsPending: {
+					...state.commentsPending,
+					[action.payload]: false
+				},
+				counts: {
+					...state.counts,
+					[action.payload]: {}
+				},
+				countsPending: {
+					...state.countsPending,
+					[action.payload]: false
+				},
+				currentIndices: {
+					...state.currentIndices,
+					[action.payload]: 0
+				},
+				optionalFilters: {
+					...state.optionalFilters,
+					[action.payload]: { courseCode: '' }
 				}
 			};
 		default:

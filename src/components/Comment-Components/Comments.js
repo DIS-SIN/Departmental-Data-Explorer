@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getComments, getCounts, incrementIndex } from '../../actions/comment-actions';
+import { getComments, getCounts, incrementIndex, resetAll } from '../../actions/comment-actions';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import avatar from '../../static/img/avatar.png';
 import LoadMore from './LoadMore';
@@ -55,6 +55,9 @@ class Comments extends Component {
 	componentDidMount() {
 		let { commentType, optionalFilters, deptCode, currentIndex } = this.props;
 		
+		// Clear all comments, counts, and indices upon mounting
+		// Wouldn't want to e.g. load TBS, read its comments, then load CSPS and see a combination of both
+		this.props.onResetAll(commentType);
 		this.props.onGetCounts(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value);
 		this.props.onGetComments(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value, currentIndex);
 		this.props.onIncrementIndex(commentType);
@@ -90,7 +93,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapActionsToProps = {
 	onGetComments: getComments,
 	onGetCounts: getCounts,
-	onIncrementIndex: incrementIndex
+	onIncrementIndex: incrementIndex,
+	onResetAll: resetAll
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Comments);

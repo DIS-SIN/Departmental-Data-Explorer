@@ -5,6 +5,7 @@ export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
 export const GET_COUNTS_PENDING = 'GET_COUNTS_PENDING';
 export const GET_COUNTS_SUCCESS = 'GET_COUNTS_SUCCESS';
 export const INCREMENT_INDEX = 'INCREMENT_INDEX';
+export const RESET_ALL = 'RESET_ALL';
 export const UPDATE_COURSE_CODE = 'UPDATE_COURSE_CODE';
 
 export function getCommentsPending(commentType) {
@@ -40,6 +41,13 @@ export function incrementIndex(commentType) {
 		type: INCREMENT_INDEX,
 		payload: commentType
 	};
+}
+
+export function resetAll(commentType) {
+	return {
+		type: RESET_ALL,
+		payload: commentType
+	}
 }
 
 export function getComments(apiKey, commentType, courseCode, deptCode, offset) {
