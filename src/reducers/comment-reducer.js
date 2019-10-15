@@ -19,7 +19,7 @@ export function commentReducer(state = initialState.commentReducer, action) {
 					...state.comments,
 					[action.payload.commentType]: [
 						...state.comments[action.payload.commentType],
-						action.payload.data
+						...action.payload.data
 					]
 				},
 				commentsPending: {
