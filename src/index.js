@@ -42,7 +42,15 @@ const initialState = {
 			technical: 0
 		},
 		optionalFilters: {
-			courseCode: ''
+			improvement: {
+				courseCode: ''
+			},
+			general: {
+				courseCode: ''
+			},
+			technical: {
+				courseCode: ''
+			},
 		}
 	},
 	mainReducer: {
