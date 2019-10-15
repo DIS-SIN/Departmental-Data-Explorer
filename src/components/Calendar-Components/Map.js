@@ -5,16 +5,19 @@ import styles from './Map.css';
 class Map extends Component {
 	constructor(props) {
 		super(props);
+		
 		// Placeholder for Google Maps script tag
-		this.tag = null;
+		this.tag = window.document.createElement('script');
+		this.tag.setAttribute('id', 'google-maps-script-tag');
+		
 		// Placeholder for Google Maps DOM element
 		this.el = React.createRef();
 	}
 	
 	componentDidUpdate() {
-		if (!this.tag) {
+		let scriptTagExists = !!document.getElementById('google-maps-script-tag');
+		if (!scriptTagExists) {
 			// Append script tag to the DOM
-			this.tag = window.document.createElement('script');
 			this.tag.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
 			window.document.body.appendChild(this.tag);
 			
