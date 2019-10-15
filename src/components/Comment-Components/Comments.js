@@ -70,7 +70,7 @@ class Comments extends Component {
 		});
 		return (
 			<>
-				<StarsBarchart />
+				<StarsBarchart commentType={this.props.commentType} />
 				<div>{commentArray}</div>
 				<LoadMore commentType={this.props.commentType} />
 			</>

@@ -92,8 +92,8 @@ function StarsBarchart(props) {
 	);
 }
 
-const mapStateToProps = (state) => {
-	return { counts: state.commentReducer.counts };
+const mapStateToProps = (state, ownProps) => {
+	return { counts: state.commentReducer.counts[ownProps.commentType] };
 }
 
 const mapActionsToProps = {};
