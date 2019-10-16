@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 import App from './App';
 import { commentReducer } from './reducers/comment-reducer';
 import { mainReducer } from './reducers/main-reducer';
+import { GOOGLE_MAPS_API_KEY } from './utils/API_KEYS';
 
 // Data flow in Redux: React component -> action -> reducer -> store
 
@@ -74,6 +75,15 @@ const allEnhancers = compose(
 /***** STORE *****/
 const store = createStore(allReducers, initialState, allEnhancers);
 
+// Render Google Maps script tag
+// Runs a lot more smoothly if added before rest of content
+let tag = document.createElement('script');
+tag.setAttribute('id', 'google-maps-script-tag');
+tag.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
+tag.async = false;
+document.body.appendChild(tag);
+
+// Render app
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 
 export { initialState };

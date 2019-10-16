@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { GOOGLE_MAPS_API_KEY } from '../../utils/API_KEYS';
 import styles from './Map.css';
+
+// Component uses the Google Maps script tag already in DOM
+// Is added before rest of app in index.js
 
 class Map extends Component {
 	constructor(props) {
@@ -9,47 +11,15 @@ class Map extends Component {
 		this.el = React.createRef();
 	}
 	
-	componentDidMount() {
-		// Create Google Maps script tag if doesn't already exist
-		let scriptTagExists = !!document.getElementById('google-maps-script-tag');
-		if (!scriptTagExists) {
-			let tag = window.document.createElement('script');
-			tag.setAttribute('id', 'google-maps-script-tag');
-			tag.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
-			tag.async = true;
-			window.document.body.appendChild(tag);
-		}
-		
-		// Create event listener if doesn't already exist
-		let tag = document.getElementById('google-maps-script-tag');
-		if (!tag.listenerExists) {
-			// Initial map rendering
-			tag.addEventListener('load', this.createAll);
-			tag.listenerExists = true;
-		}
-	}
-	
 	componentDidUpdate() {
-		// Subsequent map renderings
-		this.createAll();
-	}
-	
-	// Remove event listener so won't interfere with future instances of Map component
-	componentWillUnmount() {
-		let tag = document.getElementById('google-maps-script-tag');
-		tag.removeEventListener('load', this.createAll);
-		tag.listenerExists = false;
+		this.googleMap = this.createMap();
+		this.markers = this.createMarkers();
 	}
 	
 	shouldComponentUpdate(nextProps, nextState) {
 		// In JS, can't compare values of arrays this way
 		// However, can check if they're the same object in memory
 		return nextProps.cityCounts !== this.props.cityCounts;
-	}
-	
-	createAll = () => {
-		this.googleMap = this.createMap();
-		this.markers = this.createMarkers();
 	}
 	
 	createMap = () => {
