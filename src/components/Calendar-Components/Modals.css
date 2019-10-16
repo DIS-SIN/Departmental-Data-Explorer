@@ -14,32 +14,8 @@
 	background-color: #9468c4 !important;
 	color: #fff;
 }
-
-
-.modal {
-	position: absolute;
-	top: 20%;
-	left: 50%;
-	bottom: auto;
-	right: auto;
-	transform: translate(-50%, -20%);
-	min-width: 25vw;
-	border: 1px solid #333;
-	box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px 0px;
-	outline: none;
-	background: #fff;
-	border-radius: 4px;
-}
-.modal .myBtn {
+.modalFooter .myBtn {
 	margin: 0;
-}
-@media (max-width: 767px) {
-	.modal {
-		width: 95vw;
-		/* Allow scrolling on short screens */
-		height: 100vh;
-		overflow-y: auto;
-	}
 }
 
 

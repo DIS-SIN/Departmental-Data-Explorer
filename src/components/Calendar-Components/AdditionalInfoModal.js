@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
+import modalStyles from './Modals.css.js';
 import styles from './Modals.css';
 
 class AdditionalInfoModal extends Component {
@@ -16,8 +17,7 @@ class AdditionalInfoModal extends Component {
 			<Modal
 				isOpen={this.props.modalOpen}
 				onRequestClose={this.props.closeModal}
-				className={styles.modal}
-				style={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } }}
+				style={modalStyles}
 			>
 				<div className="modal-header">
 					<button className="close" onClick={this.props.closeModal}>&times;</button>
@@ -96,7 +96,7 @@ class AdditionalInfoModal extends Component {
 						</table>
 					</form>
 				</div>
-				<div className="modal-footer">
+				<div className={"modal-footer " + styles.modalFooter}>
 					<button className={'btn btn-primary ' + styles.myBtn} onClick={this.props.closeModal}>Close</button>
 				</div>
 			</Modal>
