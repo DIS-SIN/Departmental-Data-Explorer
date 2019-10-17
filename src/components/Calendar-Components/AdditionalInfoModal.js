@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import ScrollLock from 'react-scrolllock';
 import Modal from 'react-modal';
-import modalStyles from './Modals.css.js';
 import styles from './Modals.css';
 
 class AdditionalInfoModal extends Component {
@@ -17,13 +17,14 @@ class AdditionalInfoModal extends Component {
 			<Modal
 				isOpen={this.props.modalOpen}
 				onRequestClose={this.props.closeModal}
-				style={modalStyles}
+				className={styles.content}
+				overlayClassName={styles.overlay}
 			>
 				<div className="modal-header">
 					<button className="close" onClick={this.props.closeModal}>&times;</button>
 					<h4 className="modal-title">Additional Info</h4>
 				</div>
-				<div className="modal-body">
+				<div className={"modal-modal " + styles.modalBody}>
 					<form className={styles.additionalInfo}>
 						<table className="table table-hover">
 							<tbody>
@@ -99,6 +100,8 @@ class AdditionalInfoModal extends Component {
 				<div className={"modal-footer " + styles.modalFooter}>
 					<button className={'btn btn-primary ' + styles.myBtn} onClick={this.props.closeModal}>Close</button>
 				</div>
+				
+				<ScrollLock isActive={this.props.modalOpen} />
 			</Modal>
 		);
 	}

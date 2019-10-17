@@ -70,8 +70,8 @@ class CalendarModal extends Component {
 				<Modal
 					isOpen={this.state.modalOpen}
 					onRequestClose={this.toggleModal}
-					className={styles.modal}
-					style={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } }}
+					className={styles.content}
+					overlayClassName={styles.overlay}
 				>
 					<div className="modal-header">
 						<button className="close" onClick={this.toggleModal}>&times;</button>
@@ -137,7 +137,7 @@ class CalendarModal extends Component {
 							</table>
 						</form>
 					</div>
-					<div className="modal-footer">
+					<div className={"modal-footer " + styles.modalFooter}>
 						<button className={'btn btn-primary ' + styles.myBtn} onClick={this.toggleModal}>Close</button>
 					</div>
 				</Modal>
