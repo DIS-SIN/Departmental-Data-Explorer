@@ -20,6 +20,8 @@ function StarsBarchart(props) {
 	
 	// Add labels showing percentages
 	let totalComments = fiveStar + fourStar + threeStar + twoStar + oneStar;
+	// Use noun 'comment' if 1 comment, else 'comments'
+	let commentsNoun = (totalComments === 1) ? 'Comment' : 'Comments';
 	// Account for 0 comments
 	let totalCommentsDivisor = (totalComments) ? totalComments : 1;
 	// Multiply then divide by ten as JS built-in Math.round doesn't support rounding to 1 decimal
@@ -35,7 +37,7 @@ function StarsBarchart(props) {
 				<tr>
 					<td colSpan="2">
 						<h3>
-							<span></span>
+							<span>{`${totalComments} ${commentsNoun} in Total`}</span>
 							{/* Add Material UI tooltip */}
 						</h3>
 					</td>
