@@ -1,4 +1,4 @@
-import { GET_COMMENTS_PENDING, GET_COMMENTS_SUCCESS, GET_COUNTS_PENDING, GET_COUNTS_SUCCESS, RESET_ALL, UPDATE_COURSE_CODE } from '../actions/comment-actions';
+import { GET_COMMENTS_PENDING, GET_COMMENTS_SUCCESS, GET_COUNTS_PENDING, GET_COUNTS_SUCCESS, RESET_ALL, UPDATE_OPTIONAL_FILTER } from '../actions/comment-actions';
 import { initialState } from '../';
 import { STEP_SIZE } from '../components/Comment-Components/LoadMore';
 
@@ -76,7 +76,18 @@ export function commentReducer(state = initialState.commentReducer, action) {
 				},
 				optionalFilters: {
 					...state.optionalFilters,
-					[action.payload]: { courseCode: '' }
+					[action.payload]: { courseCode: '', fiscalYear: '', stars: '' }
+				}
+			};
+		case UPDATE_OPTIONAL_FILTER:
+			return {
+				...state,
+				optionalFilters: {
+					...state.optionalFilters,
+					[action.payload.commentType]: {
+						...state.optionalFilters[action.payload.commentType],
+						[action.payload.filterName]: action.payload.newVal
+					}
 				}
 			};
 		default:

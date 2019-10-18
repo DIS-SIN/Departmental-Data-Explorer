@@ -5,6 +5,7 @@ export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
 export const GET_COUNTS_PENDING = 'GET_COUNTS_PENDING';
 export const GET_COUNTS_SUCCESS = 'GET_COUNTS_SUCCESS';
 export const RESET_ALL = 'RESET_ALL';
+export const UPDATE_OPTIONAL_FILTER = 'UPDATE_OPTIONAL_FILTER';
 
 export function getCommentsPending(commentType) {
 	return {
@@ -39,6 +40,13 @@ export function resetAll(commentType) {
 		type: RESET_ALL,
 		payload: commentType
 	}
+}
+
+export function updateOptionalFilter(commentType, filterName, newVal) {
+	return {
+		type: UPDATE_OPTIONAL_FILTER,
+		payload: { commentType: commentType, filterName: filterName, newVal: newVal }
+	};
 }
 
 export function getComments(apiKey, commentType, courseCode, deptCode, fiscalYear, stars, offset) {

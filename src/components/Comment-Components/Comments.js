@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getComments, getCounts, resetAll } from '../../actions/comment-actions';
+import { getComments, getCounts, resetAll, updateOptionalFilter } from '../../actions/comment-actions';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import avatar from '../../static/img/avatar.png';
 import LoadMore from './LoadMore';
@@ -85,6 +85,10 @@ function CommentControls(props) {
 }
 
 class Comments extends Component {
+	changeInput = (e) => {
+		this.props.onUpdateFilter(this.props.commentType, e.target.name, e.target.value);
+	}
+	
 	render() {
 		// Display message if no feedback
 		if (!this.props.comments.length) {
@@ -100,6 +104,7 @@ class Comments extends Component {
 		return (
 			<>
 				<StarsBarchart commentType={this.props.commentType} />
+				<CommentControls changeInput={this.changeInput} />
 				<div>{commentArray}</div>
 				<LoadMore commentType={this.props.commentType} commentCounts={this.props.comments.length} />
 			</>
@@ -137,7 +142,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapActionsToProps = {
 	onGetComments: getComments,
 	onGetCounts: getCounts,
-	onResetAll: resetAll
+	onResetAll: resetAll,
+	onUpdateFilter: updateOptionalFilter
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Comments);
