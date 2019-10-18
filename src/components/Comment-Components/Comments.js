@@ -75,7 +75,7 @@ class Comments extends Component {
 		// Display message if no feedback
 		if (!this.props.comments.length) {
 			return (
-				<h4>Apologies, this course has yet to receive any feedback of this type.</h4>
+				<h4>Apologies, this department has yet to submit feedback of this type.</h4>
 			);
 		}
 		
