@@ -4,7 +4,6 @@ export const GET_COMMENTS_PENDING = 'GET_COMMENTS_PENDING';
 export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
 export const GET_COUNTS_PENDING = 'GET_COUNTS_PENDING';
 export const GET_COUNTS_SUCCESS = 'GET_COUNTS_SUCCESS';
-export const INCREMENT_INDEX = 'INCREMENT_INDEX';
 export const RESET_ALL = 'RESET_ALL';
 export const UPDATE_COURSE_CODE = 'UPDATE_COURSE_CODE';
 
@@ -36,13 +35,6 @@ export function getCountsSuccess(commentType, data) {
 	};
 }
 
-export function incrementIndex(commentType) {
-	return {
-		type: INCREMENT_INDEX,
-		payload: commentType
-	};
-}
-
 export function resetAll(commentType) {
 	return {
 		type: RESET_ALL,
@@ -57,9 +49,6 @@ export function getComments(apiKey, commentType, courseCode, deptCode, offset) {
 			.then(resp => resp.json())
 			.then(data => {
 				dispatch(getCommentsSuccess(commentType, data.results));
-			})
-			.then(() => {
-				dispatch(incrementIndex(commentType));
 			});
 	}
 }

@@ -1,4 +1,4 @@
-import { GET_COMMENTS_PENDING, GET_COMMENTS_SUCCESS, GET_COUNTS_PENDING, GET_COUNTS_SUCCESS, INCREMENT_INDEX, RESET_ALL, UPDATE_COURSE_CODE } from '../actions/comment-actions';
+import { GET_COMMENTS_PENDING, GET_COMMENTS_SUCCESS, GET_COUNTS_PENDING, GET_COUNTS_SUCCESS, RESET_ALL, UPDATE_COURSE_CODE } from '../actions/comment-actions';
 import { initialState } from '../';
 import { STEP_SIZE } from '../components/Comment-Components/LoadMore';
 
@@ -25,6 +25,10 @@ export function commentReducer(state = initialState.commentReducer, action) {
 				commentsPending: {
 					...state.commentsPending,
 					[action.payload.commentType]: false
+				},
+				currentIndices: {
+					...state.currentIndices,
+					[action.payload.commentType]: state.currentIndices[action.payload.commentType] + STEP_SIZE
 				}
 			};
 		case GET_COUNTS_PENDING:
@@ -45,14 +49,6 @@ export function commentReducer(state = initialState.commentReducer, action) {
 				countsPending: {
 					...state.countsPending,
 					[action.payload.commentType]: false
-				}
-			};
-		case INCREMENT_INDEX:
-			return {
-				...state,
-				currentIndices: {
-					...state.currentIndices,
-					[action.payload]: (state.currentIndices[action.payload] + STEP_SIZE) || STEP_SIZE
 				}
 			};
 		case RESET_ALL:
