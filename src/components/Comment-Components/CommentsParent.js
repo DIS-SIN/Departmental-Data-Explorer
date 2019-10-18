@@ -32,10 +32,13 @@ function TabPanel(props) {
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		backgroundColor: 'transparent',
 		width: '100%',
 		margin: 0,
 		padding: 0
+	},
+	appBar: {
+		backgroundColor: '#f5f5f5',
+		color: '#3f2a56'
 	}
 }));
 
@@ -55,13 +58,13 @@ function CommentsNav(props) {
 	return (
 		<div className={classes.root}>
 			<h3 className={styles.h3}>{props.department_name}</h3>
-			<AppBar position="static" color="default">
+			<AppBar className={classes.appBar} position="static">
 				<Tabs
 					value={value}
 					onChange={handleChange}
-					indicatorColor="primary"
-					textColor="primary"
 					variant="fullWidth"
+					className={classes.appBar}
+					TabIndicatorProps={{ style: { backgroundColor: '#3f2a56' } }}
 				>
 					<Tab label="Improvement" />
 					<Tab label="Overall" />
