@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
@@ -11,6 +12,7 @@ import Container from '@material-ui/core/Container';
 import Header from '../Nav-Components/Header';
 import Nav from '../Nav-Components/Nav';
 import Footer from '../Nav-Components/Footer';
+import styles from './CommentsParent.css';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -37,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-function CommentsNav() {
+function CommentsNav(props) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [value, setValue] = React.useState(0);
@@ -52,6 +54,7 @@ function CommentsNav() {
 	
 	return (
 		<div className={classes.root}>
+			<h3 className={styles.h3}>{props.department_name}</h3>
 			<AppBar position="static" color="default">
 				<Tabs
 					value={value}
@@ -84,17 +87,25 @@ function CommentsNav() {
 	);
 }
 
-function CommentsParent() {
+function CommentsParent(props) {
 	return (
 		<>
 			<Header />
 			<Nav />
 			<Container>
-				<CommentsNav />
+				<CommentsNav department_name={props.department_name}/>
 			</Container>
 			<Footer />
 		</>
 	);
 }
 
-export default CommentsParent;
+const mapStateToProps = (state, ownProps) => {
+	return {
+		department_name: state.mainReducer.deptCode.label
+	};
+}
+
+const mapActionsToProps = {};
+
+export default connect(mapStateToProps, mapActionsToProps)(CommentsParent);
