@@ -17,9 +17,10 @@ class LoadMore extends Component {
 	
 	onClick = (e) => {
 		e.preventDefault();
-		let { commentType, currentIndex, deptCode, optionalFilters } = this.props;
+		let { commentType, currentIndex, deptCode } = this.props;
+		let { courseCode, fiscalYear, stars } = this.props.optionalFilters;
 		
-		this.props.onGetComments(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value, currentIndex);
+		this.props.onGetComments(REGISTHOR_API_KEY, commentType, courseCode, deptCode.value, fiscalYear, stars, currentIndex);
 	}
 	
 	static getDerivedStateFromProps(nextProps, prevState) {

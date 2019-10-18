@@ -53,6 +53,37 @@ class Comment extends Component {
 	}
 }
 
+function CommentControls(props) {
+	return (
+		<>
+			<div className={styles.filter}>
+				<p>Stars: </p>
+				<select name="stars" onChange={props.changeInput}>
+					<option value="">All</option>
+					<option value="5">Five</option>
+					<option value="4">Four</option>
+					<option value="3">Three</option>
+					<option value="2">Two</option>
+					<option value="1">One</option>
+				</select>
+			</div>
+			
+			<div className={styles.filter}>
+				<p>Fiscal Year: </p>
+				<select name="fiscalYear" onChange={props.changeInput}>
+					<option value="">All</option>
+					<option value="2015-16">2015-16</option>
+					<option value="2016-17">2016-17</option>
+					<option value="2017-18">2017-18</option>
+					<option value="2018-19">2018-19</option>
+					<option value="2019-20">2019-20</option>
+					<option value="2020-21">2020-21</option>
+				</select>
+			</div>
+		</>
+	);
+}
+
 class Comments extends Component {
 	render() {
 		// Display message if no feedback
@@ -76,10 +107,11 @@ class Comments extends Component {
 	}
 	
 	componentDidMount() {
-		let { commentType, optionalFilters, deptCode, currentIndex } = this.props;
+		let { commentType, currentIndex, deptCode } = this.props;
+		let { courseCode, fiscalYear, stars } = this.props.optionalFilters;
 		
-		this.props.onGetCounts(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value);
-		this.props.onGetComments(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value, currentIndex);
+		this.props.onGetCounts(REGISTHOR_API_KEY, commentType, courseCode, deptCode.value, fiscalYear);
+		this.props.onGetComments(REGISTHOR_API_KEY, commentType, courseCode, deptCode.value, fiscalYear, stars, currentIndex);
 	}
 	
 	shouldComponentUpdate(nextProps, nextState) {

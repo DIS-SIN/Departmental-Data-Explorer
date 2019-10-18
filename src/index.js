@@ -44,13 +44,19 @@ const initialState = {
 		},
 		optionalFilters: {
 			improvement: {
-				courseCode: ''
+				courseCode: '',
+				fiscalYear: '',
+				stars: ''
 			},
 			general: {
-				courseCode: ''
+				courseCode: '',
+				fiscalYear: '',
+				stars: ''
 			},
 			technical: {
-				courseCode: ''
+				courseCode: '',
+				fiscalYear: '',
+				stars: ''
 			},
 		}
 	},
