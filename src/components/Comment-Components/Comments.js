@@ -54,23 +54,6 @@ class Comment extends Component {
 }
 
 class Comments extends Component {
-	componentDidMount() {
-		let { commentType, optionalFilters, deptCode, currentIndex } = this.props;
-		
-		this.props.onGetCounts(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value);
-		this.props.onGetComments(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value, currentIndex);
-	}
-	
-	shouldComponentUpdate(nextProps, nextState) {
-		return nextProps.comments.length !== this.props.comments.length;
-	}
-	
-	componentWillUnmount() {
-		// Clear all comments, counts, and indices
-		// Wouldn't want to e.g. load TBS, read its comments, then load CSPS and see a combination of both
-		this.props.onResetAll(this.props.commentType);
-	}
-	
 	render() {
 		// Display message if no feedback
 		if (!this.props.comments.length) {
@@ -90,6 +73,23 @@ class Comments extends Component {
 				<LoadMore commentType={this.props.commentType} />
 			</>
 		);
+	}
+	
+	componentDidMount() {
+		let { commentType, optionalFilters, deptCode, currentIndex } = this.props;
+		
+		this.props.onGetCounts(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value);
+		this.props.onGetComments(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value, currentIndex);
+	}
+	
+	shouldComponentUpdate(nextProps, nextState) {
+		return nextProps.comments.length !== this.props.comments.length;
+	}
+	
+	componentWillUnmount() {
+		// Clear all comments, counts, and indices
+		// Wouldn't want to e.g. load TBS, read its comments, then load CSPS and see a combination of both
+		this.props.onResetAll(this.props.commentType);
 	}
 }
 
