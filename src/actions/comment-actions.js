@@ -5,7 +5,6 @@ export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
 export const GET_COUNTS_PENDING = 'GET_COUNTS_PENDING';
 export const GET_COUNTS_SUCCESS = 'GET_COUNTS_SUCCESS';
 export const RESET_ALL = 'RESET_ALL';
-export const UPDATE_COURSE_CODE = 'UPDATE_COURSE_CODE';
 
 export function getCommentsPending(commentType) {
 	return {
@@ -42,10 +41,10 @@ export function resetAll(commentType) {
 	}
 }
 
-export function getComments(apiKey, commentType, courseCode, deptCode, offset) {
+export function getComments(apiKey, commentType, courseCode, deptCode, fiscalYear, stars, offset) {
 	return (dispatch) => {
 		dispatch(getCommentsPending(commentType));
-		fetch(`https://registhor.da-an.ca/api/v1/comments/text/${commentType}?key=${apiKey}&course_code=${courseCode}&department_code=${deptCode}&limit=${STEP_SIZE}&offset=${offset}`)
+		fetch(`https://registhor.da-an.ca/api/v1/comments/text/${commentType}?key=${apiKey}&course_code=${courseCode}&department_code=${deptCode}&fiscal_year=${fiscalYear}&stars=${stars}&limit=${STEP_SIZE}&offset=${offset}`)
 			.then(resp => resp.json())
 			.then(data => {
 				dispatch(getCommentsSuccess(commentType, data.results));
@@ -53,10 +52,10 @@ export function getComments(apiKey, commentType, courseCode, deptCode, offset) {
 	}
 }
 
-export function getCounts(apiKey, commentType, courseCode, deptCode) {
+export function getCounts(apiKey, commentType, courseCode, deptCode, fiscalYear) {
 	return (dispatch) => {
 		dispatch(getCountsPending(commentType));
-		fetch(`https://registhor.da-an.ca/api/v1/comments/counts/${commentType}?key=${apiKey}&course_code=${courseCode}&department_code=${deptCode}`)
+		fetch(`https://registhor.da-an.ca/api/v1/comments/counts/${commentType}?key=${apiKey}&course_code=${courseCode}&department_code=${deptCode}&fiscal_year=${fiscalYear}`)
 			.then(resp => resp.json())
 			.then(data => {
 				dispatch(getCountsSuccess(commentType, data.results));
