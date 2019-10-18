@@ -7,6 +7,14 @@ import styles from './LoadMore.css';
 export const STEP_SIZE = 20;
 
 class LoadMore extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			buttonDisabled: false,
+			commentCounts: 0
+		};
+	}
+	
 	onClick = (e) => {
 		e.preventDefault();
 		let { commentType, currentIndex, deptCode, optionalFilters } = this.props;
@@ -14,10 +22,19 @@ class LoadMore extends Component {
 		this.props.onGetComments(REGISTHOR_API_KEY, commentType, optionalFilters.courseCode, deptCode.value, currentIndex);
 	}
 	
+	static getDerivedStateFromProps(nextProps, prevState) {
+		let buttonDisabled = ((nextProps.commentCounts - prevState.commentCounts) < 20) ? true: false;
+		return {
+			buttonDisabled: buttonDisabled,
+			commentCounts: nextProps.commentCounts
+		};
+	}
+	
 	render() {
 		return (
 			<div className={styles.loadMoreOuter}>
-				<button onClick={this.onClick} className={'btn btn-primary ' + styles.myBtn}>Load More</button>
+				{this.state.buttonDisabled ? <p>End of Comments</p> : undefined}
+				<button onClick={this.onClick} className={'btn btn-primary ' + styles.myBtn} disabled={this.state.buttonDisabled}>Load More</button>
 			</div>
 		);
 	}

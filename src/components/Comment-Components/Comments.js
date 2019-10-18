@@ -70,7 +70,7 @@ class Comments extends Component {
 			<>
 				<StarsBarchart commentType={this.props.commentType} />
 				<div>{commentArray}</div>
-				<LoadMore commentType={this.props.commentType} />
+				<LoadMore commentType={this.props.commentType} commentCounts={this.props.comments.length} />
 			</>
 		);
 	}
