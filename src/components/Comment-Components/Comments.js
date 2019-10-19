@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getComments, getCounts, resetAll, updateOptionalFilter } from '../../actions/comment-actions';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
+import { STEP_SIZE } from './LoadMore';
 import avatar from '../../static/img/avatar.png';
 import LoadMore from './LoadMore';
 import StarsBarchart from './StarsBarchart';
@@ -53,97 +53,166 @@ class Comment extends Component {
 	}
 }
 
-function CommentControls(props) {
-	return (
-		<>
-			<div className={styles.filter}>
-				<p>Stars: </p>
-				<select name="stars" onChange={props.changeInput}>
-					<option value="">All</option>
-					<option value="5">Five</option>
-					<option value="4">Four</option>
-					<option value="3">Three</option>
-					<option value="2">Two</option>
-					<option value="1">One</option>
-				</select>
-			</div>
-			
-			<div className={styles.filter}>
-				<p>Fiscal Year: </p>
-				<select name="fiscalYear" onChange={props.changeInput}>
-					<option value="">All</option>
-					<option value="2015-16">2015-16</option>
-					<option value="2016-17">2016-17</option>
-					<option value="2017-18">2017-18</option>
-					<option value="2018-19">2018-19</option>
-					<option value="2019-20">2019-20</option>
-					<option value="2020-21">2020-21</option>
-				</select>
-			</div>
-		</>
-	);
+class CommentControls extends Component {
+	shouldComponentUpdate() {
+		// TODO
+		return true;
+	}
+	
+	render() {
+		return (
+			<>
+				<div className={styles.filter}>
+					<p>Stars: </p>
+					<select name="stars" value={this.props.optionalFilters.stars} onChange={this.props.changeInput}>
+						<option value="">All</option>
+						<option value="5">Five</option>
+						<option value="4">Four</option>
+						<option value="3">Three</option>
+						<option value="2">Two</option>
+						<option value="1">One</option>
+					</select>
+				</div>
+				
+				<div className={styles.filter}>
+					<p>Fiscal Year: </p>
+					<select name="fiscalYear" value={this.props.optionalFilters.fiscalYear} onChange={this.props.changeInput}>
+						<option value="">All</option>
+						<option value="2015-16">2015-16</option>
+						<option value="2016-17">2016-17</option>
+						<option value="2017-18">2017-18</option>
+						<option value="2018-19">2018-19</option>
+						<option value="2019-20">2019-20</option>
+						<option value="2020-21">2020-21</option>
+					</select>
+				</div>
+			</>
+		);
+	}
 }
 
 class Comments extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			comments: [],
+			counts: {},
+			currentIndex: 0,
+			optionalFilters: {
+				courseCode: '',
+				fiscalYear: '',
+				stars: ''
+			}
+		}
+	}
+	
 	changeInput = (e) => {
-		this.props.onUpdateFilter(this.props.commentType, e.target.name, e.target.value);
+		e.persist();
+		this.setState((state, props) => {
+			return {
+				optionalFilters: {
+					...state.optionalFilters,
+					[e.target.name]: e.target.value
+				}
+			};
+		}, () => {
+			this.runRegisthorQueries();
+		});
+	}
+	
+	runRegisthorQueries = () => {
+		this.getCountsRegisthor();
+		this.getCommentsRegisthor(true);
+	}
+	
+	getCountsRegisthor = () => {
+		let { commentType, deptCode} = this.props;
+		let { courseCode, fiscalYear } = this.state.optionalFilters;
+		
+		// Ensure fields that could contain accented characters are forced as HTML encoded, else
+		// AJAX will fail on IE11
+		let url = `https://registhor.da-an.ca/api/v1/comments/counts/${commentType}?key=${REGISTHOR_API_KEY}&course_code=${courseCode}&department_code=${encodeURIComponent(deptCode.value)}&fiscal_year=${fiscalYear}`;
+		fetch(url)
+			.then(resp => resp.json())
+			.then((data) => {
+				this.setState({
+					counts: data.results
+				})
+			});
+	}
+	
+	getCommentsRegisthor = (overwrite) => {
+		let { commentType, deptCode} = this.props;
+		let { courseCode, fiscalYear, stars } = this.state.optionalFilters;
+		// If overwriting existing comments, set currentIndex to 0
+		let currentIndex = overwrite ? 0 : this.state.currentIndex;
+		
+		// Ensure fields that could contain accented characters are forced as HTML encoded, else
+		// AJAX will fail on IE11
+		let url = `https://registhor.da-an.ca/api/v1/comments/text/${commentType}?key=${REGISTHOR_API_KEY}&course_code=${courseCode}&department_code=${encodeURIComponent(deptCode.value)}&fiscal_year=${fiscalYear}&stars=${stars}&limit=${STEP_SIZE}&offset=${currentIndex}`;
+		fetch(url)
+			.then(resp => resp.json())
+			.then((data) => {
+				// If argument 'overwrite', replace existing comments and reset index
+				// Used when filters are triggered as only want comments that match criteria
+				if (overwrite) {
+					this.setState({
+						comments: data.results,
+						currentIndex: 20
+					});
+				// Otherwise, 
+				} else {
+					this.setState((state, props) => {
+						return {
+							comments: [
+								...state.comments,
+								...data.results
+							],
+							currentIndex: state.currentIndex + STEP_SIZE
+						};
+					});
+				}
+			});
 	}
 	
 	render() {
 		// Display message if no feedback
-		if (!this.props.comments.length) {
+		if (!this.state.comments.length) {
 			return (
 				<p>Apologies, this department has yet to submit feedback of this type.</p>
 			);
 		}
 		
-		let commentArray = this.props.comments.map((comment, index) => {
+		let commentArray = this.state.comments.map((comment, index) => {
 			return <Comment {...comment} key={`comment-${this.props.commentType}-${index}`} />;
 		});
 		
 		return (
 			<>
-				<StarsBarchart commentType={this.props.commentType} />
-				<CommentControls changeInput={this.changeInput} />
+				<StarsBarchart counts={this.state.counts} />
+				<CommentControls changeInput={this.changeInput} optionalFilters={this.state.optionalFilters} />
 				<div>{commentArray}</div>
-				<LoadMore commentType={this.props.commentType} commentCounts={this.props.comments.length} />
+				<LoadMore commentCounts={this.state.comments.length} getCommentsRegisthor={this.getCommentsRegisthor} />
 			</>
 		);
 	}
 	
 	componentDidMount() {
-		let { commentType, currentIndex, deptCode } = this.props;
-		let { courseCode, fiscalYear, stars } = this.props.optionalFilters;
-		
-		this.props.onGetCounts(REGISTHOR_API_KEY, commentType, courseCode, deptCode.value, fiscalYear);
-		this.props.onGetComments(REGISTHOR_API_KEY, commentType, courseCode, deptCode.value, fiscalYear, stars, currentIndex);
+		this.runRegisthorQueries();
 	}
 	
 	shouldComponentUpdate(nextProps, nextState) {
-		return nextProps.comments.length !== this.props.comments.length;
-	}
-	
-	componentWillUnmount() {
-		// Clear all comments, counts, and indices
-		// Wouldn't want to e.g. load TBS, read its comments, then load CSPS and see a combination of both
-		this.props.onResetAll(this.props.commentType);
+		return true;
+		// return nextProps.comments.length !== this.props.comments.length;
 	}
 }
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		comments: state.commentReducer.comments[ownProps.commentType],
-		currentIndex: state.commentReducer.currentIndices[ownProps.commentType],
-		deptCode: state.mainReducer.deptCode,
-		optionalFilters: state.commentReducer.optionalFilters[ownProps.commentType]
+		deptCode: state.mainReducer.deptCode
 	};
 }
 
-const mapActionsToProps = {
-	onGetComments: getComments,
-	onGetCounts: getCounts,
-	onResetAll: resetAll,
-	onUpdateFilter: updateOptionalFilter
-};
+const mapActionsToProps = {};
 
 export default connect(mapStateToProps, mapActionsToProps)(Comments);
