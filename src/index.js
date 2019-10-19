@@ -8,7 +8,6 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import App from './App';
-import { commentReducer } from './reducers/comment-reducer';
 import { mainReducer } from './reducers/main-reducer';
 import { GOOGLE_MAPS_API_KEY } from './utils/API_KEYS';
 
@@ -16,50 +15,6 @@ import { GOOGLE_MAPS_API_KEY } from './utils/API_KEYS';
 
 /***** INITIAL STATE *****/
 const initialState = {
-	commentReducer: {
-		comments: {
-			improvement: [],
-			general: [],
-			technical: []
-		},
-		commentsPending: {
-			improvement: false,
-			general: false,
-			technical: false
-		},
-		counts: {
-			improvement: {},
-			general: {},
-			technical: {}
-		},
-		countsPending: {
-			improvement: false,
-			general: false,
-			technical: false
-		},
-		currentIndices: {
-			improvement: 0,
-			general: 0,
-			technical: 0
-		},
-		optionalFilters: {
-			improvement: {
-				courseCode: '',
-				fiscalYear: '',
-				stars: ''
-			},
-			general: {
-				courseCode: '',
-				fiscalYear: '',
-				stars: ''
-			},
-			technical: {
-				courseCode: '',
-				fiscalYear: '',
-				stars: ''
-			},
-		}
-	},
 	mainReducer: {
 		deptCode: {}
 	}
@@ -67,7 +22,6 @@ const initialState = {
 
 /***** REDUCERS *****/
 const allReducers = combineReducers({
-	commentReducer: commentReducer,
 	mainReducer: mainReducer
 });
 
