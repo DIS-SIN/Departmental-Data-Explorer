@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
-import { connect } from 'react-redux';
-import { getComments } from '../../actions/comment-actions';
 import styles from './LoadMore.css';
 
 export const STEP_SIZE = 20;
@@ -15,12 +12,8 @@ class LoadMore extends Component {
 		};
 	}
 	
-	onClick = (e) => {
-		e.preventDefault();
-		let { commentType, currentIndex, deptCode } = this.props;
-		let { courseCode, fiscalYear, stars } = this.props.optionalFilters;
-		
-		this.props.onGetComments(REGISTHOR_API_KEY, commentType, courseCode, deptCode.value, fiscalYear, stars, currentIndex);
+	onClick = () => {
+		this.props.getCommentsRegisthor(false);
 	}
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
@@ -41,16 +34,4 @@ class LoadMore extends Component {
 	}
 }
 
-const mapStateToProps = (state, ownProps) => {
-	return {
-		currentIndex: state.commentReducer.currentIndices[ownProps.commentType],
-		deptCode: state.mainReducer.deptCode,
-		optionalFilters: state.commentReducer.optionalFilters[ownProps.commentType]
-	};
-}
-
-const mapActionsToProps = {
-	onGetComments: getComments,
-};
-
-export default connect(mapStateToProps, mapActionsToProps)(LoadMore);
+export default LoadMore;

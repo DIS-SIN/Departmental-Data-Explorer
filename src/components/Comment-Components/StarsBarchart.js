@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import styles from './StarsBarchart.css';
 
 function StarsBarchart(props) {
@@ -94,10 +93,4 @@ function StarsBarchart(props) {
 	);
 }
 
-const mapStateToProps = (state, ownProps) => {
-	return { counts: state.commentReducer.counts[ownProps.commentType] };
-}
-
-const mapActionsToProps = {};
-
-export default connect(mapStateToProps, mapActionsToProps)(StarsBarchart);
+export default StarsBarchart;
