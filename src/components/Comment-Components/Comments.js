@@ -56,6 +56,8 @@ class Comment extends Component {
 class CommentControls extends Component {
 	shouldComponentUpdate() {
 		// TODO
+		
+		
 		return true;
 	}
 	
@@ -160,7 +162,7 @@ class Comments extends Component {
 						comments: data.results,
 						currentIndex: 20
 					});
-				// Otherwise, 
+				// Otherwise, append and increment index by STEP_SIZE
 				} else {
 					this.setState((state, props) => {
 						return {
@@ -202,6 +204,9 @@ class Comments extends Component {
 	}
 	
 	shouldComponentUpdate(nextProps, nextState) {
+		// TODO
+		
+		
 		return true;
 		// return nextProps.comments.length !== this.props.comments.length;
 	}
