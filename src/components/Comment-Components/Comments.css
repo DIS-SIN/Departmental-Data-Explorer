@@ -21,3 +21,18 @@
 .commentDate {
 	float: right;
 }
+
+
+.filter {
+	text-align: right;
+	margin: 0.5rem 0;
+}
+.filter:first-child {
+	margin-top: 1.25rem !important;
+}
+.filter:last-child {
+	margin-bottom: 1.25rem;
+}
+.filter p {
+	display: inline;
+}

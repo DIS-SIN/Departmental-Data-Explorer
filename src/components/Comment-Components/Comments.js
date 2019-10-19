@@ -63,7 +63,7 @@ class CommentControls extends Component {
 	
 	render() {
 		return (
-			<>
+			<div>
 				<div className={styles.filter}>
 					<p>Stars: </p>
 					<select name="stars" value={this.props.optionalFilters.stars} onChange={this.props.changeInput}>
@@ -88,7 +88,7 @@ class CommentControls extends Component {
 						<option value="2020-21">2020-21</option>
 					</select>
 				</div>
-			</>
+			</div>
 		);
 	}
 }
