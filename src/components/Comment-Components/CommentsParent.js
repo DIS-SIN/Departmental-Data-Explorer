@@ -66,8 +66,8 @@ function CommentsNav(props) {
 					className={classes.appBar}
 					TabIndicatorProps={{ style: { backgroundColor: '#3f2a56' } }}
 				>
+					<Tab label="General" />
 					<Tab label="Improvement" />
-					<Tab label="Overall" />
 					<Tab label="Technical" />
 				</Tabs>
 			</AppBar>
@@ -77,10 +77,10 @@ function CommentsNav(props) {
 				onChangeIndex={handleChangeIndex}
 			>
 				<TabPanel value={value} index={0} dir={theme.direction}>
-					<Comments commentType="improvement" />
+					<Comments commentType="general" />
 				</TabPanel>
 				<TabPanel value={value} index={1} dir={theme.direction}>
-					<Comments commentType="general" />
+					<Comments commentType="improvement" />
 				</TabPanel>
 				<TabPanel value={value} index={2} dir={theme.direction}>
 					<Comments commentType="technical" />
