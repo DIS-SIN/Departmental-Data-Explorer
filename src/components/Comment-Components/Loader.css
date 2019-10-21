@@ -1,5 +1,3 @@
-/* position: absolute to center in next element up DOM 
-with position: relative, in this case #selection-and-loader */
 .loader {
 	position: absolute;
 	top: 50%;

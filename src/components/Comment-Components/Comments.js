@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import { STEP_SIZE } from './LoadMore';
 import avatar from '../../static/img/avatar.png';
+import Loader from './Loader';
 import LoadMore from './LoadMore';
 import StarsBarchart from './StarsBarchart';
 import styles from './Comments.css';
@@ -100,6 +101,8 @@ class Comments extends Component {
 			comments: [],
 			counts: {},
 			currentIndex: 0,
+			// Flag if Registhor has been called yet
+			initialLoad: false,
 			optionalFilters: {
 				courseCode: '',
 				fiscalYear: '',
@@ -160,7 +163,8 @@ class Comments extends Component {
 				if (overwrite) {
 					this.setState({
 						comments: data.results,
-						currentIndex: 20
+						currentIndex: 20,
+						initialLoad: true
 					});
 				// Otherwise, append and increment index by STEP_SIZE
 				} else {
@@ -170,7 +174,8 @@ class Comments extends Component {
 								...state.comments,
 								...data.results
 							],
-							currentIndex: state.currentIndex + STEP_SIZE
+							currentIndex: state.currentIndex + STEP_SIZE,
+							initialLoad: true
 						};
 					});
 				}
@@ -178,8 +183,15 @@ class Comments extends Component {
 	}
 	
 	render() {
+		// Display loader while awaiting response from Registhor
+		if (!this.state.comments.length && !this.state.initialLoad) {
+			return (
+				<Loader />
+			);
+		}
+		
 		// Display message if no feedback
-		if (!this.state.comments.length) {
+		if (!this.state.comments.length && this.state.initialLoad) {
 			return (
 				<p>Apologies, this department has yet to submit feedback of this type.</p>
 			);
