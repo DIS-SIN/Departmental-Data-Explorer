@@ -125,6 +125,19 @@ class Comments extends Component {
 		});
 	}
 	
+	changeStars = (newStars) => {
+		this.setState((state, props) => {
+			return {
+				optionalFilters: {
+					...state.optionalFilters,
+					stars: newStars
+				}
+			};
+		}, () => {
+			this.getCommentsRegisthor(true);
+		});
+	}
+	
 	runRegisthorQueries = () => {
 		this.getCountsRegisthor();
 		this.getCommentsRegisthor(true);
@@ -203,7 +216,7 @@ class Comments extends Component {
 		
 		return (
 			<>
-				<StarsBarchart counts={this.state.counts} fiscalYear={this.state.optionalFilters.fiscalYear} />
+				<StarsBarchart counts={this.state.counts} fiscalYear={this.state.optionalFilters.fiscalYear} changeStars={this.changeStars} />
 				<CommentControls changeInput={this.changeInput} optionalFilters={this.state.optionalFilters} />
 				<div>{commentArray}</div>
 				<LoadMore commentCounts={this.state.comments.length} getCommentsRegisthor={this.getCommentsRegisthor} />
