@@ -39,6 +39,9 @@ const useStyles = makeStyles(theme => ({
 	appBar: {
 		backgroundColor: '#f5f5f5',
 		color: '#3f2a56'
+	},
+	tabPanel: {
+		minHeight: '10rem'
 	}
 }));
 
@@ -76,13 +79,13 @@ function CommentsNav(props) {
 				index={value}
 				onChangeIndex={handleChangeIndex}
 			>
-				<TabPanel value={value} index={0} dir={theme.direction}>
+				<TabPanel className={classes.tabPanel} value={value} index={0} dir={theme.direction}>
 					<Comments commentType="general" />
 				</TabPanel>
-				<TabPanel value={value} index={1} dir={theme.direction}>
+				<TabPanel className={classes.tabPanel} value={value} index={1} dir={theme.direction}>
 					<Comments commentType="improvement" />
 				</TabPanel>
-				<TabPanel value={value} index={2} dir={theme.direction}>
+				<TabPanel className={classes.tabPanel} value={value} index={2} dir={theme.direction}>
 					<Comments commentType="technical" />
 				</TabPanel>
 			</SwipeableViews>
