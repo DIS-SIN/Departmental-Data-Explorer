@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 		color: '#3f2a56'
 	},
 	tabPanel: {
-		minHeight: '10rem'
+		minHeight: '90vh'
 	}
 }));
 
