@@ -203,7 +203,7 @@ class Comments extends Component {
 		
 		return (
 			<>
-				<StarsBarchart counts={this.state.counts} />
+				<StarsBarchart counts={this.state.counts} fiscalYear={this.state.optionalFilters.fiscalYear} />
 				<CommentControls changeInput={this.changeInput} optionalFilters={this.state.optionalFilters} />
 				<div>{commentArray}</div>
 				<LoadMore commentCounts={this.state.comments.length} getCommentsRegisthor={this.getCommentsRegisthor} />
