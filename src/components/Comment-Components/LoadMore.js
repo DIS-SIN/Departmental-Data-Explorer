@@ -17,7 +17,7 @@ class LoadMore extends Component {
 	}
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
-		let buttonDisabled = ((nextProps.commentCounts - prevState.commentCounts) < 20) ? true: false;
+		let buttonDisabled = ((nextProps.commentCounts - prevState.commentCounts) < 20) && !nextProps.overwriting ? true: false;
 		return {
 			buttonDisabled: buttonDisabled,
 			commentCounts: nextProps.commentCounts

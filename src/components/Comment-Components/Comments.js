@@ -107,7 +107,8 @@ class Comments extends Component {
 				courseCode: '',
 				fiscalYear: '',
 				stars: ''
-			}
+			},
+			overwriting: false
 		}
 	}
 	
@@ -177,7 +178,8 @@ class Comments extends Component {
 					this.setState({
 						comments: data.results,
 						currentIndex: 20,
-						initialLoad: true
+						initialLoad: true,
+						overwriting: true
 					});
 				// Otherwise, append and increment index by STEP_SIZE
 				} else {
@@ -188,7 +190,8 @@ class Comments extends Component {
 								...data.results
 							],
 							currentIndex: state.currentIndex + STEP_SIZE,
-							initialLoad: true
+							initialLoad: true,
+							overwriting: false
 						};
 					});
 				}
@@ -219,7 +222,7 @@ class Comments extends Component {
 				<StarsBarchart counts={this.state.counts} fiscalYear={this.state.optionalFilters.fiscalYear} changeStars={this.changeStars} />
 				<CommentControls changeInput={this.changeInput} optionalFilters={this.state.optionalFilters} />
 				<div>{commentArray}</div>
-				<LoadMore commentCounts={this.state.comments.length} getCommentsRegisthor={this.getCommentsRegisthor} />
+				<LoadMore commentCounts={this.state.comments.length} overwriting={this.state.overwriting} getCommentsRegisthor={this.getCommentsRegisthor} />
 			</>
 		);
 	}
