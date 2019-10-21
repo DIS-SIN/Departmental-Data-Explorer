@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import SwipeableViews from 'react-swipeable-views';
 import Comments from './Comments';
 import Container from '@material-ui/core/Container';
@@ -49,6 +50,8 @@ function CommentsNav(props) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [value, setValue] = React.useState(0);
+	// If small screen, stack tabs vertically
+	const smallScreen = useMediaQuery('(max-width: 767px)');
 	
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
@@ -68,6 +71,7 @@ function CommentsNav(props) {
 					variant="fullWidth"
 					className={classes.appBar}
 					TabIndicatorProps={{ style: { backgroundColor: '#3f2a56' } }}
+					orientation={smallScreen ? "vertical" : undefined}
 				>
 					<Tab label="General" />
 					<Tab label="Improvement" />
