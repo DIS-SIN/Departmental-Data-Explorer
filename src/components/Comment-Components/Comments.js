@@ -37,14 +37,16 @@ class Comment extends Component {
 					<div className="media-body">
 						{/* User classification and offering city */}
 						<h4>{this.props.learner_classification}, <em>{this.props.offering_city}</em></h4>
-						{/* Display sentiment score with stars */}
+						{/* Sentiment score with stars */}
 						<h5>
 							<span>Sentiment Score: </span>
 							<CommentStars stars={this.props.stars} />
+						</h5>
+						{/* Course title and offering quarter */}
+						<h5>
+							<span>{this.props.course_code}</span>
 							<span className={styles.commentDate}>{this.props.offering_quarter} {this.props.offering_fiscal_year}</span>
 						</h5>
-						{/* Course title */}
-						<h5>{this.props.course_code}</h5>
 						{/* User comment */}
 						<p>{this.props.comment_text}</p>
 					</div>
