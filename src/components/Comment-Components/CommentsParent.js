@@ -1,18 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import SwipeableViews from 'react-swipeable-views';
+import {
+	AppBar,
+	Box,
+	Container,
+	Tab,
+	Tabs,
+	Typography,
+	makeStyles,
+	useMediaQuery,
+	useTheme
+} from '@material-ui/core';
 import Comments from './Comments';
-import Container from '@material-ui/core/Container';
+import Footer from '../Nav-Components/Footer';
 import Header from '../Nav-Components/Header';
 import Nav from '../Nav-Components/Nav';
-import Footer from '../Nav-Components/Footer';
 import styles from './CommentsParent.css';
 
 function TabPanel(props) {
