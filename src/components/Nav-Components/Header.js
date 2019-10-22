@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import GoC_EN from '../../static/FIPs/goc_colour_en.svg';
+import GitHub from '../../static/img/github.svg';
 import styles from './Header.css';
 
 function Nav() {
@@ -10,7 +11,12 @@ function Nav() {
 				<a href="https://www.canada.ca/en.html">
 					<img src={GoC_EN} alt="Government of Canada Logo" />
 				</a>
-				<a className={styles.langButtonDesktop} href="#">Français</a>
+				<div>
+					<a className={styles.langButtonDesktop} href="#">Français</a>
+					<a className={styles.gitHubLink} href="https://github.com/DIS-SIN/Departmental-Data-Explorer">
+						<img src={GitHub} alt="GitHub" />
+					</a>
+				</div>
 			</header>
 		</Container>
 	);

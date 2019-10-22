@@ -13,10 +13,12 @@
 .langButtonDesktop {
 	height: 100% !important;
 	text-decoration: none;
+	margin-right: 1rem;
 }
-/* Hide header's English / Français button on mobile */
+/* Hide contents mobile that are instead displayed in Material UI navbar */
 @media (max-width: 767px) {
-	.langButtonDesktop {
+	.langButtonDesktop,
+	.gitHubLink	{
 		display: none;
 	}
 }
