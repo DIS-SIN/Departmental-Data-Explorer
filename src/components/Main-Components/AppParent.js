@@ -12,11 +12,11 @@ import {
 	useMediaQuery,
 	useTheme
 } from '@material-ui/core';
-import Comments from './Comments';
+import Comments from '../Comment-Components/Comments';
 import Footer from '../Nav-Components/Footer';
 import Header from '../Nav-Components/Header';
 import Nav from '../Nav-Components/Nav';
-import styles from './CommentsParent.css';
+import styles from './AppParent.css';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-function CommentsNav(props) {
+function AppNav(props) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [value, setValue] = React.useState(0);
@@ -100,13 +100,13 @@ function CommentsNav(props) {
 	);
 }
 
-function CommentsParent(props) {
+function AppParent(props) {
 	return (
 		<>
 			<Header />
 			<Nav />
 			<Container>
-				<CommentsNav department_name={props.department_name}/>
+				<AppNav department_name={props.department_name}/>
 			</Container>
 			<Footer />
 		</>
@@ -121,4 +121,4 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapActionsToProps = {};
 
-export default connect(mapStateToProps, mapActionsToProps)(CommentsParent);
+export default connect(mapStateToProps, mapActionsToProps)(AppParent);

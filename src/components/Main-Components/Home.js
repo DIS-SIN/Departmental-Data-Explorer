@@ -65,7 +65,7 @@ class Home extends Component {
 	
 	render() {
 		if (this.state.redirect) {
-			return <Redirect exact to="/comments"/>;
+			return <Redirect exact to="/department-page"/>;
 		}
 		return (
 			<div className={styles.selectionForm}>
