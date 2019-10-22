@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import styles from './StarsBarchart.css';
 
-// TODO: make each bar a component
-
-
 class StarsBarchart extends Component {
 	changeStars = (e) => {
 		e.preventDefault();
