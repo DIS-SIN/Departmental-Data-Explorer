@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import SwipeableViews from 'react-swipeable-views';
 import {
 	AppBar,
@@ -101,6 +102,11 @@ function AppNav(props) {
 }
 
 function AppParent(props) {
+	// If user hasn't made a selection, redirect to home page
+	if (props.department_name === undefined) {
+		return <Redirect exact to="/en/home"/>;
+	}
+	
 	return (
 		<>
 			<Header />
