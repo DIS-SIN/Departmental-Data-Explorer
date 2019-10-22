@@ -5,7 +5,7 @@ import Header from '../Nav-Components/Header';
 import Nav from '../Nav-Components/Nav';
 import Footer from '../Nav-Components/Footer';
 
-function AboutParent() {
+function AboutParent(props) {
 	return (
 		<>
 			<Header />

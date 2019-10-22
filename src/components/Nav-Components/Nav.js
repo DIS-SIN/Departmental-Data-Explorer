@@ -16,9 +16,9 @@ function Nav() {
 				<div className={styles.banner}>
 					<div className={styles.navBar}>
 						<ul>
-							<li><NavLink exact to="/calendar">Calendar</NavLink></li>
-							<li><NavLink exact to="/about">About</NavLink></li>
-							<li><NavLink exact to="/en">Home</NavLink></li>
+							<li><NavLink exact to="/en/calendar">Calendar</NavLink></li>
+							<li><NavLink exact to="/en/about">About</NavLink></li>
+							<li><NavLink exact to="/en/home">Home</NavLink></li>
 						</ul>
 					</div>
 					

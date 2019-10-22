@@ -65,7 +65,7 @@ class Home extends Component {
 	
 	render() {
 		if (this.state.redirect) {
-			return <Redirect exact to="/department-page"/>;
+			return <Redirect exact to="/en/department-page"/>;
 		}
 		return (
 			<div className={styles.selectionForm}>

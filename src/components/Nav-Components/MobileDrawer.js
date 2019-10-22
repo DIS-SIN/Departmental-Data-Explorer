@@ -49,19 +49,19 @@ function MobileDrawer() {
 			onKeyDown={toggleDrawer(false)}
 		>
 			<List>
-				<Link exact="true" to="/en">
+				<Link exact="true" to="/en/home">
 					<ListItem button>
 						<ListItemIcon><Home /></ListItemIcon>
 						<ListItemText primary="Home" />
 					</ListItem>
 				</Link>
-				<Link exact="true" to="/about">
+				<Link exact="true" to="/en/about">
 					<ListItem button>
 						<ListItemIcon><Satellite /></ListItemIcon>
 						<ListItemText primary="About" />
 					</ListItem>
 				</Link>
-				<Link exact="true" to="/calendar">
+				<Link exact="true" to="/en/calendar">
 					<ListItem button>
 						<ListItemIcon><CalendarToday /></ListItemIcon>
 						<ListItemText primary="Calendar" />

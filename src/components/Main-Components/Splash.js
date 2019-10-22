@@ -10,8 +10,8 @@ function Splash() {
 			<div className={styles.splashScreenWindow}>
 				<img className={styles.FIP} alt="Government of Canada / Gouvernement du Canada" src={GoC_EN} />
 				<div className={styles.languageButtonsBox}>
-					<Link exact="true" to="/en"><button>English</button></Link>
-					<Link exact="true" to="/en"><button>Français</button></Link>
+					<Link exact="true" to="/en/home"><button>English</button></Link>
+					<Link exact="true" to="/en/home"><button>Français</button></Link>
 				</div>
 				<div className={styles.footer}>
 					<div className={styles.termsBox}>

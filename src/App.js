@@ -11,10 +11,10 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Route exact path="/" component={Splash} />
-			<Route exact path="/about" component={AboutParent} />
-			<Route exact path="/calendar" component={CalendarParent} />
-			<Route exact path="/department-page" component={AppParent} />
-			<Route exact path="/en" component={HomeParent} />
+			<Route exact path="/en/about" component={AboutParent} />
+			<Route exact path="/en/calendar" component={CalendarParent} />
+			<Route exact path="/en/department-page" component={AppParent} />
+			<Route exact path="/en/home" component={HomeParent} />
 		</BrowserRouter>
 	);
 }

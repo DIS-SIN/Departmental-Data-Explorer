@@ -106,7 +106,7 @@ function AppParent(props) {
 			<Header />
 			<Nav />
 			<Container>
-				<AppNav department_name={props.department_name}/>
+				<AppNav department_name={props.department_name} />
 			</Container>
 			<Footer />
 		</>
