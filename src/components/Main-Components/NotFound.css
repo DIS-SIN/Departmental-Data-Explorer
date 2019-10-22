@@ -1,0 +1,15 @@
+.jumbotron {
+	padding: 30px 15px;
+	text-align: center;
+}
+@media (min-width: 768px) {
+	.jumbotron {
+		padding: 48px 60px;
+		text-align: left;
+	}
+}
+.h1 {
+	color: #3f2a56;
+	font-size: 3.3rem;
+	margin-top: 0;
+}
