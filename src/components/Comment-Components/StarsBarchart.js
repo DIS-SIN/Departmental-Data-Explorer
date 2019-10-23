@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import {
+	Tooltip,
+	Zoom,
+	makeStyles
+} from '@material-ui/core';
+import tooltipIcon from '../../static/img/tooltip.png';
 import styles from './StarsBarchart.css';
 
 class StarsBarchart extends Component {
@@ -36,6 +42,7 @@ class StarsBarchart extends Component {
 		// Add message displaying total number of comments
 		let commentsNoun = (totalComments === 1) ? 'Comment' : 'Comments';
 		let commentYear = this.props.fiscalYear === '' ? 'Total' : this.props.fiscalYear;
+		let tooltipText = <><h5>Tip:</h5><p>Comments are assigned a sentiment score between 1 (most negative) and 5 (most positive) using machine learning.</p></>;
 		
 		return (
 			<table className={styles.starsBarchart}>
@@ -44,7 +51,9 @@ class StarsBarchart extends Component {
 						<td colSpan="2">
 							<h3>
 								<span>{`${totalComments} ${commentsNoun} in ${commentYear}`}</span>
-								{/* Add Material UI tooltip */}
+								<Tooltip title={tooltipText} placement="right" TransitionComponent={Zoom}>
+									<img className={styles.tooltipIcon} src={tooltipIcon} alt="Tooltip" />
+								</Tooltip>
 							</h3>
 						</td>
 					</tr>

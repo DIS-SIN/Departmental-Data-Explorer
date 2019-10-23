@@ -7,6 +7,10 @@
 	color: #3f2a56;
 	margin: 0 0 1.25rem 0;
 }
+.tooltipIcon {
+	width: 1.25rem;
+	margin-left: 0.3rem;
+}
 .barFill {
 	display: inline-block;
 	background-color: #ffcc33;
