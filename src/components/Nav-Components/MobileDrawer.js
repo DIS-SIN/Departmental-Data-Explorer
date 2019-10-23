@@ -1,18 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import CalendarToday from '@material-ui/icons/CalendarToday';
-import Divider from '@material-ui/core/Divider';
-import Home from '@material-ui/icons/Home';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MenuIcon from '@material-ui/icons/Menu';
-import Satellite from '@material-ui/icons/Satellite';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Sync from '@material-ui/icons/Sync';
+import {
+	Divider,
+	IconButton,
+	List,
+	ListItem,
+	ListItemIcon,
+	ListItemText,
+	SwipeableDrawer,
+	makeStyles
+} from '@material-ui/core';
+import {
+	CalendarToday,
+	Home,
+	Menu,
+	Satellite,
+	Sync
+} from '@material-ui/icons';
 
 const useStyles = makeStyles({
 	list: {
@@ -81,7 +85,7 @@ function MobileDrawer() {
 	return (
 		<>
 			<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
-				<MenuIcon />
+				<Menu />
 			</IconButton>
 			
 			<SwipeableDrawer open={state.openDrawer} onClose={toggleDrawer(false)} onOpen={toggleDrawer(true)}>
