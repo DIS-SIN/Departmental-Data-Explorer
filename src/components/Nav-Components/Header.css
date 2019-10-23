@@ -30,6 +30,7 @@
 .gitubLogo {
 	display: inline-block;
 	height: 1.5rem;
+	width: 1.5rem;
 }
 /* Hide contents mobile that are instead displayed in Material UI navbar */
 @media (max-width: 767px) {
