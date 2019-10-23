@@ -18,7 +18,7 @@ function App() {
 				<Route exact path="/en/calendar" component={withNav(Calendar)} />
 				<Route exact path="/en/department-page" component={AppParent} />
 				<Route exact path="/en/home" component={withNav(Home)} />
-				<Route component={NotFound} />
+				<Route component={withNav(NotFound)} />
 			</Switch>
 		</BrowserRouter>
 	);
