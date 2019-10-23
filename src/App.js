@@ -1,22 +1,23 @@
 import React from 'react';
 import './static/App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import AboutParent from './components/Main-Components/AboutParent';
+import About from './components/Main-Components/About';
 import AppParent from './components/Main-Components/AppParent';
-import CalendarParent from './components/Calendar-Components/CalendarParent';
-import HomeParent from './components/Main-Components/HomeParent';
+import Calendar from './components/Calendar-Components/Calendar';
+import Home from './components/Main-Components/Home';
 import NotFound from './components/Main-Components/NotFound';
 import Splash from './components/Main-Components/Splash';
+import withNav from './components/HOCs/withNav';
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Switch>
 				<Route exact path="/" component={Splash} />
-				<Route exact path="/en/about" component={AboutParent} />
-				<Route exact path="/en/calendar" component={CalendarParent} />
+				<Route exact path="/en/about" component={withNav(About)} />
+				<Route exact path="/en/calendar" component={withNav(Calendar)} />
 				<Route exact path="/en/department-page" component={AppParent} />
-				<Route exact path="/en/home" component={HomeParent} />
+				<Route exact path="/en/home" component={withNav(Home)} />
 				<Route component={NotFound} />
 			</Switch>
 		</BrowserRouter>
