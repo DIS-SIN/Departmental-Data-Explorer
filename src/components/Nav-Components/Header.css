@@ -10,15 +10,31 @@
 .header img {
 	height: 1.5rem;
 }
-.langButtonDesktop {
+.outerLang {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.langDesktop {
 	height: 100% !important;
-	text-decoration: none;
 	margin-right: 1rem;
+}
+.gitubLogoPath {
+	fill: #333;
+}
+/* Darken GitHub logo on hover */
+.githubDesktop:hover .gitubLogoPath {
+	fill: #000;
+}
+.gitubLogo {
+	display: inline-block;
+	height: 1.5rem;
 }
 /* Hide contents mobile that are instead displayed in Material UI navbar */
 @media (max-width: 767px) {
-	.langButtonDesktop,
-	.gitHubLink	{
+	.langDesktop,
+	.githubDesktop	{
 		display: none;
 	}
 }
