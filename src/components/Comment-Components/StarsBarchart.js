@@ -2,10 +2,20 @@ import React, { Component } from 'react';
 import {
 	Tooltip,
 	Zoom,
-	makeStyles
+	withStyles
 } from '@material-ui/core';
 import tooltipIcon from '../../static/img/tooltip.png';
 import styles from './StarsBarchart.css';
+
+const DarkTooltip = withStyles(theme => ({
+	tooltip: {
+		backgroundColor: 'rgba(35, 35, 35, 0.9)',
+		color: '#fff',
+		boxShadow: theme.shadows[1],
+		fontSize: 11,
+		textAlign: 'center'
+	}
+}))(Tooltip);
 
 class StarsBarchart extends Component {
 	changeStars = (e) => {
@@ -51,9 +61,9 @@ class StarsBarchart extends Component {
 						<td colSpan="2">
 							<h3>
 								<span>{`${totalComments} ${commentsNoun} in ${commentYear}`}</span>
-								<Tooltip title={tooltipText} placement="right" TransitionComponent={Zoom}>
+								<DarkTooltip title={tooltipText} placement="right" TransitionComponent={Zoom}>
 									<img className={styles.tooltipIcon} src={tooltipIcon} alt="Tooltip" />
-								</Tooltip>
+								</DarkTooltip>
 							</h3>
 						</td>
 					</tr>
