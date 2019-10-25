@@ -1,0 +1,38 @@
+.map {
+	display: block;
+	height: 80vh;
+	width: 100%;
+}
+.legend {
+	display: none;
+	height: 80vh;
+	width: 8%;
+	vertical-align: top;
+}
+.legendTitle h4 {
+	height: 5%;
+	text-align: center;
+	text-decoration: underline;
+	margin: 0;
+}
+.legendContents {
+	height: 95%;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	text-align: center;
+}
+.legendMarker {
+	display: block;
+	margin: 0 auto;
+}
+/* Leave space for legend if screen both wide and tall enough to display alongside map */
+@media (min-width: 992px) and (min-height: 600px) {
+	.map {
+		width: 92%;
+		display: inline-block;
+	}
+	.legend {
+		display: inline-block;
+	}
+}
