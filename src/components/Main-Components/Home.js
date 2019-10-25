@@ -17,7 +17,7 @@ class Home extends Component {
 	}
 	
 	componentDidMount() {
-		let url = 'https://registhor.da-an.ca/api/v1/registrations/department_codes?key=' + REGISTHOR_API_KEY;
+		let url = 'https://registhor.da-an.ca/api/v1/registrations/department-codes?key=' + REGISTHOR_API_KEY;
 		fetch(url)
 			.then(resp => resp.json())
 			.then((data) => {
