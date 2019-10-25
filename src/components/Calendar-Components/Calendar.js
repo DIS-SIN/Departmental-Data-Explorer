@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CalendarInputs from './CalendarInputs';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
-import Map from './Map';
+import Map from '../Map-Components/Map';
 import Table from './Table';
 import styles from './Calendar.css';
 
