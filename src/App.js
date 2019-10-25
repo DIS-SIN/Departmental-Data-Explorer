@@ -16,7 +16,7 @@ function App() {
 				<Route exact path="/" component={Splash} />
 				<Route exact path="/en/about" component={withNav(About)} />
 				<Route exact path="/en/calendar" component={withNav(Calendar)} />
-				<Route exact path="/en/department-page" component={AppParent} />
+				<Route exact path="/en/department-page" component={withNav(AppParent)} />
 				<Route exact path="/en/home" component={withNav(Home)} />
 				<Route component={withNav(NotFound)} />
 			</Switch>
