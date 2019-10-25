@@ -14,6 +14,7 @@ import {
 	useTheme
 } from '@material-ui/core';
 import Comments from '../Comment-Components/Comments';
+import DepartmentMap from '../Map-Components/DepartmentMap';
 import Footer from '../Nav-Components/Footer';
 import Header from '../Nav-Components/Header';
 import Nav from '../Nav-Components/Nav';
@@ -80,6 +81,7 @@ function AppNav(props) {
 					<Tab label="General" />
 					<Tab label="Improvement" />
 					<Tab label="Technical" />
+					<Tab label="Map" />
 				</Tabs>
 			</AppBar>
 			<SwipeableViews
@@ -95,6 +97,9 @@ function AppNav(props) {
 				</TabPanel>
 				<TabPanel className={classes.tabPanel} value={value} index={2} dir={theme.direction}>
 					<Comments commentType="technical" />
+				</TabPanel>
+				<TabPanel className={classes.tabPanel} value={value} index={3} dir={theme.direction}>
+					<DepartmentMap />
 				</TabPanel>
 			</SwipeableViews>
 		</div>
