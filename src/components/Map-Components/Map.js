@@ -66,10 +66,6 @@ class Map extends Component {
 	}
 	
 	addMarker = (city_name, lat, lng, count) => {
-		// Don't attempt to plot cities with null latitude and/or latitude
-		// E.g. online courses, webcasts
-		if (!lat || !lng) { return; }
-		
 		// Close all open InfoWindows
 		let closeInfoWindows = () => {
 			for (let i = 0; i < this.markers.length; i++) {
