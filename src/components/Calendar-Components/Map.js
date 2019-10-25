@@ -65,7 +65,7 @@ class Map extends Component {
 		return new window.google.maps.Map(this.el.current, options);
 	}
 	
-	addMarker = (city_name, count, lat, lng) => {
+	addMarker = (city_name, lat, lng, count) => {
 		// Close all open InfoWindows
 		let closeInfoWindows = () => {
 			for (let i = 0; i < this.markers.length; i++) {
@@ -115,7 +115,8 @@ class Map extends Component {
 	
 	createMarkers = () => {
 		return this.props.cityCounts.map(city => {
-			return this.addMarker(...city)
+			let { offering_city, offering_lat, offering_lng, count } = city;
+			return this.addMarker(offering_city, offering_lat, offering_lng, count);
 		});
 	}
 	
