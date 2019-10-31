@@ -7,7 +7,9 @@ class DepartmentMap extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			cityCounts: []
+			cityCounts: [],
+			// Flag if Registhor has been called
+			initialLoad: false
 		}
 	}
 	
@@ -23,12 +25,17 @@ class DepartmentMap extends Component {
 			.then(resp => resp.json())
 			.then((data) => {
 				this.setState({
-					cityCounts: data.results
+					cityCounts: data.results,
+					initialLoad: true
 				})
 			});
 	}
 	
 	render() {
+		if (this.state.initialLoad && !this.state.cityCounts.length) {
+			return <p>Apologies, no learners from this department have or are scheduled to attend in-person learning this fiscal year.</p>
+		}
+		
 		return (
 			<Map cityCounts={this.state.cityCounts} />
 		);
