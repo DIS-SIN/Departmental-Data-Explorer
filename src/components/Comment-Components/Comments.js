@@ -210,7 +210,7 @@ class Comments extends Component {
 		
 		// Display message if no feedback
 		// Use state.counts rather than state.comments.length so won't be affected by filters
-		if (!this.state.counts['1'] && !this.state.counts['2'] && !this.state.counts['3'] && !this.state.counts['4'] && !this.state.counts['5'] && this.state.initialLoad) {
+		if (!this.state.counts['1'] && !this.state.counts['2'] && !this.state.counts['3'] && !this.state.counts['4'] && !this.state.counts['5'] && this.state.initialLoad && !this.state.optionalFilters.courseCode && !this.state.optionalFilters.fiscalYear) {
 			return (
 				<p>Apologies, this department has yet to submit feedback of this type.</p>
 			);
