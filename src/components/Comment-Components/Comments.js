@@ -103,7 +103,7 @@ class Comments extends Component {
 			comments: [],
 			counts: {},
 			currentIndex: 0,
-			// Flag if Registhor has been called yet
+			// Flag if Registhor has been called
 			initialLoad: false,
 			optionalFilters: {
 				courseCode: '',
