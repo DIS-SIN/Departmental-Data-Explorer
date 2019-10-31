@@ -124,7 +124,7 @@ class Comments extends Component {
 				}
 			};
 		}, () => {
-			this.runRegisthorQueries();
+			this.runRegisthorQueries(true);
 		});
 	}
 	
@@ -141,9 +141,9 @@ class Comments extends Component {
 		});
 	}
 	
-	runRegisthorQueries = () => {
+	runRegisthorQueries = (overwrite) => {
 		this.getCountsRegisthor();
-		this.getCommentsRegisthor(true);
+		this.getCommentsRegisthor(overwrite);
 	}
 	
 	getCountsRegisthor = () => {
@@ -231,7 +231,7 @@ class Comments extends Component {
 	}
 	
 	componentDidMount() {
-		this.runRegisthorQueries();
+		this.runRegisthorQueries(false);
 	}
 	
 	shouldComponentUpdate(nextProps, nextState) {
