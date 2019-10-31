@@ -1,6 +1,6 @@
 import React from 'react';
 import './static/App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import About from './components/Main-Components/About';
 import AppParent from './components/Main-Components/AppParent';
 import Calendar from './components/Calendar-Components/Calendar';
@@ -11,7 +11,7 @@ import withNav from './components/HOCs/withNav';
 
 function App() {
 	return (
-		<BrowserRouter>
+		<HashRouter>
 			<Switch>
 				<Route exact path="/" component={Splash} />
 				<Route exact path="/en/about" component={withNav(About)} />
@@ -20,7 +20,7 @@ function App() {
 				<Route exact path="/en/home" component={withNav(Home)} />
 				<Route component={withNav(NotFound)} />
 			</Switch>
-		</BrowserRouter>
+		</HashRouter>
 	);
 }
 
