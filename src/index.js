@@ -1,3 +1,4 @@
+'use strict';
 // Polyfills for IE11; must be imported before React
 import '@babel/polyfill';
 import 'es6-promise';
@@ -27,9 +28,9 @@ const allReducers = combineReducers({
 
 /***** ENHANCERS *****/
 const allEnhancers = compose(
-	applyMiddleware(thunk),
+	applyMiddleware(thunk)
 	// Use short circuiting i.e. if the devtools extension is present, call it
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 /***** STORE *****/
