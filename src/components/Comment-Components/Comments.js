@@ -111,7 +111,7 @@ class Comments extends Component {
 				stars: ''
 			},
 			overwriting: false
-		}
+		};
 	}
 	
 	changeInput = (e) => {

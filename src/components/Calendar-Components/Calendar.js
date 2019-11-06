@@ -20,7 +20,7 @@ class Calendar extends Component {
 				modalInstructor: ''
 			},
 			offeringsArray: []
-		}
+		};
 	}
 	
 	changeInputs = (newInputs) => {

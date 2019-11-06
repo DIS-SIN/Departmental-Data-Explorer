@@ -20,7 +20,7 @@ class DepartmentMap extends Component {
 			cityCounts: [],
 			// Flag if Registhor has been called
 			initialLoad: false
-		}
+		};
 	}
 	
 	componentDidMount() {
