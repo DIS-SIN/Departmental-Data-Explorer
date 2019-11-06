@@ -8,12 +8,12 @@ import {
 
 const StyledSwitch = withStyles({
 	switchBase: {
-		color: 'green',
+		color: '#f5f5f5',
 		'&$checked': {
-			color: 'blue'
+			color: '#02aaa4'
 		},
 		'&$checked + $track': {
-			backgroundColor: 'blue'
+			backgroundColor: '#02aaa4'
 		}
 	},
 	checked: {},
