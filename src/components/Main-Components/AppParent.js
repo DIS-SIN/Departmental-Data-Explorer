@@ -17,6 +17,7 @@ import Comments from '../Comment-Components/Comments';
 import DepartmentMap from '../Map-Components/DepartmentMap';
 import Footer from '../Nav-Components/Footer';
 import Header from '../Nav-Components/Header';
+import MandatoryCourses from '../Mandatory-Courses-Components/MandatoryCourses';
 import Nav from '../Nav-Components/Nav';
 import styles from './AppParent.css';
 
@@ -82,6 +83,7 @@ function AppNav(props) {
 					<Tab label="Improvement" />
 					<Tab label="Technical" />
 					<Tab label="Map" />
+					<Tab label="Mandatory Courses" />
 				</Tabs>
 			</AppBar>
 			<SwipeableViews
@@ -100,6 +102,9 @@ function AppNav(props) {
 				</TabPanel>
 				<TabPanel className={classes.tabPanel} value={value} index={3} dir={theme.direction}>
 					<DepartmentMap />
+				</TabPanel>
+				<TabPanel className={classes.tabPanel} value={value} index={4} dir={theme.direction}>
+					<MandatoryCourses />
 				</TabPanel>
 			</SwipeableViews>
 		</div>
