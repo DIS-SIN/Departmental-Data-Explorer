@@ -20,3 +20,6 @@
 .footer img {
 	height: 2.5rem;
 }
+.topOfPage {
+	cursor: pointer;
+}
