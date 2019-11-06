@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import Map from './Map';
+import styles from './DepartmentMap.css';
+
+function Methodology() {
+	return (
+		<>
+			<h3 className={styles.h3}>Methodology</h3>
+			<p>Plots employees’ in-person participation in instructor-led courses and events on an interactive map. The geographic locations reflect where learners participated in learning activities, not their places of work. Note that virtual participation in instructor-led courses and events, as well as participation in online courses, is not included as these learning products do not have a fixed location.</p>
+		</>
+	);
+}
 
 class DepartmentMap extends Component {
 	constructor(props) {
@@ -37,7 +47,10 @@ class DepartmentMap extends Component {
 		}
 		
 		return (
-			<Map cityCounts={this.state.cityCounts} />
+			<>
+				<Map cityCounts={this.state.cityCounts} />
+				<Methodology />
+			</>
 		);
 	}
 }
