@@ -8,10 +8,10 @@ function About() {
 			<p>Features:</p>
 			<ul>
 				<li>View charts showing learning KPIs</li>
-				<li>Read all comments submitted by your learners since 2015</li>
+				<li>Read all comments submitted by your learners since the start of electronic surveys in 2015</li>
 				<li>View maps of where in Canada your learners are taking School courses</li>
 				<li>Download your department's raw data for both registrations and comments</li>
-				<li>Find upcoming School courses via an intereactive calendar</li>
+				<li>Find upcoming School offerings via an intereactive calendar</li>
 				<li>Indicate which School courses your department considers mandatory</li>
 			</ul>
 			<p>
