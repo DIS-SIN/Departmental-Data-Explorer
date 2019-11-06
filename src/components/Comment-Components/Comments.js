@@ -222,6 +222,7 @@ class Comments extends Component {
 		
 		return (
 			<>
+				<p className={styles.blurb}>{this.props.blurb}</p>
 				<StarsBarchart counts={this.state.counts} fiscalYear={this.state.optionalFilters.fiscalYear} changeStars={this.changeStars} />
 				<CommentControls changeInput={this.changeInput} optionalFilters={this.state.optionalFilters} />
 				<div>{commentArray}</div>

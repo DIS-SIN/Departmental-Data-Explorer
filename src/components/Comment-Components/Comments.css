@@ -36,3 +36,7 @@
 .filter p {
 	display: inline;
 }
+
+.blurb {
+	margin: 1rem 0;
+}

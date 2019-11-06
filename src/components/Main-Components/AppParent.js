@@ -67,6 +67,11 @@ function AppNav(props) {
 		setValue(index);
 	};
 	
+	// Explanations of comment tabs
+	const generalBlurb     = 'Answers to the question: Please explain your overall satisfaction or dissatisfaction with this learning activity.';
+	const improvementBlurb = 'Answers to the question: Do you have any other comments you would like to share to help the School improve?';
+	const technicalBlurb   = 'Answers to the question: Do you have any comments you would like to share about your technical experience of this learning activity?';
+	
 	return (
 		<div className={classes.root}>
 			<h3 className={styles.h3}>{props.department_name}</h3>
@@ -92,13 +97,13 @@ function AppNav(props) {
 				onChangeIndex={handleChangeIndex}
 			>
 				<TabPanel className={classes.tabPanel} value={value} index={0} dir={theme.direction}>
-					<Comments commentType="general" />
+					<Comments commentType="general" blurb={generalBlurb} />
 				</TabPanel>
 				<TabPanel className={classes.tabPanel} value={value} index={1} dir={theme.direction}>
-					<Comments commentType="improvement" />
+					<Comments commentType="improvement" blurb={improvementBlurb} />
 				</TabPanel>
 				<TabPanel className={classes.tabPanel} value={value} index={2} dir={theme.direction}>
-					<Comments commentType="technical" />
+					<Comments commentType="technical" blurb={technicalBlurb} />
 				</TabPanel>
 				<TabPanel className={classes.tabPanel} value={value} index={3} dir={theme.direction}>
 					<DepartmentMap />
