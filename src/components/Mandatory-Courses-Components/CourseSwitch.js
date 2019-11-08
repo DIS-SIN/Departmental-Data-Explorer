@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import { withStyles } from '@material-ui/core/styles';
-import {
-	FormGroup,
-	FormControlLabel,
-	Switch
-} from '@material-ui/core';
+import Switch from '@material-ui/core/Switch';
+import styles from './CourseSwitch.css';
 
 const StyledSwitch = withStyles({
 	switchBase: {
@@ -51,18 +48,19 @@ class CourseSwitch extends Component {
 	}
 	
 	render() {
+		let label = `${this.props.course.course_code}: ${this.props.course.course_title}`;
+		
 		return (
-			<FormGroup>
-				<FormControlLabel
-					control={
-						<StyledSwitch
-							checked={this.state.checked}
-							onChange={this.toggleSwitch}
-						/>
-					}
-					label={`${this.props.course.course_code}: ${this.props.course.course_title}`}
-				/>
-			</FormGroup>
+			<div className={styles.outerDiv}>
+				<div>
+					<StyledSwitch
+						checked={this.state.checked}
+						onChange={this.toggleSwitch}
+					/>
+					<p>{label}</p>
+				</div>
+				<span className={"glyphicon glyphicon-plus " + styles.icon}></span>
+			</div>
 		);
 	}
 }
