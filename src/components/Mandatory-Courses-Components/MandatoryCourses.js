@@ -22,7 +22,7 @@ class MandatoryCourses extends Component {
 	getCoursesRegisthor = () => {
 		// Ensure fields that could contain accented characters are forced as HTML encoded, else
 		// AJAX will fail on IE11
-		let url = `https://registhor.da-an.ca/api/v1/registrations/course-codes?key=${REGISTHOR_API_KEY}&department_code=${encodeURIComponent(this.props.deptCode.value)}`;
+		let url = `https://registhor.da-an.ca/api/v1/departments/mandatory-courses?key=${REGISTHOR_API_KEY}&department_code=${encodeURIComponent(this.props.deptCode.value)}`;
 		fetch(url)
 			.then(resp => resp.json())
 			.then((data) => {
