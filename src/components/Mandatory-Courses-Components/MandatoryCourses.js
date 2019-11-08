@@ -22,7 +22,7 @@ class MandatoryCourses extends Component {
 	getCoursesRegisthor = () => {
 		// Ensure fields that could contain accented characters are forced as HTML encoded, else
 		// AJAX will fail on IE11
-		let url = `https://registhor.da-an.ca/api/v1/departments/mandatory-courses?key=${REGISTHOR_API_KEY}&department_code=${encodeURIComponent(this.props.deptCode.value)}`;
+		let url = `https://registhor.da-an.ca/api/v1/departments/mandatory-courses?key=${REGISTHOR_API_KEY}&department_code=${encodeURIComponent(this.props.deptCode)}`;
 		fetch(url)
 			.then(resp => resp.json())
 			.then((data) => {
@@ -35,7 +35,7 @@ class MandatoryCourses extends Component {
 	
 	render() {
 		let courseList = this.state.courseList.map((course, index) => {
-			return <CourseSwitch course={course} key={`courseSwitch-${index}`} />
+			return <CourseSwitch course={course} deptCode={this.props.deptCode} key={`courseSwitch-${index}`} />
 		});
 		
 		return (
@@ -48,7 +48,7 @@ class MandatoryCourses extends Component {
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		deptCode: state.mainReducer.deptCode
+		deptCode: state.mainReducer.deptCode.value
 	};
 }
 
