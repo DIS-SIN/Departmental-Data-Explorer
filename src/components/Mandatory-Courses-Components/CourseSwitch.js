@@ -52,6 +52,9 @@ class CourseSwitch extends Component {
 				if (data.status === 'OK') {
 					this.setState((state, props) => {
 						return { checked: !state.checked }
+					}, () => {
+						// Update global count of mandatory courses
+						this.props.incrementCount(this.state.checked ? false : true);
 					});
 				}
 			});
@@ -81,6 +84,7 @@ class CourseSwitch extends Component {
 	
 	render() {
 		let label = `${this.props.course.course_code}: ${this.props.course.course_title}`;
+		let iconClass = this.state.infoOpen ? 'glyphicon glyphicon-minus ' : 'glyphicon glyphicon-plus ';
 		
 		return (
 			<>
@@ -92,8 +96,7 @@ class CourseSwitch extends Component {
 						/>
 						<p>{label}</p>
 					</div>
-					<span style={{ display: this.state.infoOpen ? 'inline-block' : 'none' }} onClick={this.fetchCourseInfo} className={"glyphicon glyphicon-minus " + styles.icon}></span>
-					<span style={{ display: this.state.infoOpen ? 'none' : 'inline-block' }} onClick={this.fetchCourseInfo} className={"glyphicon glyphicon-plus " + styles.icon}></span>
+					<span onClick={this.fetchCourseInfo} className={iconClass + styles.icon}></span>
 				</div>
 				<CourseInfo courseInfo={this.state.courseInfo} infoOpen={this.state.infoOpen} />
 			</>

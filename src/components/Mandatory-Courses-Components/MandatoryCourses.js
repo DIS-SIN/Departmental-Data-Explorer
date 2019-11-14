@@ -8,6 +8,7 @@ class MandatoryCourses extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			coursesSelected: 0,
 			courseList: [],
 			// Flag if Registhor has been called
 			initialLoad: false
@@ -18,6 +19,15 @@ class MandatoryCourses extends Component {
 		this.getCoursesRegisthor();
 	}
 	
+	// Increment or decrement the global count whenever a user modifies their list
+	// of mandatory courses
+	incrementCount = (decrement) => {
+		let offset = decrement ? -1 : 1; 
+		this.setState((state, props) => {
+			return { coursesSelected: state.coursesSelected + offset };
+		});
+	}
+	
 	// Get list of active courses to display to user
 	getCoursesRegisthor = () => {
 		// Ensure fields that could contain accented characters are forced as HTML encoded, else
@@ -26,7 +36,14 @@ class MandatoryCourses extends Component {
 		fetch(url)
 			.then(resp => resp.json())
 			.then((data) => {
+				// Get number of courses marked as mandatory
+				let coursesSelected = 0;
+				data.results.forEach(function (myObj) {
+					if (myObj.mandatory) { coursesSelected++; }
+				});
+				
 				this.setState({
+					coursesSelected: coursesSelected,
 					courseList: data.results,
 					initialLoad: true
 				})
@@ -35,11 +52,12 @@ class MandatoryCourses extends Component {
 	
 	render() {
 		let courseList = this.state.courseList.map((course, index) => {
-			return <CourseSwitch course={course} deptCode={this.props.deptCode} key={`courseSwitch-${index}`} />
+			return <CourseSwitch course={course} deptCode={this.props.deptCode} incrementCount={this.incrementCount} key={`courseSwitch-${index}`} />
 		});
 		
 		return (
 			<>
+				<p>You have {this.state.coursesSelected} mandatory {this.state.coursesSelected === 1 ? 'course' : 'courses'}.</p>
 				{courseList}
 			</>
 		);
