@@ -22,7 +22,8 @@ class CourseSwitch extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			checked: this.props.course.mandatory
+			checked: this.props.course.mandatory,
+			courseInfo: {}
 		};
 	}
 	
@@ -47,6 +48,17 @@ class CourseSwitch extends Component {
 			});
 	}
 	
+	fetchCourseInfo = () => {
+		let url = `https://registhor.da-an.ca/api/v1/tombstone/${this.props.course.course_code}?key=${REGISTHOR_API_KEY}`;
+		fetch(url)
+			.then(resp => resp.json())
+			.then((data) => {
+				this.setState({
+					courseInfo: data.results
+				})
+			});
+	}
+	
 	render() {
 		let label = `${this.props.course.course_code}: ${this.props.course.course_title}`;
 		
@@ -59,7 +71,7 @@ class CourseSwitch extends Component {
 					/>
 					<p>{label}</p>
 				</div>
-				<span className={"glyphicon glyphicon-plus " + styles.icon}></span>
+				<span onClick={this.fetchCourseInfo} className={"glyphicon glyphicon-plus " + styles.icon}></span>
 			</div>
 		);
 	}
