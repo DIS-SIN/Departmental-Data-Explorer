@@ -27,7 +27,7 @@ class LoadMore extends Component {
 	render() {
 		return (
 			<div className={styles.loadMoreOuter}>
-				{this.state.buttonDisabled ? <p>End of Comments</p> : undefined}
+				{this.state.buttonDisabled ? <p>End of Comments</p> : null}
 				<button onClick={this.onClick} className={'btn btn-primary ' + styles.myBtn} disabled={this.state.buttonDisabled}>Load More</button>
 			</div>
 		);
