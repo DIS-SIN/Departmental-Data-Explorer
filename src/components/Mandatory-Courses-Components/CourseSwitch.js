@@ -18,6 +18,14 @@ const StyledSwitch = withStyles({
 	track: {}
 })(Switch);
 
+function CourseInfo(props) {
+	if (!props.infoOpen) { return null; }
+	
+	return (
+		<p className={styles.infoPanel}>{props.courseInfo.course_description_en}</p>
+	);
+}
+
 class CourseSwitch extends Component {
 	constructor(props) {
 		super(props);
@@ -75,17 +83,20 @@ class CourseSwitch extends Component {
 		let label = `${this.props.course.course_code}: ${this.props.course.course_title}`;
 		
 		return (
-			<div className={styles.outerDiv}>
-				<div>
-					<StyledSwitch
-						checked={this.state.checked}
-						onChange={this.toggleSwitch}
-					/>
-					<p>{label}</p>
+			<>
+				<div className={styles.outerDiv}>
+					<div>
+						<StyledSwitch
+							checked={this.state.checked}
+							onChange={this.toggleSwitch}
+						/>
+						<p>{label}</p>
+					</div>
+					<span style={{ display: this.state.infoOpen ? 'inline-block' : 'none' }} onClick={this.fetchCourseInfo} className={"glyphicon glyphicon-minus " + styles.icon}></span>
+					<span style={{ display: this.state.infoOpen ? 'none' : 'inline-block' }} onClick={this.fetchCourseInfo} className={"glyphicon glyphicon-plus " + styles.icon}></span>
 				</div>
-				<span style={{ display: this.state.infoOpen ? 'inline-block' : 'none' }} onClick={this.fetchCourseInfo} className={"glyphicon glyphicon-minus " + styles.icon}></span>
-				<span style={{ display: this.state.infoOpen ? 'none' : 'inline-block' }} onClick={this.fetchCourseInfo} className={"glyphicon glyphicon-plus " + styles.icon}></span>
-			</div>
+				<CourseInfo courseInfo={this.state.courseInfo} infoOpen={this.state.infoOpen} />
+			</>
 		);
 	}
 }
