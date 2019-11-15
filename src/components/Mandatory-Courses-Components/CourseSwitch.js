@@ -30,12 +30,14 @@ function CourseInfo(props) {
 		<div className={styles.infoPanel}>
 			<div dangerouslySetInnerHTML={createMarkup()}></div>
 			<table className={styles.infoTable}>
-				<tr>
-					<td>Delivery Type:</td><td>{props.courseInfo.business_type_en}</td>
-				</tr>
-				<tr>
-					<td>Duration (hours):</td><td>{props.courseInfo.duration}</td>
-				</tr>
+				<tbody>
+					<tr>
+						<td>Delivery Type:</td><td>{props.courseInfo.business_type_en}</td>
+					</tr>
+					<tr>
+						<td>Duration (hours):</td><td>{props.courseInfo.duration}</td>
+					</tr>
+				</tbody>
 			</table>
 		</div>
 	);
@@ -103,15 +105,21 @@ class CourseSwitch extends Component {
 		
 		return (
 			<>
-				<div className={styles.outerDiv}>
-					<div>
-						<StyledSwitch
-							checked={this.state.checked}
-							onChange={this.toggleSwitch}
-						/>
-						<p>{label}</p>
-					</div>
-					<span onClick={this.fetchCourseInfo} className={iconClass + styles.icon}></span>
+				<div className={styles.roundedBorder}>
+					<table className={styles.switchTable}>
+						<tbody>
+							<tr>
+								<td>
+									<StyledSwitch
+										checked={this.state.checked}
+										onChange={this.toggleSwitch}
+									/>
+								</td>
+								<td>{label}</td>
+								<td><span onClick={this.fetchCourseInfo} className={iconClass + styles.icon}></span></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 				<CourseInfo courseInfo={this.state.courseInfo} infoOpen={this.state.infoOpen} />
 			</>
