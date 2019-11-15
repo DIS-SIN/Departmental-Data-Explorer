@@ -29,11 +29,14 @@ function CourseInfo(props) {
 	return (
 		<div className={styles.infoPanel}>
 			<div dangerouslySetInnerHTML={createMarkup()}></div>
-			<hr className={styles.horBar} />
-			<p>Delivery Type: {props.courseInfo.business_type_en}</p>
-			<hr className={styles.horBar} />
-			<p>Duration (hours): {props.courseInfo.duration}</p>
-			<hr className={styles.horBar} />
+			<table className={styles.infoTable}>
+				<tr>
+					<td>Delivery Type:</td><td>{props.courseInfo.business_type_en}</td>
+				</tr>
+				<tr>
+					<td>Duration (hours):</td><td>{props.courseInfo.duration}</td>
+				</tr>
+			</table>
 		</div>
 	);
 }

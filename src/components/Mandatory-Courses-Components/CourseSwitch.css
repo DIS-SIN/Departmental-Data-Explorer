@@ -21,6 +21,15 @@
 	width: 90%;
 	margin: 1rem auto;
 }
-.horBar {
+.infoTable {
+	width: 100%;
+}
+.infoTable tr {
 	border-top: 1px solid rgba(0,0,0,0.12);
+}
+.infoTable tr:last-child {
+	border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+.infoTable td {
+	height: 3rem;
 }
