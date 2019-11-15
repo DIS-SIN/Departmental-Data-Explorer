@@ -22,5 +22,5 @@
 	margin: 1rem auto;
 }
 .horBar {
-	background-color: #3f2a56;
+	border-top: 1px solid rgba(0,0,0,0.12);
 }
