@@ -21,8 +21,20 @@ const StyledSwitch = withStyles({
 function CourseInfo(props) {
 	if (!props.infoOpen) { return null; }
 	
+	// Markup coming directly from DB and not from users, so will allow to be set dangerously
+	const createMarkup = () => {
+		return { __html: props.courseInfo.course_description_en };
+	}
+	
 	return (
-		<p className={styles.infoPanel}>{props.courseInfo.course_description_en}</p>
+		<div className={styles.infoPanel}>
+			<div dangerouslySetInnerHTML={createMarkup()}></div>
+			<hr className={styles.horBar} />
+			<p>Delivery Type: {props.courseInfo.business_type_en}</p>
+			<hr className={styles.horBar} />
+			<p>Duration (hours): {props.courseInfo.duration}</p>
+			<hr className={styles.horBar} />
+		</div>
 	);
 }
 
