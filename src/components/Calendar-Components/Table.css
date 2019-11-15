@@ -7,8 +7,8 @@
 .calendarTable tr {
 	min-height: 4rem;
 }
-.calendarTable tr {
-	vertical-align: middle;
+.calendarTable td {
+	vertical-align: middle !important;
 }
 
 
