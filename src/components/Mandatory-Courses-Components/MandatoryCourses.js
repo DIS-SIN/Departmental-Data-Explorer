@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import CourseSwitch from './CourseSwitch';
-import styles from './MandatoryCourses.css';
 
 class MandatoryCourses extends Component {
 	constructor(props) {
