@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import { withStyles } from '@material-ui/core/styles';
-import Switch from '@material-ui/core/Switch';
+import { IconButton, Switch } from '@material-ui/core';
+import { Add, Remove } from '@material-ui/icons';
 import styles from './CourseSwitch.css';
 
 const StyledSwitch = withStyles({
@@ -101,7 +102,7 @@ class CourseSwitch extends Component {
 	
 	render() {
 		let label = `${this.props.course.course_code}: ${this.props.course.course_title}`;
-		let iconClass = this.state.infoOpen ? 'glyphicon glyphicon-minus ' : 'glyphicon glyphicon-plus ';
+		let icon = this.state.infoOpen ? <Remove className={styles.iconButton} /> : <Add className={styles.iconButton} />;
 		
 		return (
 			<>
@@ -116,7 +117,11 @@ class CourseSwitch extends Component {
 									/>
 								</td>
 								<td>{label}</td>
-								<td><span onClick={this.fetchCourseInfo} className={iconClass + styles.icon}></span></td>
+								<td>
+									<IconButton onClick={this.fetchCourseInfo}>
+										{icon}
+									</IconButton>
+								</td>
 							</tr>
 						</tbody>
 					</table>
