@@ -56,22 +56,14 @@ class MandatoryCourses extends Component {
 	}
 	
 	render() {
-		let courseList;
-		// If search box is empty, return entirety of courseList
-		if (this.state.searchString === '') {
-			courseList = this.state.courseList.map((course, index) => {
-				return <CourseSwitch course={course} deptCode={this.props.deptCode} incrementCount={this.incrementCount} key={`courseSwitch-${index}-${course.course_code}`} />;
-			});
-		} else {
-			// Otherwise, only show courses whose course codes or course titles contain searchString
-			let matchingCourses = this.state.courseList.filter((course) => {
-				let label = `${course.course_code} ${course.course_title}`.toLowerCase();
-				return label.includes(this.state.searchString.toLowerCase());
-			});
-			courseList = matchingCourses.map((course, index) => {
-				return <CourseSwitch course={course} deptCode={this.props.deptCode} incrementCount={this.incrementCount} key={`courseSwitch-${index}-${course.course_code}`} />;
-			});
-		}
+		// Only show courses whose course codes or course titles contain searchString
+		// 'some string'.includes('') returns true, so no need to handle empty string as special case
+		let courseList = this.state.courseList.filter((course) => {
+			let label = `${course.course_code} ${course.course_title}`.toLowerCase();
+			return label.includes(this.state.searchString.toLowerCase());
+		}).map((course, index) => {
+			return <CourseSwitch course={course} deptCode={this.props.deptCode} incrementCount={this.incrementCount} key={`courseSwitch-${index}-${course.course_code}`} />;
+		});
 		
 		return (
 			<>
