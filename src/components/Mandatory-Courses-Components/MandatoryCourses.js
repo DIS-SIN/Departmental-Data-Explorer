@@ -10,7 +10,8 @@ class MandatoryCourses extends Component {
 			coursesSelected: 0,
 			courseList: [],
 			// Flag if Registhor has been called
-			initialLoad: false
+			initialLoad: false,
+			searchString: ''
 		};
 	}
 	
@@ -18,13 +19,9 @@ class MandatoryCourses extends Component {
 		this.getCoursesRegisthor();
 	}
 	
-	// Increment or decrement the global count whenever a user modifies their list
-	// of mandatory courses
-	incrementCount = (decrement) => {
-		let offset = decrement ? -1 : 1; 
-		this.setState((state, props) => {
-			return { coursesSelected: state.coursesSelected + offset };
-		});
+	// Store input from search box for use in filtering courseList
+	changeSearch = (e) => {
+		this.setState({ searchString: e.target.value });
 	}
 	
 	// Get list of active courses to display to user
@@ -49,13 +46,36 @@ class MandatoryCourses extends Component {
 			});
 	}
 	
-	render() {
-		let courseList = this.state.courseList.map((course, index) => {
-			return <CourseSwitch course={course} deptCode={this.props.deptCode} incrementCount={this.incrementCount} key={`courseSwitch-${index}`} />
+	// Increment or decrement the global count whenever a user modifies their list
+	// of mandatory courses
+	incrementCount = (decrement) => {
+		let offset = decrement ? -1 : 1; 
+		this.setState((state, props) => {
+			return { coursesSelected: state.coursesSelected + offset };
 		});
+	}
+	
+	render() {
+		let courseList;
+		// If search box is empty, return entirety of courseList
+		if (this.state.searchString === '') {
+			courseList = this.state.courseList.map((course, index) => {
+				return <CourseSwitch course={course} deptCode={this.props.deptCode} incrementCount={this.incrementCount} key={`courseSwitch-${index}-${course.course_code}`} />;
+			});
+		} else {
+			// Otherwise, only show courses whose course codes or course titles contain searchString
+			let matchingCourses = this.state.courseList.filter((course) => {
+				let label = `${course.course_code} ${course.course_title}`.toLowerCase();
+				return label.includes(this.state.searchString.toLowerCase());
+			});
+			courseList = matchingCourses.map((course, index) => {
+				return <CourseSwitch course={course} deptCode={this.props.deptCode} incrementCount={this.incrementCount} key={`courseSwitch-${index}-${course.course_code}`} />;
+			});
+		}
 		
 		return (
 			<>
+				<input type="text" value={this.state.searchString} onChange={this.changeSearch} />
 				<p>You have {this.state.coursesSelected} mandatory {this.state.coursesSelected === 1 ? 'course' : 'courses'}.</p>
 				{courseList}
 			</>
