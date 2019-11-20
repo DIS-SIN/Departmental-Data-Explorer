@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import CourseSwitch from './CourseSwitch';
+import styles from './MandatoryCourses.css';
 
 class SearchBox extends Component {
 	constructor(props) {
@@ -30,7 +31,7 @@ class SearchBox extends Component {
 	render() {
 		return (
 			<>
-				<input type="text" value={this.state.searchString} onChange={this.changeSearch} />
+				<input type="text" value={this.state.searchString} onChange={this.changeSearch} onKeyPress={this.hitEnter} />
 				<button onClick={this.changeParentSearch}>Go</button>
 			</>
 		);
