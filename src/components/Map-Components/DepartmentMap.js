@@ -48,6 +48,7 @@ class DepartmentMap extends Component {
 		
 		return (
 			<>
+				<h4 className={styles.h4}>Discover where your learners are attending in-person training this fiscal year.</h4>
 				<Map cityCounts={this.state.cityCounts} />
 				<Methodology />
 			</>
