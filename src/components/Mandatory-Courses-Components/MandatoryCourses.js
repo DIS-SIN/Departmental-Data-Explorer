@@ -3,6 +3,40 @@ import { connect } from 'react-redux';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import CourseSwitch from './CourseSwitch';
 
+class SearchBox extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			searchString: ''
+		};
+	}
+	
+	// Store input from search box for use in filtering courseList
+	changeSearch = (e) => {
+		this.setState({ searchString: e.target.value });
+	}
+	
+	// Pass new input to parent
+	changeParentSearch = () => {
+		this.props.changeSearch(this.state.searchString);
+	}
+	
+	hitEnter = (e) => {
+		if (e.key === 'Enter') {
+			this.changeParentSearch();
+		}
+	}
+	
+	render() {
+		return (
+			<>
+				<input type="text" value={this.state.searchString} onChange={this.changeSearch} />
+				<button onClick={this.changeParentSearch}>Go</button>
+			</>
+		);
+	}
+}
+
 class MandatoryCourses extends Component {
 	constructor(props) {
 		super(props);
@@ -20,8 +54,8 @@ class MandatoryCourses extends Component {
 	}
 	
 	// Store input from search box for use in filtering courseList
-	changeSearch = (e) => {
-		this.setState({ searchString: e.target.value });
+	changeSearch = (newVal) => {
+		this.setState({ searchString: newVal });
 	}
 	
 	// Get list of active courses to display to user
@@ -67,7 +101,7 @@ class MandatoryCourses extends Component {
 		
 		return (
 			<>
-				<input type="text" value={this.state.searchString} onChange={this.changeSearch} />
+				<SearchBox changeSearch={this.changeSearch} />
 				<p>You have {this.state.coursesSelected} mandatory {this.state.coursesSelected === 1 ? 'course' : 'courses'}.</p>
 				{courseList}
 			</>
