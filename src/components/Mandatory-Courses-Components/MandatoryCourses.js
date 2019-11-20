@@ -8,7 +8,6 @@ import styles from './MandatoryCourses.css';
 
 const TextBox = withStyles({
 	root: {
-		marginRight: '1.5rem',
 		'& label': {
 			color: '#3f2a56'
 		},
@@ -34,6 +33,13 @@ class SearchBox extends Component {
 		this.setState({ searchString: e.target.value });
 	}
 	
+	// Clear searchString and pass to parent restore unfiltered course list
+	clearSearch = () => {
+		this.setState({ searchString: '' }, () => {
+			this.changeParentSearch();
+		});
+	}
+	
 	// Pass new input to parent
 	changeParentSearch = () => {
 		this.props.changeSearch(this.state.searchString);
@@ -48,12 +54,15 @@ class SearchBox extends Component {
 	render() {
 		return (
 			<div className={styles.outerSearch}>
-				<TextBox
-					label="Search"
-					value={this.state.searchString}
-					onChange={this.changeSearch}
-					onKeyPress={this.hitEnter}
-				/>
+				<div className={styles.innerSearch}>
+					<TextBox
+						label="Search"
+						value={this.state.searchString}
+						onChange={this.changeSearch}
+						onKeyPress={this.hitEnter}
+					/>
+					<span className={styles.clearSearchButton} onClick={this.clearSearch}>&times;</span>
+				</div>
 				<button className={'btn btn-primary ' + styles.myBtn} onClick={this.changeParentSearch}>Go</button>
 			</div>
 		);

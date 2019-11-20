@@ -8,6 +8,27 @@
 	align-items: center;
 	margin: 1rem 0;
 }
+.innerSearch {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.clearSearchButton {
+	display: inline-block;
+	margin-right: 1.5rem;
+	color: #3f2a56;
+	font-size: 1.5rem;
+	/* Prevent text from being highlighted */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.clearSearchButton:hover {
+	cursor: pointer;
+}
 .myBtn,
 .myBtn:active,
 .myBtn:focus {
@@ -16,6 +37,13 @@
 	padding: 0.5rem 1rem;
 	min-width: 8rem;
 	outline: none !important;
+}
+@media (max-width: 575px) {
+	.myBtn,
+	.myBtn:active,
+	.myBtn:focus {
+		min-width: 4rem;
+	}
 }
 .myBtn:hover,
 .myBtn:active:hover,
