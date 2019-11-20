@@ -1,0 +1,28 @@
+.h4 {
+	color: #3f2a56;
+	margin: 1rem 0;
+}
+.outerSearch {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 1rem 0;
+}
+.myBtn,
+.myBtn:active,
+.myBtn:focus {
+	background-color: #3f2a56 !important;
+	color: #fff;
+	padding: 0.5rem 1rem;
+	min-width: 8rem;
+	outline: none !important;
+}
+.myBtn:hover,
+.myBtn:active:hover,
+.myBtn:focus:hover {
+	background-color: #9468c4 !important;
+	color: #fff;
+}
+.courseCount {
+	margin: 1rem 0;
+}

@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import CourseSwitch from './CourseSwitch';
 import styles from './MandatoryCourses.css';
+
+const TextBox = withStyles({
+	root: {
+		marginRight: '1.5rem',
+		'& label': {
+			color: '#3f2a56'
+		},
+		'& label.Mui-focused': {
+			color: '#3f2a56'
+		},
+		'& .MuiInput-underline:after': {
+			borderBottomColor: '#3f2a56'
+		}
+	}
+})(TextField);
 
 class SearchBox extends Component {
 	constructor(props) {
@@ -30,10 +47,15 @@ class SearchBox extends Component {
 	
 	render() {
 		return (
-			<>
-				<input type="text" value={this.state.searchString} onChange={this.changeSearch} onKeyPress={this.hitEnter} />
-				<button onClick={this.changeParentSearch}>Go</button>
-			</>
+			<div className={styles.outerSearch}>
+				<TextBox
+					label="Search"
+					value={this.state.searchString}
+					onChange={this.changeSearch}
+					onKeyPress={this.hitEnter}
+				/>
+				<button className={'btn btn-primary ' + styles.myBtn} onClick={this.changeParentSearch}>Go</button>
+			</div>
 		);
 	}
 }
@@ -102,8 +124,9 @@ class MandatoryCourses extends Component {
 		
 		return (
 			<>
+				<h4 className={styles.h4}>Let us know which courses you consider mandatory for your learners.</h4>
 				<SearchBox changeSearch={this.changeSearch} />
-				<p>You have {this.state.coursesSelected} mandatory {this.state.coursesSelected === 1 ? 'course' : 'courses'}.</p>
+				<p className={styles.courseCount}>You have {this.state.coursesSelected} mandatory {this.state.coursesSelected === 1 ? 'course' : 'courses'}.</p>
 				{courseList}
 			</>
 		);
