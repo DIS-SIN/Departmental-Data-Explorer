@@ -86,11 +86,6 @@ function AppNav(props) {
 					TabIndicatorProps={{ style: { backgroundColor: '#3f2a56' } }}
 					orientation={smallScreen ? "vertical" : undefined}
 				>
-					/*
-					<Tab label="General" />
-					<Tab label="Improvement" />
-					<Tab label="Technical" />
-					*/
 					<Tab label="Map" />
 					<Tab label="Mandatory Courses" />
 					<Tab label="Methodology" />
@@ -101,17 +96,6 @@ function AppNav(props) {
 				index={value}
 				onChangeIndex={handleChangeIndex}
 			>
-				/*
-				<TabPanel className={classes.tabPanel} value={value} index={0} dir={theme.direction}>
-					<Comments commentType="general" blurb={generalBlurb} />
-				</TabPanel>
-				<TabPanel className={classes.tabPanel} value={value} index={1} dir={theme.direction}>
-					<Comments commentType="improvement" blurb={improvementBlurb} />
-				</TabPanel>
-				<TabPanel className={classes.tabPanel} value={value} index={2} dir={theme.direction}>
-					<Comments commentType="technical" blurb={technicalBlurb} />
-				</TabPanel>
-				*/
 				<TabPanel className={classes.tabPanel} value={value} index={0} dir={theme.direction}>
 					<DepartmentMap />
 				</TabPanel>
