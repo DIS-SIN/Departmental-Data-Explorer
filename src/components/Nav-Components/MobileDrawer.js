@@ -11,6 +11,7 @@ import {
 	makeStyles
 } from '@material-ui/core';
 import {
+	Beenhere,
 	CalendarToday,
 	Home,
 	Menu,
@@ -69,6 +70,12 @@ function MobileDrawer() {
 					<ListItem button>
 						<ListItemIcon><CalendarToday /></ListItemIcon>
 						<ListItemText primary="Calendar" />
+					</ListItem>
+				</Link>
+				<Link exact="true" to="/en/methodology">
+					<ListItem button>
+						<ListItemIcon><Beenhere /></ListItemIcon>
+						<ListItemText primary="Methodology" />
 					</ListItem>
 				</Link>
 			</List>
