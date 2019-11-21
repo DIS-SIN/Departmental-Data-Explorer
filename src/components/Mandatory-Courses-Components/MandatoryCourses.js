@@ -112,15 +112,6 @@ class MandatoryCourses extends Component {
 			});
 	}
 	
-	// Increment or decrement the global count whenever a user modifies their list
-	// of mandatory courses
-	incrementCount = (decrement) => {
-		let offset = decrement ? -1 : 1; 
-		this.setState((state, props) => {
-			return { coursesSelected: state.coursesSelected + offset };
-		});
-	}
-	
 	render() {
 		// Only show courses whose course codes or course titles contain searchString
 		// 'some string'.includes('') returns true, so no need to handle empty string as special case
@@ -128,7 +119,7 @@ class MandatoryCourses extends Component {
 			let label = `${course.course_code} ${course.course_title}`.toLowerCase();
 			return label.includes(this.state.searchString.toLowerCase());
 		}).map((course, index) => {
-			return <CourseSwitch course={course} deptCode={this.props.deptCode} incrementCount={this.incrementCount} key={`courseSwitch-${index}-${course.course_code}`} />;
+			return <CourseSwitch course={course} getCoursesRegisthor={this.getCoursesRegisthor} deptCode={this.props.deptCode} key={`courseSwitch-${index}-${course.course_code}`} />;
 		});
 		
 		return (

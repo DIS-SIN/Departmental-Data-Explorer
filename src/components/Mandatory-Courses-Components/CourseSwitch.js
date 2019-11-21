@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { REGISTHOR_API_KEY } from '../../utils/API_KEYS';
 import { withStyles } from '@material-ui/core/styles';
 import { IconButton, Switch } from '@material-ui/core';
@@ -44,7 +44,7 @@ function CourseInfo(props) {
 	);
 }
 
-class CourseSwitch extends Component {
+class CourseSwitch extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -71,8 +71,8 @@ class CourseSwitch extends Component {
 					this.setState((state, props) => {
 						return { checked: !state.checked }
 					}, () => {
-						// Update global count of mandatory courses
-						this.props.incrementCount(this.state.checked ? false : true);
+						// Re-fetch course list so parent is aware of changes
+						this.props.getCoursesRegisthor();
 					});
 				}
 			});
