@@ -13,7 +13,6 @@ import {
 	useMediaQuery,
 	useTheme
 } from '@material-ui/core';
-import Comments from '../Comment-Components/Comments';
 import DepartmentMap from '../Map-Components/DepartmentMap';
 import Footer from '../Nav-Components/Footer';
 import Header from '../Nav-Components/Header';
@@ -69,9 +68,11 @@ function AppNav(props) {
 	};
 	
 	// Explanations of comment tabs
+	/*
 	const generalBlurb     = 'Answers to the question: Please explain your overall satisfaction or dissatisfaction with this learning activity.';
 	const improvementBlurb = 'Answers to the question: Do you have any other comments you would like to share to help the School improve?';
 	const technicalBlurb   = 'Answers to the question: Do you have any comments you would like to share about your technical experience of this learning activity?';
+	*/
 	
 	return (
 		<div className={classes.root}>
@@ -85,9 +86,11 @@ function AppNav(props) {
 					TabIndicatorProps={{ style: { backgroundColor: '#3f2a56' } }}
 					orientation={smallScreen ? "vertical" : undefined}
 				>
+					/*
 					<Tab label="General" />
 					<Tab label="Improvement" />
 					<Tab label="Technical" />
+					*/
 					<Tab label="Map" />
 					<Tab label="Mandatory Courses" />
 					<Tab label="Methodology" />
@@ -98,6 +101,7 @@ function AppNav(props) {
 				index={value}
 				onChangeIndex={handleChangeIndex}
 			>
+				/*
 				<TabPanel className={classes.tabPanel} value={value} index={0} dir={theme.direction}>
 					<Comments commentType="general" blurb={generalBlurb} />
 				</TabPanel>
@@ -107,13 +111,14 @@ function AppNav(props) {
 				<TabPanel className={classes.tabPanel} value={value} index={2} dir={theme.direction}>
 					<Comments commentType="technical" blurb={technicalBlurb} />
 				</TabPanel>
-				<TabPanel className={classes.tabPanel} value={value} index={3} dir={theme.direction}>
+				*/
+				<TabPanel className={classes.tabPanel} value={value} index={0} dir={theme.direction}>
 					<DepartmentMap />
 				</TabPanel>
-				<TabPanel className={classes.tabPanel} value={value} index={4} dir={theme.direction}>
+				<TabPanel className={classes.tabPanel} value={value} index={1} dir={theme.direction}>
 					<MandatoryCourses />
 				</TabPanel>
-				<TabPanel className={classes.tabPanel} value={value} index={5} dir={theme.direction}>
+				<TabPanel className={classes.tabPanel} value={value} index={2} dir={theme.direction}>
 					<Methodology />
 				</TabPanel>
 			</SwipeableViews>
