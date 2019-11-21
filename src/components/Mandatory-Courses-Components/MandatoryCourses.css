@@ -28,6 +28,7 @@
 }
 .clearSearchButton:hover {
 	cursor: pointer;
+	color: #9468c4;
 }
 .myBtn,
 .myBtn:active,
