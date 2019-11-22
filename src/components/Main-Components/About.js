@@ -1,10 +1,11 @@
 import React from 'react';
+import { FormattedMessage} from 'react-intl';
 import styles from './About.css';
 
 function About() {
 	return (
 		<div className={styles.about}>
-			<h3>This app aims to give you easy, instant access to your department's School data.</h3>
+			<h3><FormattedMessage id="About.h3.1" defaultMessage="This app aims to give you easy, instant access to your department's School data." /></h3>
 			<p>Features:</p>
 			<ul>
 				<li>View charts showing learning KPIs</li>
